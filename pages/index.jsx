@@ -13,6 +13,7 @@ import {
 
 import DeceptiveCard from '../components/DeceptiveCard';
 import StrategyCard from '../components/StrategyCard';
+import HeroTitle from '../components/Intro';
 
 
 export default function HomePage() {
@@ -61,7 +62,7 @@ export default function HomePage() {
 
   return (
     <Container>
-      <Title>Welcome to the Deceptive Interfaces Library</Title>
+      <HeroTitle></HeroTitle>
 
       <h2>Strategies</h2>
       <Flex

@@ -4,6 +4,7 @@ import { getCookie, setCookie } from 'cookies-next';
 import Head from 'next/head';
 import { MantineProvider, ColorScheme, ColorSchemeProvider } from '@mantine/core';
 import { NotificationsProvider } from '@mantine/notifications';
+import NavBarComponent from '../components/Header';
 
 export default function App(props: AppProps & { colorScheme: ColorScheme }) {
   const { Component, pageProps } = props;
@@ -14,6 +15,25 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
     setColorScheme(nextColorScheme);
     setCookie('mantine-color-scheme', nextColorScheme, { maxAge: 60 * 60 * 24 * 30 });
   };
+
+  const navbarLinks = [
+  {
+    label: 'Home',
+    link: '/home'
+  }, {
+    label: 'Strategies',
+    link: '/strategies'
+  }, {
+    label: 'Scenarios',
+    link: '/scenarios'
+  }, {
+    label: 'Insights',
+    link: '/insights'
+  }, {
+    label: 'Charts',
+    link: '/charts'
+  }
+  ]
 
   return (
     <>
@@ -30,9 +50,10 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
         <MantineProvider theme={{
           fontFamily: 'Inter, sans-serif',
           headings: { fontFamily: 'Inter Tight, sans-serif' },
-          colorScheme: 'light'
+          colorScheme: 'light',
         }} withGlobalStyles withNormalizeCSS>
           <NotificationsProvider>
+            <NavBarComponent links={navbarLinks}></NavBarComponent>
             <Component {...pageProps} />
           </NotificationsProvider>
         </MantineProvider>

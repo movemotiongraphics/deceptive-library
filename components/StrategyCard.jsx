@@ -1,4 +1,4 @@
-import { createStyles, Paper, Text, Title, Button, Badge } from '@mantine/core';
+import { createStyles, Paper, Text, Title, Button, Badge, Stack } from '@mantine/core';
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -12,12 +12,12 @@ const useStyles = createStyles((theme) => ({
   },
 
   title: {
-    fontWeight: 900,
+    fontWeight: 600,
     color: theme.black,
     lineHeight: 1.2,
     fontSize: 32,
     marginTop: theme.spacing.xs,
-    marginBottom: 60,
+    marginBottom: 30,
   },
 
   category: {
@@ -46,9 +46,12 @@ const StrategyCard = (props) => {
             {props.strategyName}
         </Title>
       </div>
-      <Button variant="black" color="dark">
-        Learn More
-      </Button>
+        <Badge size="lg" radius="xs" mb={10}>{props.strategyScenarios.length} Scenarios</Badge>
+        {props.strategyScenarios.map((e, i) => {
+            return <Badge size="lg" radius="xs" mb={10} color="gray">{e.Scenario}</Badge>
+        })}
+      
+    
     </Paper>
   );
 }
