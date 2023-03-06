@@ -3,6 +3,7 @@ import { createStyles, Card, Image, Text, Group, RingProgress, Badge, Container,
 const useStyles = createStyles((theme) => ({
     card: {
       backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
+      minHeight: 300,
     },
   
     footer: {
@@ -23,42 +24,26 @@ const useStyles = createStyles((theme) => ({
       objectPosition: 'top',
     },
 
-    container: {
-      minHeight: 400,
-    }
-
 }));
   
-const DeceptiveCard = ({ id, fields }) => {
+const InsightCard = ({ insight }) => {
     const { classes } = useStyles();
-    const humanBiases = fields["Human Bias"]
 
     return(
       <Container size={300} px={0} className={classes.container}>
         <Card withBorder p="lg" className={classes.card}>
-          <Card.Section>
-            <Image src={fields.Thumbnail} alt={id} height={300} className={classes.thumbnailImage}/>
-          </Card.Section>
     
-          <Group position="apart" mt="xl">
-            <Text size="sm" weight={700} className={classes.title}>
-              {fields.Scenario}
+          <Group position="apart">
+            <Text size="xl" weight={300}>
+              {insight}
             </Text>
           </Group>
           <Text mt="sm" mb="md" color="dimmed" size="xs">
-            {fields.Description.substring(0, 100)}...
-          </Text>
-
-          <Group position="apart" mt="xl">
-            { humanBiases ? humanBiases.map((e, i) => {
-                return <Badge size="sm" radius="xs" color="gray">{e}</Badge>
-              }) : <Badge size="sm" radius="xs" color="gray">No Human Bias</Badge> }  
-          </Group>
-      
+          </Text>     
         </Card>
       </Container>
 
     )
 }
 
-export default DeceptiveCard;
+export default InsightCard;

@@ -1,4 +1,4 @@
-import { createStyles, Container, Text, Button, Group } from '@mantine/core';
+import { createStyles, Container, Text, Button, Group, Select } from '@mantine/core';
 
 const BREAKPOINT = '@media (max-width: 755px)';
 
@@ -36,7 +36,6 @@ const useStyles = createStyles((theme) => ({
 
   description: {
     marginTop: theme.spacing.xl,
-    fontSize: 24,
 
     [BREAKPOINT]: {
       fontSize: 18,
@@ -71,16 +70,50 @@ const HeroTitle = () => {
   return (
     <div className={classes.wrapper}>
       <Container className={classes.inner} px={0}>
-        <h1 className={classes.title}>
-          Welcome to the{' '}
-          <Text component="span" variant="gradient" gradient={{ from: 'blue', to: 'cyan' }} inherit>
-            Deceptive Interfaces Library
+
+        <Group mb={20}>
+          <h1 className={classes.title}>
+            Are you designing choices?
+          </h1>
+        </Group>
+
+        <Group>
+          
+          <Text 
+          variant="gradient"
+          gradient={{ from: 'indigo', to: 'cyan', deg: 45 }}>
+           <h2>I am designing for</h2>
           </Text>
-          .
-        </h1>
+
+          <Select
+            placeholder="Pick one"
+            data={[
+              { value: 'react', label: 'React' },
+              { value: 'ng', label: 'Angular' },
+              { value: 'svelte', label: 'Svelte' },
+              { value: 'vue', label: 'Vue' },
+            ]}
+          />
+
+          <Text 
+          variant="gradient"
+          gradient={{ from: 'indigo', to: 'cyan', deg: 45 }}>
+           <h2>. I want to make my interface</h2>
+          </Text>
+
+          <Select
+            placeholder="Pick one"
+            data={[
+              { value: 'react', label: 'React' },
+              { value: 'ng', label: 'Angular' },
+              { value: 'svelte', label: 'Svelte' },
+              { value: 'vue', label: 'Vue' },
+            ]}
+          />
+        </Group>
 
         <Text className={classes.description} color="dimmed">
-          Deception is everywhere, learn how to use them in your interfaces to influence behaviour.
+          <h3>Welcome to the Deceptive Interface Library. Deception is everywhere, learn how to use them in your interfaces to influence behaviour.</h3>
         </Text>
 
         <Group className={classes.controls}>
