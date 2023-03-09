@@ -11,7 +11,7 @@ const useStyles = createStyles((theme) => ({
 
   inner: {
     position: 'relative',
-    height: '60vh',
+    height: '600px',
 
     [BREAKPOINT]: {
       paddingBottom: 80,
@@ -35,7 +35,7 @@ const useStyles = createStyles((theme) => ({
   },
 
   description: {
-    marginTop: theme.spacing.xl,
+    width: "60%",
 
     [BREAKPOINT]: {
       fontSize: 18,
@@ -62,6 +62,10 @@ const useStyles = createStyles((theme) => ({
       flex: 1,
     },
   },
+
+  subheader: {
+    fontWeight: 500,
+  }
 }));
 
 const HeroTitle = () => {
@@ -75,48 +79,38 @@ const HeroTitle = () => {
           <h1 className={classes.title}>
             Are you designing choices?
           </h1>
+
+          <Text className={classes.description} color="dimmed">
+          <p>Designing choices can be difficult, especially when you just want to focus on the content. This library helps translate complex psychological choice architecture theories into UI components.</p>
+          </Text>
+
+          <Text className={classes.description} color="dimmed">
+          <p>With this library, you can think about the outcome you want, and we will tell you how to build the most effective choice design.</p>
+          </Text>
+        
         </Group>
 
         <Group>
-          
-          <Text 
-          variant="gradient"
-          gradient={{ from: 'indigo', to: 'cyan', deg: 45 }}>
-           <h2>I am designing for</h2>
+
+          <Text>
+           <h2 className={classes.subheader}>I want to make my choices</h2>
           </Text>
 
           <Select
+            sx={{ width: 500 }}
+            size="lg"
             placeholder="Pick one"
             data={[
-              { value: 'react', label: 'React' },
-              { value: 'ng', label: 'Angular' },
-              { value: 'svelte', label: 'Svelte' },
-              { value: 'vue', label: 'Vue' },
-            ]}
-          />
-
-          <Text 
-          variant="gradient"
-          gradient={{ from: 'indigo', to: 'cyan', deg: 45 }}>
-           <h2>. I want to make my interface</h2>
-          </Text>
-
-          <Select
-            placeholder="Pick one"
-            data={[
-              { value: 'react', label: 'React' },
-              { value: 'ng', label: 'Angular' },
-              { value: 'svelte', label: 'Svelte' },
-              { value: 'vue', label: 'Vue' },
+              { value: '1', label: 'Influence more people to donate' },
+              { value: '2', label: 'Increase donation amount.' },
+              { value: '3', label: 'Easy to use, yet efficient.' },
+              { value: '4', label: 'Remove user’s suspicion in your donation scheme.' },
+              { value: '5', label: 'More trustworthy, to increase users confidence..' },
             ]}
           />
         </Group>
 
-        <Text className={classes.description} color="dimmed">
-          <h3>Welcome to the Deceptive Interface Library. Deception is everywhere, learn how to use them in your interfaces to influence behaviour.</h3>
-        </Text>
-
-        <Group className={classes.controls}>
+        {/* <Group className={classes.controls}>
           <Button
             size="xl"
             className={classes.control}
@@ -127,7 +121,7 @@ const HeroTitle = () => {
             What are deceptive interfaces?
           </Button>
 
-        </Group>
+        </Group> */}
       </Container>
     </div>
   );
