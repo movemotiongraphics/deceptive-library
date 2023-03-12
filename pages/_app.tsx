@@ -51,9 +51,22 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
           fontFamily: 'Inter, sans-serif',
           headings: { fontFamily: 'Inter Tight, sans-serif' },
           colorScheme: 'light',
+          components: {
+            Container: {
+              defaultProps: {
+                sizes: {
+                  xs: 540,
+                  sm: 720,
+                  md: 1160,
+                  lg: 1140,
+                  xl: 1320,
+                },
+              },
+            },
+          }
         }} withGlobalStyles withNormalizeCSS>
           <NotificationsProvider>
-            <NavBarComponent links={navbarLinks}></NavBarComponent>
+            {/* <NavBarComponent links={navbarLinks}></NavBarComponent> */}
             <Component {...pageProps} />
           </NotificationsProvider>
         </MantineProvider>
