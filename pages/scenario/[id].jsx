@@ -99,7 +99,7 @@ const scenarioPage = ({ currentScenario }) => {
             </Group>
 
             <Group grow align="flex-start" justify="flex-start" mb={50} className={classes.titleSmall}>
-            <h1 className={classes.title}>In summary, this mechanism leveraged on the strategy { currentScenario.Strategy ? <span className={classes.strategyPill}>{currentScenario.Strategy}</span> : '' }. People who tested it mentioned that...</h1>
+            <h1 className={classes.title}>In summary, this mechanism leveraged on the strategy { currentScenario.Strategy ? <span className={classes.strategyPill}>{currentScenario.Strategy}</span> : '' }.</h1>
             </Group>
 
             <Stack align="flex-start" justify="flex-start" mb={50}>

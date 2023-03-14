@@ -70,6 +70,10 @@ const useStyles = createStyles((theme) => ({
     },
   },
 
+  linkActive: {
+    backgroundColor: theme.colors.gray[1],
+  }
+
 }));
 
 
@@ -79,7 +83,7 @@ const NavBarComponent = ({ links }) => {
   const { classes, cx } = useStyles();
 
   const items = links.map((link) => (
-    <a
+    <Link
       key={link.label}
       href={link.link}
       className={cx(classes.link, { [classes.linkActive]: active === link.link })}
@@ -90,7 +94,7 @@ const NavBarComponent = ({ links }) => {
       }}
     >
       {link.label}
-    </a>
+    </Link>
   ));
 
   return (
