@@ -109,7 +109,7 @@ export default function HomePage() {
   }, [])
 
   return (
-    <Container>
+    <Container size="xl" px="xl">
       <HeroTitle></HeroTitle>
 
       <Stack spacing={20}>

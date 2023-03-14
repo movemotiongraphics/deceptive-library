@@ -41,11 +41,11 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
       <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
         <MantineProvider theme={{
           fontSizes: {
-            xs: '0.9rem',
-            sm: '1.1rem',
-            md: '1.2rem',
-            lg: '1.5rem',
-            xl: '1.7rem',
+            xs: 14,
+            sm: 18,
+            md: 19,
+            lg: 24,
+            xl: 28,
           },
           fontFamily: 'Inter, sans-serif',
           lineHeight: 1.2,
@@ -59,7 +59,7 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
                   sm: 720,
                   md: 1160,
                   lg: 1140,
-                  xl: 1320,
+                  xl: 1520,
                 },
               },
             },

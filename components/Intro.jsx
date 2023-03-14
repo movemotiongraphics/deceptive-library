@@ -84,7 +84,7 @@ const HeroTitle = () => {
 
   return (
     <div className={classes.wrapper}>
-      <Container className={classes.inner} px={0}>
+      <Container className={classes.inner} px="xl" size="xl">
 
         <Stack mt={130} mb={170}>
           <h1 className={classes.title}>

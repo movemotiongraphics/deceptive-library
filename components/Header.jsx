@@ -93,7 +93,7 @@ const NavBarComponent = ({ links }) => {
 
   return (
     <Header height={HEADER_HEIGHT} mb={120} className={classes.root} sx={{ borderBottom: 0 }}>
-      <Container className={classes.header}>
+      <Container className={classes.header} size="xl" px="xl">
         <div style={{flexGrow: 3}}>
           interface.tools — donations
         </div>

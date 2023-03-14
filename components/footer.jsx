@@ -30,7 +30,7 @@ const Footer = () => {
                 <Group className={classes.footer} position="flex-start" align="flex-start">
                     <div style={{flexGrow: 3}}>interface.tools is a collection of tools to help designers design better interfaces.</div>
                     <Stack>
-                        Yuan Jie
+                        Made by Yuan Jie
                     </Stack>
                 </Group>
             </div>
