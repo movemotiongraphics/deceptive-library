@@ -98,12 +98,31 @@ const scenarioPage = ({ currentScenario }) => {
                 </Stack>
             </Group>
 
-            <Group grow align="flex-start" justify="flex-start" mb={50} className={classes.titleSmall}>
+            <Group grow align="flex-start" justify="flex-start" mb={200} className={classes.titleSmall}>
             <h1 className={classes.title}>In summary, this mechanism leveraged on the strategy { currentScenario.Strategy ? <span className={classes.strategyPill}>{currentScenario.Strategy}</span> : '' }.</h1>
             </Group>
 
+            <Group grow align="flex-start" justify="flex-start" mb={50}>
+            <h1 className={classes.title}>Our study showed that there are a few similar designs on the internet. In fact, you've probably seen it before.</h1>
+            </Group>
+
+            <Group grow align="flex-start" justify="flex-start" mb={200}>
+            <Flex
+            gap="md"
+            justify="flex-start"
+            align="flex-start"
+            direction="row"
+            wrap="wrap" >
+                    { currentScenario.SeenBefore.map((e, i) => {
+                            return <Stack h={300} w={300} justify="center" align="center" className={classes.quotes}>
+                                        <Text fz="md">{e}</Text>
+                                    </Stack>                              
+                        }) }
+            </Flex>
+            </Group>
+
             <Stack align="flex-start" justify="flex-start" mb={50}>
-            <h1 className={classes.title}>People who tested it mentioned that...</h1>
+            <h1 className={classes.title}>Overall, the comments regarding this strategy is neutral. </h1>
             </Stack>
 
             <Group grow align="flex-start" justify="flex-start" mb={200}>
@@ -116,7 +135,7 @@ const scenarioPage = ({ currentScenario }) => {
                             align="flex-start"
                             direction="row">
                                 <Stack h={100} w={100} justify="center" align="center">
-                                    <Text fz="xl">{i}</Text>
+                                    <Text fz="xl">{i+1}</Text>
                                 </Stack>                              
                                 <Stack align="flex-start" justify="flex-start">
                                 <div>
@@ -130,9 +149,15 @@ const scenarioPage = ({ currentScenario }) => {
             </Group>
 
             <Group grow align="flex-start" justify="flex-start" mb={50}>
-            <h1 className={classes.title}>Make your own!</h1>
+            <h1 className={classes.title}>It just takes a few steps to make your own!</h1>
             <Stack>
             </Stack>
+            </Group>
+
+            <Group grow align="flex-start" justify="flex-start" mb={200}>
+                <Stack>
+                    {  }
+                </Stack>
             </Group>
         </Stack>
     </Container>
