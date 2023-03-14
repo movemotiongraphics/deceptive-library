@@ -25,16 +25,18 @@ const Footer = () => {
     const { classes } = useStyles();
 
     return(
-        <div className={classes.wrapper}>
-            <div className={classes.root}>
-                <Group className={classes.footer} position="flex-start" align="flex-start">
-                    <div style={{flexGrow: 3}}>interface.tools is a collection of tools to help designers design better interfaces.</div>
-                    <Stack>
-                        Made by Yuan Jie
-                    </Stack>
-                </Group>
+        <Container size="xl" px={30}>
+            <div className={classes.wrapper}>
+                <div className={classes.root}>
+                    <Group className={classes.footer} position="flex-start" align="flex-start">
+                        <div style={{flexGrow: 3}}>interface.tools is a collection of tools to help designers design better interfaces.</div>
+                        <Stack>
+                            Made by Yuan Jie
+                        </Stack>
+                    </Group>
+                </div>
             </div>
-        </div>
+        </Container>
 
     )
 }

@@ -1,4 +1,6 @@
 import { createStyles, Card, Image, Text, Group, RingProgress, Badge, Container, Stack } from '@mantine/core';
+import { useState, useRef } from 'react';
+import Link from 'next/link';
 
 const circleWidth = 40;
 const labelMaxWidth = 150;
@@ -22,9 +24,13 @@ const useStyles = createStyles((theme) => ({
       borderRadius: 10,
       backgroundColor: theme.colors.green[5],
       width: circleWidth,
-      height: circleWidth,
+      aspectRatio: '1 / 1',
       display: "inline-block",
       position: "absolute",
+
+      '&:hover': {
+        backgroundColor: theme.colors.green[1],
+      },
     },
 
     insideBullet: {
@@ -53,11 +59,19 @@ const useStyles = createStyles((theme) => ({
       backgroundColor: theme.colors.gray[7],
       height: 1,
       marginTop: circleWidth/2,
+    },
+
+    selected: {
+      backgroundColor: theme.colors.green[1],
     }
 }));
   
 const DeceptiveChart = ({ scenarios, strategies }) => {
+
+    const [currentlySelected, setSelected] = useState([]);
+    const [classSelected, setClassSelect] = useState(false);
     const { classes } = useStyles();
+
 
     return(
       <div className={classes.chart}>
@@ -66,10 +80,12 @@ const DeceptiveChart = ({ scenarios, strategies }) => {
             <div>
                 <div className={classes.list}>
                   {scenarios.map((e, i) => 
-                    <div className={classes.bullet} style={{ marginLeft: `${((e.DeceptiveScore/3.5) * 100 - 45) * 1.7}%` }}>
+                    <Link href={`/scenario/${e.Number}`}>
+                    <div id={`bullet`+e.Number} className={classes.bullet} style={{ marginLeft: `${((e.DeceptiveScore/3.5) * 100 - 45) * 1.7}%` }}>
                       {/* <div className={classes.line} style={{ height: `60px` }}></div> */}
                       <div className={classes.insideBullet}></div>
-                    </div>)
+                    </div>
+                    </Link>)
                   }
                 </div>
                 <div>
@@ -78,6 +94,7 @@ const DeceptiveChart = ({ scenarios, strategies }) => {
                   </Group>
                   <Group position="apart" px={20} mt={10}>
                     <div><Text fz="xs">Less Deceptive</Text></div>
+                    <div><Text fz="xs">Socially Acceptable</Text></div>
                     <div><Text fz="xs">More Deceptive</Text></div>
                   </Group>
                 </div>
@@ -92,7 +109,7 @@ const DeceptiveChart = ({ scenarios, strategies }) => {
               <Group position="left" >
                 {
                   strategies.map((e, i) => 
-                    <Badge color="gray" size="lg" radius="sm">{e.strategyName}</Badge>
+                    <Badge color="gray" size="lg" radius="sm" >{e.strategyName}</Badge>
                   )
                 }
               </Group>

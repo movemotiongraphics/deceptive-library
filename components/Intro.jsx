@@ -12,11 +12,6 @@ const useStyles = createStyles((theme) => ({
 
   inner: {
     position: 'relative',
-
-    [BREAKPOINT]: {
-      paddingBottom: 80,
-      paddingTop: 80,
-    },
   },
 
   title: {
@@ -51,13 +46,9 @@ const useStyles = createStyles((theme) => ({
 
   control: {
     height: 54,
-    paddingLeft: 38,
-    paddingRight: 38,
 
     [BREAKPOINT]: {
       height: 54,
-      paddingLeft: 18,
-      paddingRight: 18,
       flex: 1,
     },
   },
@@ -84,7 +75,7 @@ const HeroTitle = () => {
 
   return (
     <div className={classes.wrapper}>
-      <Container className={classes.inner} px="xl" size="xl">
+      <Container className={classes.inner} fluid px={0}>
 
         <Stack mt={130} mb={170}>
           <h1 className={classes.title}>
@@ -106,7 +97,7 @@ const HeroTitle = () => {
           <Stack>
           <Group position="apart" align="end">
             <div>with strategy</div>
-            <Badge color="gray" size="lg" radius="sm">+50% Participation</Badge>
+            <Badge color="green" size="lg" radius="sm">+50% Participation</Badge>
           </Group>
           
            <div className={classes.imageBorder}>

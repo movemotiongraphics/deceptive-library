@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { createStyles, Header, Container, Group, Burger, Paper, Transition, Button } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
+import Link from 'next/link'
 
 const HEADER_HEIGHT = 100;
 
@@ -9,6 +10,7 @@ const useStyles = createStyles((theme) => ({
     position: 'relative',
     zIndex: 1,
     fontSize: theme.fontSizes.sm,
+    textDecoration: 'none',
   },
 
   dropdown: {
@@ -93,9 +95,11 @@ const NavBarComponent = ({ links }) => {
 
   return (
     <Header height={HEADER_HEIGHT} mb={120} className={classes.root} sx={{ borderBottom: 0 }}>
-      <Container className={classes.header} size="xl" px="xl">
+      <Container className={classes.header} size="xl" px={30}>
         <div style={{flexGrow: 3}}>
-          interface.tools — donations
+        <Link href={`/`} style={{textDecoration: 'none', color: 'inherit'}}>
+        interface.tools — donations
+        </Link>
         </div>
         <Group position="apart" className={classes.links}>
         {items}

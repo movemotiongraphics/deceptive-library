@@ -6,6 +6,7 @@ import { MantineProvider, ColorScheme, ColorSchemeProvider } from '@mantine/core
 import { NotificationsProvider } from '@mantine/notifications';
 import NavBarComponent from '../components/Header';
 import CustomFont from '../components/customFonts';
+import Footer  from '../components/footer'
 
 export default function App(props: AppProps & { colorScheme: ColorScheme }) {
   const { Component, pageProps } = props;
@@ -19,10 +20,10 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
 
   const navbarLinks = [
   {
-    label: 'Background',
-    link: '/background'
+    label: 'Study',
+    link: '/study'
   }, {
-    label: 'Team',
+    label: 'About',
     link: '/about'
   }
   ]
@@ -68,6 +69,7 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
           <NotificationsProvider>
             <NavBarComponent links={navbarLinks}></NavBarComponent>
             <Component {...pageProps} />
+            <Footer></Footer>
           </NotificationsProvider>
         </MantineProvider>
       </ColorSchemeProvider>

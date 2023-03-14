@@ -16,7 +16,6 @@ import StrategyCard from '../components/StrategyCard';
 import HeroTitle from '../components/Intro';
 import InsightCard from '../components/InsightCard';
 import DeceptiveChart from '../components/DeceptiveChart';
-import Footer  from '../components/footer'
 
 const BREAKPOINT = '@media (max-width: 755px)';
 
@@ -109,7 +108,7 @@ export default function HomePage() {
   }, [])
 
   return (
-    <Container size="xl" px="xl">
+    <Container size="xl" px={30}>
       <HeroTitle></HeroTitle>
 
       <Stack spacing={20}>
@@ -126,8 +125,6 @@ export default function HomePage() {
           <DeceptiveChart scenarios={scenarioRecords} strategies={strategyRecords}></DeceptiveChart>
         </div>
       </Stack>
-
-      <Footer></Footer>
 
       {/* <Stack spacing={20}>
         <div>
