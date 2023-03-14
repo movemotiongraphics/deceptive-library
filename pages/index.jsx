@@ -16,11 +16,41 @@ import StrategyCard from '../components/StrategyCard';
 import HeroTitle from '../components/Intro';
 import InsightCard from '../components/InsightCard';
 import DeceptiveChart from '../components/DeceptiveChart';
+import Footer  from '../components/footer'
+
+const BREAKPOINT = '@media (max-width: 755px)';
 
 const useStyles = createStyles((theme) => ({
   chart: {
     backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
   },
+
+  title: {
+    fontFamily: 'Inter Tight',
+    fontSize: '3rem',
+    fontWeight: 400,
+    margin: 0,
+    padding: 0,
+    color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+    width: "80%",
+
+    [BREAKPOINT]: {
+      fontSize: 42,
+      lineHeight: 1.2,
+    },
+  },
+
+  scenarioIcon: {
+    display: "inline-block",
+    width: 20,
+    height: 20,
+    borderRadius: 5,
+    backgroundColor: theme.colors.green[5],
+  },
+
+  helperText: {
+    fontSize: theme.fontSizes.xs,
+  }
 
 }));
 
@@ -40,7 +70,7 @@ export default function HomePage() {
     //get only fields
     let onlyFields = data.map((record, index) => (record.fields));
     setScenarioRecords(onlyFields);
-
+    console.log(onlyFields);
 
     //find distinct strategies
     const findDistinct = (value, index, self) => {
@@ -83,16 +113,23 @@ export default function HomePage() {
       <HeroTitle></HeroTitle>
 
       <Stack spacing={20}>
-        <div>
-          <h2>Charts</h2>
-          <p>This chart shows how deceptive each interface is. Remember, every type of user has their own appetite, so look around to find interesting ones that might fit yours.</p>
-        </div>
+        <Group mt={100} mb={100}>
+        <h1 className={classes.title}>Using effective and socially acceptable deceptive strategies.</h1>
+        <Group position="left" spacing="xs" className={classes.helperText}>
+          Click on these 
+          <span className={classes.scenarioIcon}></span> 
+          scenarios to learn more.
+        </Group>
+        </Group>
+
         <div className={classes.chart}>
-          <DeceptiveChart scenarios={scenarioRecords}></DeceptiveChart>
+          <DeceptiveChart scenarios={scenarioRecords} strategies={strategyRecords}></DeceptiveChart>
         </div>
       </Stack>
 
-      <Stack spacing={20}>
+      <Footer></Footer>
+
+      {/* <Stack spacing={20}>
         <div>
           <h2>Insights</h2>
           <p>Find interesting insights from these experiments</p>
@@ -140,7 +177,7 @@ export default function HomePage() {
       >
           {originalRecords.map((record, index) => (<DeceptiveCard key={"scenario" + index} {...record}/>))} 
         </Flex>
-      </Stack>
+      </Stack> */}
 
     </Container>
   );

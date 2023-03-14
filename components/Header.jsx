@@ -2,12 +2,13 @@ import { useState } from 'react';
 import { createStyles, Header, Container, Group, Burger, Paper, Transition, Button } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 
-const HEADER_HEIGHT = 70;
+const HEADER_HEIGHT = 100;
 
 const useStyles = createStyles((theme) => ({
   root: {
     position: 'relative',
     zIndex: 1,
+    fontSize: theme.fontSizes.sm,
   },
 
   dropdown: {
@@ -28,7 +29,7 @@ const useStyles = createStyles((theme) => ({
 
   header: {
     display: 'flex',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     height: '100%',
 
@@ -55,7 +56,6 @@ const useStyles = createStyles((theme) => ({
     padding: '20px 20px',
     textDecoration: 'none',
     color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.gray[7],
-    fontSize: theme.fontSizes.md,
     fontWeight: 500,
 
     '&:hover': {
@@ -68,12 +68,6 @@ const useStyles = createStyles((theme) => ({
     },
   },
 
-  linkActive: {
-    '&, &:hover': {
-      backgroundColor: theme.fn.variant({ variant: 'light', color: theme.primaryColor }).background,
-      color: theme.fn.variant({ variant: 'light', color: theme.primaryColor }).color,
-    },
-  },
 }));
 
 
@@ -100,9 +94,11 @@ const NavBarComponent = ({ links }) => {
   return (
     <Header height={HEADER_HEIGHT} mb={120} className={classes.root} sx={{ borderBottom: 0 }}>
       <Container className={classes.header}>
-        <Group spacing={5} className={classes.links}>
-          {items}
-          {/* <Button variant="default" radius="xl">Contribute</Button> */}
+        <div style={{flexGrow: 3}}>
+          interface.tools — donations
+        </div>
+        <Group position="apart" className={classes.links}>
+        {items}
         </Group>
 
         
@@ -113,7 +109,6 @@ const NavBarComponent = ({ links }) => {
           {(styles) => (
             <Paper className={classes.dropdown} withBorder style={styles}>
               {items}
-              {/* <Button radius="xl" sx={{marginBottom: "20px"}} >Contribute</Button> */}
             </Paper>
           )}
         </Transition>

@@ -5,6 +5,7 @@ import Head from 'next/head';
 import { MantineProvider, ColorScheme, ColorSchemeProvider } from '@mantine/core';
 import { NotificationsProvider } from '@mantine/notifications';
 import NavBarComponent from '../components/Header';
+import CustomFont from '../components/customFonts';
 
 export default function App(props: AppProps & { colorScheme: ColorScheme }) {
   const { Component, pageProps } = props;
@@ -18,20 +19,11 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
 
   const navbarLinks = [
   {
-    label: 'Home',
-    link: '/home'
+    label: 'Background',
+    link: '/background'
   }, {
-    label: 'Strategies',
-    link: '/strategies'
-  }, {
-    label: 'Scenarios',
-    link: '/scenarios'
-  }, {
-    label: 'Insights',
-    link: '/insights'
-  }, {
-    label: 'Charts',
-    link: '/charts'
+    label: 'Team',
+    link: '/about'
   }
   ]
 
@@ -48,7 +40,15 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
 
       <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
         <MantineProvider theme={{
+          fontSizes: {
+            xs: '0.9rem',
+            sm: '1.1rem',
+            md: '1.2rem',
+            lg: '1.5rem',
+            xl: '1.7rem',
+          },
           fontFamily: 'Inter, sans-serif',
+          lineHeight: 1.2,
           headings: { fontFamily: 'Inter Tight, sans-serif' },
           colorScheme: 'light',
           components: {
@@ -66,7 +66,7 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
           }
         }} withGlobalStyles withNormalizeCSS>
           <NotificationsProvider>
-            {/* <NavBarComponent links={navbarLinks}></NavBarComponent> */}
+            <NavBarComponent links={navbarLinks}></NavBarComponent>
             <Component {...pageProps} />
           </NotificationsProvider>
         </MantineProvider>
