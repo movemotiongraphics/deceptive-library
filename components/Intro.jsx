@@ -1,5 +1,4 @@
 import { createStyles, Container, Text, Button, Group, Select, Stack, Image, Badge } from '@mantine/core';
-import { ArrowNarrowRight } from 'tabler-icons-react';
 
 const BREAKPOINT = '@media (max-width: 755px)';
 

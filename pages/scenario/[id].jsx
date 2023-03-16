@@ -185,8 +185,8 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
     const { data } = await axios.get('https://eoyeceylz6rbgls.m.pipedream.net');
     let onlyFields = data.map((record, index) => (record.fields));
-    
-    let currentScenario = onlyFields[params.id]
+
+    let currentScenario = onlyFields.find((element) => element.Number == params.id )
     return {
         props: {
             currentScenario,
