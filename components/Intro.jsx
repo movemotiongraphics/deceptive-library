@@ -89,12 +89,12 @@ const HeroTitle = () => {
         <Group grow mt={30} mb={100} position="left" align="flex-start">
           <Stack>
             <Group position="apart" align="end">
-            <div>Your Design got ${CurrentDonationAmount}</div>
+            <div>Your current design got ${CurrentDonationAmount}</div>
             <Badge color="gray" size="lg" radius="sm">+0% Participation</Badge>
             </Group>
            <div className={classes.imageBorder}>
             {/* rive animation here */}
-            <RiveAnimation scenario={3} />
+            <RiveAnimation scenarioNumber={99} />
            </div>
           </Stack>
           
@@ -105,7 +105,7 @@ const HeroTitle = () => {
           </Group>
           
            <div className={classes.imageBorder}>
-            <RiveAnimation scenario={4} />
+            <RiveAnimation scenarioNumber={2} />
            </div>
           </Stack>
         </Group>
