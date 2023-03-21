@@ -1,4 +1,6 @@
 import { createStyles, Container, Text, Button, Group, Select, Stack, Image, Badge } from '@mantine/core';
+import { useState } from 'react';
+import { RiveAnimation, CurrentDonationAmount } from './riveDonate';
 
 const BREAKPOINT = '@media (max-width: 755px)';
 
@@ -53,8 +55,9 @@ const useStyles = createStyles((theme) => ({
   },
 
   imageBorder: {
-    height: 250,
+    height: 500,
     backgroundColor: theme.colors.gray[1],
+    objectFit: "cover",
   },
 
   highlightedText: {
@@ -71,6 +74,7 @@ const useStyles = createStyles((theme) => ({
 
 const HeroTitle = () => {
   const { classes } = useStyles();
+  const [ currentMoney, setMoney ] = useState(0);
 
   return (
     <div className={classes.wrapper}>
@@ -85,22 +89,23 @@ const HeroTitle = () => {
         <Group grow mt={30} mb={100} position="left" align="flex-start">
           <Stack>
             <Group position="apart" align="end">
-            <div>Your Design</div>
+            <div>Your Design got ${CurrentDonationAmount}</div>
             <Badge color="gray" size="lg" radius="sm">+0% Participation</Badge>
             </Group>
            <div className={classes.imageBorder}>
-           <Image maw={300} mx="auto" src={`../img/originalui.png`} alt="Random image"/>
+            {/* rive animation here */}
+            <RiveAnimation scenario={3} />
            </div>
           </Stack>
           
           <Stack>
           <Group position="apart" align="end">
-            <div>with strategy</div>
+          <div>With this strategy, youll get ${CurrentDonationAmount}</div>
             <Badge color="green" size="lg" radius="sm">+50% Participation</Badge>
           </Group>
           
            <div className={classes.imageBorder}>
-           <Image maw={300} mx="auto" src={`../img/reachablegoalui.png`} alt="Random image"/>
+            <RiveAnimation scenario={4} />
            </div>
           </Stack>
         </Group>

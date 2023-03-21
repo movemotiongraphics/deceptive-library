@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { createStyles, Header, Container, Group, Burger, Paper, Transition, Button } from '@mantine/core';
+import { createStyles, Header, Container, Group, Burger, Paper, Transition, Button, Image, Flex } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import Link from 'next/link'
 
@@ -100,14 +100,22 @@ const NavBarComponent = ({ links }) => {
   return (
     <Header height={HEADER_HEIGHT} mb={120} className={classes.root} sx={{ borderBottom: 0 }}>
       <Container className={classes.header} size="xl" px={30}>
-        <div style={{flexGrow: 3}}>
-        <Link href={`/`} style={{textDecoration: 'none', color: 'inherit'}}>
-        interface.tools — donations
-        </Link>
-        </div>
-        <Group position="apart" className={classes.links}>
-        {items}
-        </Group>
+        <Flex       
+          justify="flex-start"
+          align="center"
+          direction="row"
+          style={{width: "100%"}}>
+          <div>
+            <Link href={`/`} style={{textDecoration: 'none', color: 'inherit', display: "Flex", flexDirection: "row", alignItems: "center", justifyContent: "center"}}>
+              <Image maw="240px" mr="md" src="../img/logo-text.svg" alt="Logo" /> Donations
+            </Link>
+          </div>
+          <div style={{flexGrow: '3'}}></div>
+          <Group position="apart" className={classes.links}>
+          {items}
+          </Group>
+        </Flex>
+
 
         
 
