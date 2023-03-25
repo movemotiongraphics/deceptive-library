@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 import { Group, Flex, Stack, Container, createStyles, Image, Badge, Text } from '@mantine/core';
 import axios, { all } from 'axios';
+import { RiveAnimation } from '../../components/riveDonate'
 
 const BREAKPOINT = '@media (max-width: 755px)';
 
@@ -24,8 +25,7 @@ const useStyles = createStyles((theme) => ({
     
     imageBorder: {
         backgroundColor: theme.colors.gray[1],
-        padding: 50,
-        height: 630,
+        height: 500,
       },
     
       description: {
@@ -80,7 +80,7 @@ const scenarioPage = ({ currentScenario }) => {
                 <Badge color="gray" size="lg" radius="sm">33% Participation</Badge>
                 </Group>
                     <div className={classes.imageBorder}>
-                        <Image maw={250} mx="auto" src="../img/typicalui.png" alt="Scenario Image"/>
+                        <RiveAnimation scenarioNumber={99} />
                     </div>
                     <Text fz="xs" className={classes.description}>This is a typical choice that is seen in our normal checkout user flow in digital experiences. The drawback of this technique is that it might be hard to predict how much control the user wants to donate or their donation appetite.</Text>
                 </Stack>
@@ -92,7 +92,7 @@ const scenarioPage = ({ currentScenario }) => {
                 }
                 </Group>
                     <Stack className={classes.imageBorder} align="center" justify="center" >
-                        <Image width={230} mx="auto" style={{  }}src={`${currentScenario.Thumbnail}`} alt="Scenario Image"/>
+                        <RiveAnimation scenarioNumber={ currentScenario.Number } />
                     </Stack>
                 <Text fz="xs" className={classes.description}>{ currentScenario.Description}</Text>
                 </Stack>

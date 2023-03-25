@@ -25,6 +25,9 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
   }, {
     label: 'About',
     link: '/about'
+  }, {
+    label: 'Insights',
+    link: '/compare'
   }
   ]
 
