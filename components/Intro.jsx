@@ -17,12 +17,13 @@ const useStyles = createStyles((theme) => ({
 
   title: {
     fontFamily: 'Inter Tight',
-    fontSize: '3rem',
-    fontWeight: 400,
+    fontSize: theme.fontSizes.xl,
+    fontWeight: 500,
     margin: 0,
     padding: 0,
     color: theme.colorScheme === 'dark' ? theme.white : theme.black,
     width: "80%",
+    lineHeight: 1.1,
 
     [BREAKPOINT]: {
       fontSize: 42,
@@ -74,7 +75,6 @@ const useStyles = createStyles((theme) => ({
 
 const HeroTitle = () => {
   const { classes } = useStyles();
-  const [ currentMoney, setMoney ] = useState(0);
 
   return (
     <div className={classes.wrapper}>
@@ -82,14 +82,14 @@ const HeroTitle = () => {
 
         <Stack mt={130} mb={170}>
           <h1 className={classes.title}>
-            Make your donation interface more effective.
+            Let's make your donation interface more effective with human biases.
           </h1>
         </Stack>
 
         <Group grow mt={30} mb={100} position="left" align="flex-start">
           <Stack>
             <Group position="apart" align="end">
-            <div>Your current design got ${CurrentDonationAmount}</div>
+            <Text fz="md" >This might be your current design,</Text>
             <Badge color="gray" size="lg" radius="sm">+0% Participation</Badge>
             </Group>
            <div className={classes.imageBorder}>
@@ -100,7 +100,7 @@ const HeroTitle = () => {
           
           <Stack>
           <Group position="apart" align="end">
-          <div>With this strategy, youll get ${CurrentDonationAmount}</div>
+          <Text fz="md">but these might be better.</Text>
             <Badge color="green" size="lg" radius="sm">+50% Participation</Badge>
           </Group>
           

@@ -39,7 +39,7 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
         <link rel="shortcut icon" href="/favicon.svg" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@200;400;600;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@200;300;400;500;600;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet" />
       </Head>
 
       <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
@@ -47,12 +47,12 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
           fontSizes: {
             xs: 14,
             sm: 18,
-            md: 19,
-            lg: 24,
-            xl: 28,
+            md: 25,
+            lg: 65,
+            xl: 80,
           },
           fontFamily: 'Inter, sans-serif',
-          lineHeight: 1.2,
+          lineHeight: 1.3,
           headings: { fontFamily: 'Inter Tight, sans-serif' },
           colorScheme: 'light',
           components: {

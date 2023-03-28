@@ -1,5 +1,5 @@
 import { AppShell, Navbar, Header, Group, Flex, Stack } from '@mantine/core';
-import axios, { all } from 'axios';
+// import axios, { all } from 'axios';
 import { useState, useEffect } from 'react';
 import {
   ThemeIcon,
@@ -16,6 +16,12 @@ import StrategyCard from '../components/StrategyCard';
 import HeroTitle from '../components/Intro';
 import InsightCard from '../components/InsightCard';
 import DeceptiveChart from '../components/DeceptiveChart';
+import ChooseMachine from '../components/chooseMachine';
+
+
+//static data
+import ScenarioData from '../components/Data/Scenarios-Grid.json';
+import ObservationData from '../components/Data/Observation-Grid.json';
 
 const BREAKPOINT = '@media (max-width: 755px)';
 
@@ -26,7 +32,7 @@ const useStyles = createStyles((theme) => ({
 
   title: {
     fontFamily: 'Inter Tight',
-    fontSize: '3rem',
+    fontSize: theme.fontSizes.lg,
     fontWeight: 400,
     margin: 0,
     padding: 0,
@@ -60,14 +66,15 @@ export default function HomePage() {
   const [strategyRecords, setStrategyRecords] = useState([]);
   const [insightRecords, setInsightRecords] = useState([]);
   const [scenarioRecords, setScenarioRecords] = useState([]);
+  const [contextRecords, setContextRecords] = useState([]);
   
-  async function retrieveRecords() {
-    const { data } = await axios.get('https://eoyeceylz6rbgls.m.pipedream.net');
+  function retrieveRecords() {
+    // const { data } = await axios.get('https://eoyeceylz6rbgls.m.pipedream.net');
     // console.log(data)
-    setOrignalRecords(data);
+    // setOrignalRecords(data);
 
     //get only fields
-    let onlyFields = data.map((record, index) => (record.fields));
+    let onlyFields = ScenarioData;
     setScenarioRecords(onlyFields);
     console.log(onlyFields);
 
@@ -92,14 +99,43 @@ export default function HomePage() {
       })
 
       strategyArray.push(currentStrategyObject);
-
-      //find different insights
-      let differentInsights = onlyFields.map((e, i) => e["Insight (from Observation)"]).filter(item => item).filter(findDistinct).flat(1);
-      setInsightRecords(differentInsights)
     })
 
+    //find different insights
+    let differentInsights = onlyFields.map((e, i) => e["Insight (from Observation)"]).filter(item => item).filter(findDistinct).flat(1);
+    setInsightRecords(differentInsights)
+
+    //find different contexts, outcomes and their inspirations
+    let differentContexts = [...new Set(onlyFields.map((e, i) => e["EffectiveIn (from Observation)"]).filter(item => item).filter(findDistinct).flat(1))];
+
+    const contextArray = [];
+    differentContexts.map((context, i) => {
+      const currentContextObject = {};
+      currentContextObject.contextName = context;
+      currentContextObject.outcome = [];
+      currentContextObject.inspirations = [];
+
+      onlyFields.forEach((scenario) => {
+        if (scenario["EffectiveIn (from Observation)"] == context) {
+          if (scenario["Actionable (from Observation)"]) {
+            currentContextObject.outcome.push(scenario["Actionable (from Observation)"])
+          }
+          if (scenario.SeenBefore) {
+            currentContextObject.inspirations.push(scenario.SeenBefore);
+          }
+        }
+
+        
+      })
+
+      currentContextObject.outcome = [...new Set(currentContextObject.outcome)];
+      currentContextObject.inspirations = [...new Set(currentContextObject.inspirations)];
+      contextArray.push(currentContextObject);
+    })
+    setContextRecords(contextArray);
+    // console.log(contextArray);
+
     setStrategyRecords(strategyArray)
-    console.log(strategyArray)
 
   }
 
@@ -112,8 +148,49 @@ export default function HomePage() {
       <HeroTitle></HeroTitle>
 
       <Stack spacing={20}>
+        <Stack mt={100} mb={100}>
+        <h1 className={classes.title}>Here's how it works</h1>
+          <Group position="left" spacing="xs" className={classes.helperText} mb={100} w={"50%"}>
+          <Text fz="md">dasd</Text>
+          </Group>
+        </Stack>
+      </Stack>
+
+      <Stack spacing={20}>
+        <Stack mt={100} mb={100}>
+        <h1 className={classes.title}>Start off with a simple choice.</h1>
+          <Group position="left" spacing="xs" className={classes.helperText} mb={100} w={"50%"}>
+          <Text fz="md">Think about what you want people to do and the other choice should be what a user selects when he doesn't want to comply.</Text>
+          </Group>
+        </Stack>
+      </Stack>
+
+      <Stack spacing={20}>
+        <Stack mt={100} mb={100}>
+        <h1 className={classes.title}>Add these into your interfaces.</h1>
+          <Group position="left" spacing="xs" className={classes.helperText} mb={100} w={"50%"}>
+          <Text fz="md">A simple choice is a straightforward method of requesting something, but in certain circumstances, its effectiveness can be improved by prolonging and expanding the decision-making process.</Text>
+          </Group>
+          <Group >
+          </Group>
+        </Stack>
+      </Stack>
+
+      <Stack spacing={20}>
+        <Stack mt={100} mb={100}>
+        <h1 className={classes.title}>You're on your way!</h1>
+          <Group position="left" spacing="xs" className={classes.helperText} mb={100} w={"50%"}>
+          <Text fz="md">Let's convert that example into an interface, here are some real world examples of those interfaces being used.</Text>
+          </Group>
+          <Group >
+            <ChooseMachine />
+          </Group>
+        </Stack>
+      </Stack>
+
+      <Stack spacing={20}>
         <Group mt={100} mb={100}>
-        <h1 className={classes.title}>Using effective and socially acceptable deceptive strategies.</h1>
+        <h1 className={classes.title}>Follow some of these strategies.</h1>
         <Group position="left" spacing="xs" className={classes.helperText}>
           Click on these 
           <span className={classes.scenarioIcon}></span> 
@@ -126,55 +203,17 @@ export default function HomePage() {
         </div>
       </Stack>
 
-      {/* <Stack spacing={20}>
-        <div>
-          <h2>Insights</h2>
-          <p>Find interesting insights from these experiments</p>
-        </div>
-        <Flex
-          gap={10}
-          justify="flex-start"
-          align="flex-start"
-          direction="row"
-          wrap="wrap"
-        >
-          {insightRecords.map((insight, index) => <InsightCard key={"insight" + index} insight={insight}>test</InsightCard>)}
-        </Flex> 
+      <Stack spacing={20}>
+        <Stack mt={100} mb={100}>
+        <h1 className={classes.title}>Do it like they did!</h1>
+          <Group position="left" spacing="xs" className={classes.helperText} mb={100} w={"50%"}>
+          <Text fz="md">dasdad.</Text>
+          </Group>
+          <Group >
+          </Group>
+        </Stack>
       </Stack>
 
-      <Stack spacing={20}>
-        <div>
-          <h2>Deceptive Strategies</h2>
-          <p>Deceptive strategies are ideas that can guide how you might want to design your choices. They contain examples, considerations and insights to help you make your own interface.</p>
-        </div>
-        <Flex
-          mih={50}
-          gap={10}
-          justify="flex-start"
-          align="flex-start"
-          direction="row"
-          wrap="wrap"
-        >
-          {strategyRecords.map((strategies, index) => (<StrategyCard key={"strategy" + index} strategyName={strategies.strategyName} strategyScenarios={strategies.strategyScenarios}></StrategyCard>))} 
-        </Flex>
-      </Stack>
-
-      <Stack spacing={20}>
-        <div>
-          <h2>Scenarios</h2>
-          <p>Scenarios are specific examples that are tested. These may give you inspiration to come up with your own deceptive interface.</p>
-        </div>
-        <Flex
-        mih={50}
-        gap={10}
-        justify="flex-start"
-        align="flex-start"
-        direction="row"
-        wrap="wrap"
-      >
-          {originalRecords.map((record, index) => (<DeceptiveCard key={"scenario" + index} {...record}/>))} 
-        </Flex>
-      </Stack> */}
 
     </Container>
   );

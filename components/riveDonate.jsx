@@ -102,9 +102,10 @@ const RiveAnimation = ({ scenarioNumber }) => {
         src: `${currentScenario.src}`,
         autoplay: true,
         stateMachines: StateMachineName,
-        onLoad: (event) => {
-            console.log(currentScenario);
-        },
+        // onLoop: (event) => {
+        //     console.log(currentScenario);
+        //     setMoney(5);
+        // },
         layout: new Layout({
             fit: Fit.Cover,
             alignment: Alignment.TopCenter,
@@ -114,7 +115,12 @@ const RiveAnimation = ({ scenarioNumber }) => {
     const userDonate = useStateMachineInput(rive, StateMachineName, stateMachineDonateInput);
     const userNoDonate = useStateMachineInput(rive, StateMachineName, stateMachineNoDonateInput);
 
+    // const [ currentMoney, setMoney ] = useState(0);
 
+    // useEffect(() => {
+    //     CurrentDonationAmount = currentMoney;
+    //     console.log(currentMoney);
+    // }, [currentMoney])
 
     return (
         <>

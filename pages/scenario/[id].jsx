@@ -1,7 +1,8 @@
 import { useRouter } from 'next/router'
 import { Group, Flex, Stack, Container, createStyles, Image, Badge, Text } from '@mantine/core';
 import axios, { all } from 'axios';
-import { RiveAnimation } from '../../components/riveDonate'
+import { RiveAnimation } from '../../components/riveDonate';
+import { useEffect, useState } from 'react';
 
 const BREAKPOINT = '@media (max-width: 755px)';
 
@@ -57,10 +58,11 @@ const useStyles = createStyles((theme) => ({
 }))
 
 const scenarioPage = ({ currentScenario }) => {
+
     console.log({ currentScenario })
     const { classes } = useStyles();
-  const router = useRouter()
-  const { id } = router.query
+    const router = useRouter()
+    const { id } = router.query
 
   return (
   <>
@@ -103,7 +105,7 @@ const scenarioPage = ({ currentScenario }) => {
             </Group>
 
             <Group grow align="flex-start" justify="flex-start" mb={50}>
-            <h1 className={classes.title}>Our study showed that there are a few similar designs on the internet. In fact, you've probably seen it before.</h1>
+            <h1 className={classes.title}>You've probably seen this strategy before.</h1>
             </Group>
 
             <Group grow align="flex-start" justify="flex-start" mb={200}>
@@ -122,7 +124,7 @@ const scenarioPage = ({ currentScenario }) => {
             </Group>
 
             <Stack align="flex-start" justify="flex-start" mb={50}>
-            <h1 className={classes.title}>Overall, the comments regarding this strategy is neutral. </h1>
+            <h1 className={classes.title}>{ currentScenario["Summary (from Observation)"] }</h1>
             </Stack>
 
             <Group grow align="flex-start" justify="flex-start" mb={200}>
@@ -149,7 +151,11 @@ const scenarioPage = ({ currentScenario }) => {
             </Group>
 
             <Group grow align="flex-start" justify="flex-start" mb={50}>
-            <h1 className={classes.title}>It just takes a few steps to make your own!</h1>
+            <h1 className={classes.title}>Here's how this strategy performed</h1>
+            </Group>
+
+            <Group grow align="flex-start" justify="flex-start" mb={50}>
+            <h1 className={classes.title}>Steps to make your own</h1>
             <Stack>
             </Stack>
             </Group>
@@ -187,6 +193,7 @@ export async function getStaticProps({ params }) {
     let onlyFields = data.map((record, index) => (record.fields));
 
     let currentScenario = onlyFields.find((element) => element.Number == params.id )
+
     return {
         props: {
             currentScenario,
