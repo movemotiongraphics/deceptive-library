@@ -60,8 +60,8 @@ const useStyles = createStyles((theme) => ({
   },
 
   InspirationBoxes: {
-    width: "150px",
-    height: "150px",
+    width: "200px",
+    height: "200px",
     display: 'flex',
     backgroundColor: theme.colors.gray[1],
     alignItems: 'flex-start',
@@ -182,7 +182,7 @@ export default function HomePage() {
           <Group className={classes.greyBackgroundAlternate} position="center" justifyContent="center" mih={600}>
             <Image maw={600} src="../img/dif.svg"></Image>
           </Group>
-          <Stack className={classes.greyBackground} position="left" align="flex-start" mih={600} p={20}>
+          <Stack className={classes.greyBackground} position="left" align="flex-start" mih={700} p={50}>
           <Text fz="xs" className={classes.subTitle} grow>About the Deceptive Interfaes Framework</Text>
           <h1 className={classes.title}>The deceptive interfaces framework is a set of instructions and inspiration for designers to design effective choices.</h1>
           <Grid mt="auto">
@@ -200,28 +200,33 @@ export default function HomePage() {
             <CardComponent  number={2} type="Components" description="A look into how different UI components influences our behaviour."/>
             </Grid.Col>
             <Grid.Col span={3} mih={200} className={classes.stepsBoxes}>
-            <CardComponent  number={3} type="Strategy" description="A look into how we can use human biases and these components to create strategies."/>
+            <CardComponent  number={3} type="Strategy" description="A look into how we can bring these components together to create deceptive strategies."/>
             </Grid.Col>
             <Grid.Col span={3} mih={200} className={classes.stepsBoxes}>
             <CardComponent  number={4} type="Measurements" description="How do we measure how effective those interfaces are?"/>
             </Grid.Col>
       </Grid>
 
+      <Group mt={20} className={classes.greyBackgroundAlternate} position="center" justifyContent="center" mih={600}>
+            <Image maw={600} src="../img/dif.svg"></Image>
+      </Group>
+
+
       <Stack spacing={20} mt={100}>
         <Stack>
         <Stack mb={100}>
-          <Text fz="xs" className={classes.subTitle}>Influence Area 1</Text>
-          <h1 className={classes.title}>Inspiration</h1>
+          <Text fz="xs" className={classes.subTitle}>We're learning from fraud!</Text>
+          <h1 className={classes.title}>Getting Inspiration</h1>
         </Stack>
 
           <Group position="left" spacing="xs" className={classes.helperText} mb={100}>
             <Grid mb={100}>
               <Grid.Col span={4}>
-              <Text fz="md" mb={50}>Think back to a situation that made you feel cheated or when someone took advantage of your trust, it is likely that you’ve been through a deceptive scheme.</Text>
+              <Text fz="sm" mb={50}>Think back to a situation that made you feel cheated or when someone took advantage of your trust, it is likely that you’ve been through a deceptive scheme.</Text>
               </Grid.Col>
               <Grid.Col span={4}>
-              <Text fz="md" mb={50}>These deceptive schemes commonly leverage on human biases, which are common patterns that leverage the irrational decision-making of people. These patterns can be used as ideas to form a deceptive strategy.</Text>
-              <Text fz="md" mb={50}>Take a look at a few inspirations below submitted by the community.</Text>
+              <Text fz="sm" mb={50}>These deceptive schemes commonly leverage on human biases, which are common patterns that leverage the irrational decision-making of people. These patterns can be used as ideas to form a deceptive strategy.</Text>
+              <Text fz="sm" mb={50}>Take a look at a few inspirations below submitted by the community.</Text>
               </Grid.Col>
 
             </Grid>

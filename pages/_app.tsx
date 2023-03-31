@@ -20,14 +20,14 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
 
   const navbarLinks = [
   {
-    label: 'Study',
+    label: 'The Study',
     link: '/study'
+  }, {
+    label: 'Make Your Own',
+    link: '/make'
   }, {
     label: 'About',
     link: '/about'
-  }, {
-    label: 'Insights',
-    link: '/compare'
   }
   ]
 

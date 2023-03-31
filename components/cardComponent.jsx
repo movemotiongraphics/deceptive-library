@@ -5,6 +5,11 @@ const useStyles = createStyles((theme) => ({
     width: "100%",
     border: `1px solid ${theme.colors.gray[1]}`,
     height: "100%",
+    transition: "0.3s ease all",
+
+    '&:hover': {
+      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+    },
   },
 
   elementsOnCard: {
@@ -39,15 +44,15 @@ const CardComponent = ({ number, type, title, description }) => {
   return (
     <>  
         <div className={classes.card}>
-            <Stack className={classes.elementsOnCard} h={"100%"} mih={300}>
+            <Stack className={classes.elementsOnCard} h={"100%"} mih={600}>
                 <Group spacing={0}>
                     <div className={classes.badgeLight}><Text fz="sm" className={classes.alternateText}>{number}</Text></div>
                     <div className={classes.badgeDark}><Text fz="sm" className={classes.alternateText}>{type}</Text></div>
                 </Group>
 
                 <Stack mt="auto" spacing={0}>
-                <Text fz="xs" fw={600} mb={5}>{title}</Text>
-                <Text fz="xs">{description}</Text>
+                <Text fz="sm" fw={600} mb={5}>{title}</Text>
+                <Text fz="sm">{description}</Text>
                 </Stack>
             </Stack>
 

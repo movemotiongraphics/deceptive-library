@@ -55,14 +55,15 @@ const useStyles = createStyles((theme) => ({
   link: {
     display: 'block',
     lineHeight: 1,
-    padding: '20px 20px',
+    paddingBottom: '10px',
     textDecoration: 'none',
     color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.gray[7],
     fontWeight: 500,
+    marginRight: "20px",
 
-    '&:hover': {
-      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
-    },
+    // '&:hover': {
+    //   backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+    // },
 
     [theme.fn.smallerThan('sm')]: {
       borderRadius: 0,
@@ -71,7 +72,7 @@ const useStyles = createStyles((theme) => ({
   },
 
   linkActive: {
-    backgroundColor: theme.colors.gray[1],
+    borderBottom: `1px solid ${theme.colors.dark[9]}`
   }
 
 }));
@@ -107,7 +108,7 @@ const NavBarComponent = ({ links }) => {
           style={{width: "100%"}}>
           <div>
             <Link href={`/`} style={{textDecoration: 'none', color: 'inherit', display: "Flex", flexDirection: "row", alignItems: "center", justifyContent: "center"}}>
-              <Image maw="240px" mr="md" src="../img/logo-text.svg" alt="Logo" /> Donations
+              <Image maw="240px" mr="md" src="../img/logo-text.svg" alt="Logo" />
             </Link>
           </div>
           <div style={{flexGrow: '3'}}></div>

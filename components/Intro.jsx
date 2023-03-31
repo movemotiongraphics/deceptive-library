@@ -13,6 +13,7 @@ const useStyles = createStyles((theme) => ({
 
   inner: {
     position: 'relative',
+    textAlign: 'center',
   },
 
   title: {
@@ -80,11 +81,11 @@ const HeroTitle = () => {
     <div className={classes.wrapper}>
       <Container className={classes.inner} fluid px={0}>
 
-        <Stack mt={130} mb={170}>
+        <Group mt={130} mb={170} position="center" alignItems="center">
           <h1 className={classes.title}>
             Let's make your donation interface more effective with human biases.
           </h1>
-        </Stack>
+        </Group>
 
         <Group grow mt={30} position="left" align="flex-start">
           <Stack>
