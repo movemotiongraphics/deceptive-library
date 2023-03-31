@@ -44,8 +44,8 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
           fontSizes: {
             xs: 14,
             sm: 18,
-            md: 25,
-            lg: 65,
+            md: 23,
+            lg: 70,
             xl: 80,
           },
           fontFamily: 'Inter, sans-serif',

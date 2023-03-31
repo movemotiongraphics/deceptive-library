@@ -64,7 +64,7 @@ const useStyles = createStyles((theme) => ({
     selected: {
       backgroundColor: theme.colors.green[1],
     }
-}));
+}))
   
 const DeceptiveChart = ({ scenarios, strategies }) => {
 

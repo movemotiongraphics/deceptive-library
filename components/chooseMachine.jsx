@@ -31,7 +31,7 @@ const useStyles = createStyles((theme) => ({
         opacity: 0.7,
         fontWeight: 700,
         textTransform: 'uppercase',
-      },
+      }
 
 }));
 

@@ -86,10 +86,10 @@ const HeroTitle = () => {
           </h1>
         </Stack>
 
-        <Group grow mt={30} mb={100} position="left" align="flex-start">
+        <Group grow mt={30} position="left" align="flex-start">
           <Stack>
             <Group position="apart" align="end">
-            <Text fz="md" >This might be your current design,</Text>
+            <Text fz="sm" >This might be your current design,</Text>
             <Badge color="gray" size="lg" radius="sm">+0% Participation</Badge>
             </Group>
            <div className={classes.imageBorder}>
@@ -100,7 +100,7 @@ const HeroTitle = () => {
           
           <Stack>
           <Group position="apart" align="end">
-          <Text fz="md">but these might be better.</Text>
+          <Text fz="sm">but these might be better.</Text>
             <Badge color="green" size="lg" radius="sm">+50% Participation</Badge>
           </Group>
           
