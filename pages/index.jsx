@@ -60,14 +60,19 @@ const useStyles = createStyles((theme) => ({
   },
 
   InspirationBoxes: {
-    width: "200px",
-    height: "200px",
-    display: 'flex',
+    aspectRatio: '1 / 1',
+    display: 'block',
     backgroundColor: theme.colors.gray[1],
-    alignItems: 'flex-start',
-    justifyContent: 'flex-start',
     padding: '10px',
     backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundImage: 'transparent',
+
+    '&:hover': {
+      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+      backgroundImage: 'var(--my-image)',
+      color: 'transparent',
+    },
   },
 
   greyBackground: {
@@ -177,14 +182,18 @@ export default function HomePage() {
     <Container size="xl" px={30}>
       <HeroTitle></HeroTitle>
 
+      <Group mt={20} className={classes.greyBackgroundAlternate} position="center" justifyContent="center" mih={600}>
+          <Stack w="100%" align="center" >
+            <Text fz="xs" className={classes.subTitle}>Make people do what you want them to!</Text>
+            <Image maw={600} src="../img/dif.svg"></Image>
+          </Stack>
+      </Group>
+
       <Stack spacing={20} mt={20}>
         <Stack>
-          <Group className={classes.greyBackgroundAlternate} position="center" justifyContent="center" mih={600}>
-            <Image maw={600} src="../img/dif.svg"></Image>
-          </Group>
           <Stack className={classes.greyBackground} position="left" align="flex-start" mih={700} p={50}>
           <Text fz="xs" className={classes.subTitle} grow>About the Deceptive Interfaes Framework</Text>
-          <h1 className={classes.title}>The deceptive interfaces framework is a set of instructions and inspiration for designers to design effective choices.</h1>
+          <h1 className={classes.title}>The deceptive interfaces framework helps designers to design effective choices with 4 steps.</h1>
           <Grid mt="auto">
             <Grid.Col span={6}><Text fz="sm" mb={0}>This set of instruction consists of four libraries that are designed to be considered in sequence. You can visit each of them by clicking on it here, or follow the guide to make your own deceptive interface.</Text></Grid.Col>
           </Grid>
@@ -194,33 +203,40 @@ export default function HomePage() {
 
       <Grid p={0} m={0} gutter={0}>
             <Grid.Col span={3} mih={200} className={classes.stepsBoxes}>
-              <CardComponent  number={1} type="Inspiration" description="Getting inspiration from common behavioural influence experiences."/>
+              <CardComponent  number={1} type="Inspiration" description="Getting inspiration from common deceptive schemes.">
+                  <Image maw={"100%"} style={{ filter: "grayscale(100%)" }} radius="md" src="../img/components/inspomixed.png"></Image>
+              </CardComponent>
             </Grid.Col>
             <Grid.Col span={3} mih={200} className={classes.stepsBoxes}>
-            <CardComponent  number={2} type="Components" description="A look into how different UI components influences our behaviour."/>
+            <CardComponent  number={2} type="Components" description="A list of ways that UI components influences our behaviour.">
+              <Image maw={"100%"} radius="md" src="../img/components/mix.svg"></Image>
+            </CardComponent>
             </Grid.Col>
             <Grid.Col span={3} mih={200} className={classes.stepsBoxes}>
-            <CardComponent  number={3} type="Strategy" description="A look into how we can bring these components together to create deceptive strategies."/>
+            <CardComponent  number={3} type="Strategies" description="A collection of insights to help you bring these components together to create deceptive strategies.">
+              <Image maw={"100%"} radius="md" src="../img/components/slider.svg"></Image>
+            </CardComponent>
             </Grid.Col>
             <Grid.Col span={3} mih={200} className={classes.stepsBoxes}>
-            <CardComponent  number={4} type="Measurements" description="How do we measure how effective those interfaces are?"/>
+            <CardComponent  number={4} type="Measurements" description="How do we measure how effective those interfaces are?">
+            <Image maw={"100%"} radius="md" src="../img/components/testing.svg"></Image>
+            </CardComponent>
             </Grid.Col>
       </Grid>
 
       <Group mt={20} className={classes.greyBackgroundAlternate} position="center" justifyContent="center" mih={600}>
-            <Image maw={600} src="../img/dif.svg"></Image>
+          <Stack w="100%" align="center" >
+            <Text fz="xs" className={classes.subTitle}>We're learning from fraud!</Text>
+            <Image maw={600} src="../img/chapter1.svg"></Image>
+          </Stack>
       </Group>
 
-
-      <Stack spacing={20} mt={100}>
+      <Stack spacing={20} mt={20}>
         <Stack>
-        <Stack mb={100}>
-          <Text fz="xs" className={classes.subTitle}>We're learning from fraud!</Text>
-          <h1 className={classes.title}>Getting Inspiration</h1>
-        </Stack>
-
-          <Group position="left" spacing="xs" className={classes.helperText} mb={100}>
-            <Grid mb={100}>
+          <Stack className={classes.greyBackground} position="left" align="flex-start" mih={800} p={50}>
+          <Text fz="xs" className={classes.subTitle} grow>1. Getting Inspiration</Text>
+          <h1 className={classes.title}>When did you feel like you were influenced to participate in an activity?</h1>
+          <Grid mt="auto">
               <Grid.Col span={4}>
               <Text fz="sm" mb={50}>Think back to a situation that made you feel cheated or when someone took advantage of your trust, it is likely that you’ve been through a deceptive scheme.</Text>
               </Grid.Col>
@@ -230,27 +246,74 @@ export default function HomePage() {
               </Grid.Col>
 
             </Grid>
-            <Group>
-              { SeenBeforeData ? SeenBeforeData.map((item) => (
-                <div className={classes.InspirationBoxes}>
-                  {item.InspirationName}
-                </div>
-              )) : ''}
-              <div className={classes.InspirationBoxes}>Felt anything similar?</div>
-            </Group>
-          </Group>
+          </Stack>
         </Stack>
       </Stack>
 
       <Stack spacing={20}>
-        <Stack mt={100} mb={100}>
-        <h1 className={classes.title}>Components</h1>
-          <Group position="left" spacing="xs" className={classes.helperText} mb={100} w={"50%"}>
-          <Text fz="md">A simple choice is a straightforward method of requesting something, but in certain circumstances, its effectiveness can be improved by prolonging and expanding the decision-making process.</Text>
+        <Stack>
+          <Group position="left" spacing={0} className={classes.helperText}>
+            <Grid p={0} m={0}>
+              { SeenBeforeData ? SeenBeforeData.map((item) => (
+                  <Grid.Col span={2} className={classes.InspirationBoxes} style={{ '--my-image': `url(${item.ImageURL})` }}>
+                    {item.InspirationName}
+                  </Grid.Col>
+                )) : ''}
+                <Grid.Col span={2} className={classes.InspirationBoxes}>Felt anything similar?</Grid.Col>
+            </Grid>
           </Group>
-          <Group >
+          <Group className={classes.greyBackground}>
+            By thinking of a fraud as an activity, you can adapt the behaviour outcome... give 1 example
           </Group>
         </Stack>
+      </Stack>
+
+      <Group mt={20} className={classes.greyBackgroundAlternate} position="center" justifyContent="center" mih={600}>
+          <Stack w="100%" align="center" >
+            <Text fz="xs" className={classes.subTitle}>No more simple buttons and toggles!</Text>
+            <Image maw={600} src="../img/chapter2.svg"></Image>
+          </Stack>
+      </Group>
+
+      <Stack spacing={20} mt={20}>
+        <Stack>
+          <Stack className={classes.greyBackground} position="left" align="flex-start" mih={800} p={50}>
+          <Text fz="xs" className={classes.subTitle} grow>2. Exploring Interface Components</Text>
+          <h1 className={classes.title}>Make users think a little more before they make a decision.</h1>
+          <Grid mt="auto">
+              <Grid.Col span={4}>
+              <Text fz="sm" mb={50}>A simple choice is a straightforward method of requesting something, but in certain circumstances, its effectiveness can be improved by prolonging and expanding the decision-making process.</Text>
+              </Grid.Col>
+              <Grid.Col span={4}>
+              <Text fz="sm" mb={50}>Instead of relying on just a button, these UI components have various influences on decision making and make some information more important.</Text>
+              <Text fz="sm" mb={50}>Here are 4 different UI components and their influences.</Text>
+              </Grid.Col>
+            </Grid>
+          </Stack>
+        </Stack>
+      </Stack>
+
+      <Stack p={0} m={0} spacing={0}>
+        <Group className={classes.stepsBoxes} align="flex-start">
+          <CardComponent number={1} type="Input Area" description="Used when you want exact confirmation and when you feel confident enough to ask for a donation.">
+                 
+          </CardComponent>   
+        </Group>
+        <Group className={classes.stepsBoxes}>
+          <CardComponent  number={2} type="Slider" description="Used to show relevance/relationship between 2 numbers to exaggerate its importance.">
+                 
+          </CardComponent>   
+        </Group>
+        <Group className={classes.stepsBoxes}>
+          <CardComponent  number={3} type="Checkboxes (Multiple Choices)" description="Used to slow down decision making and make some choices more important than the other.">
+                 
+          </CardComponent>   
+        </Group>
+        <Group className={classes.stepsBoxes}>
+          <CardComponent  number={4} type="Spinners" description="Used when adding an element of chance to a decision. Gives an element of surprise & fun!">
+                 
+          </CardComponent>   
+        </Group>
       </Stack>
 
       <Stack spacing={20}>

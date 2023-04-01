@@ -38,18 +38,20 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-const CardComponent = ({ number, type, title, description }) => {
+const CardComponent = ({ number, type, title, description, children }) => {
   const { classes } = useStyles();
 
   return (
     <>  
         <div className={classes.card}>
-            <Stack className={classes.elementsOnCard} h={"100%"} mih={600}>
+            <Stack className={classes.elementsOnCard} h={"100%"} mih={150}>
                 <Group spacing={0}>
                     <div className={classes.badgeLight}><Text fz="sm" className={classes.alternateText}>{number}</Text></div>
                     <div className={classes.badgeDark}><Text fz="sm" className={classes.alternateText}>{type}</Text></div>
                 </Group>
-
+                <Stack mt="auto" mx="auto">
+                  { children }
+                </Stack>
                 <Stack mt="auto" spacing={0}>
                 <Text fz="sm" fw={600} mb={5}>{title}</Text>
                 <Text fz="sm">{description}</Text>
