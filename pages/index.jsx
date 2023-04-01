@@ -1,4 +1,4 @@
-import { AppShell, Navbar, Header, Group, Flex, Stack, BackgroundImage, Grid, Badge, Image } from '@mantine/core';
+import { AppShell, Navbar, Header, Group, Flex, Stack, BackgroundImage, Grid, Badge, Image, Input, Slider, Checkbox  } from '@mantine/core';
 // import axios, { all } from 'axios';
 import { useState, useEffect } from 'react';
 import {
@@ -79,6 +79,12 @@ const useStyles = createStyles((theme) => ({
     backgroundColor: theme.colors.gray[2],
   },
 
+  uiBackground: {
+    backgroundColor: "white",
+    padding: "20px",
+    borderRadius: "10px",
+  },
+
   stepsBoxes: {
     backgroundColor: theme.colors.gray[1],
   },
@@ -101,6 +107,10 @@ export default function HomePage() {
   const [scenarioRecords, setScenarioRecords] = useState([]);
   const [contextRecords, setContextRecords] = useState([]);
   const [seenBeforeRecords, setSeenBeforeRecords] = useState([])
+  
+  //interactiveComponents
+  const [inputAmount, setInputAmount] = useState(0)
+  const [sliderAmount, setSliderAmount] = useState(0)
   
   function retrieveRecords() {
     // const { data } = await axios.get('https://eoyeceylz6rbgls.m.pipedream.net');
@@ -295,23 +305,78 @@ export default function HomePage() {
 
       <Stack p={0} m={0} spacing={0}>
         <Group className={classes.stepsBoxes} align="flex-start">
-          <CardComponent number={1} type="Input Area" description="Used when you want exact confirmation and when you feel confident enough to ask for a donation.">
-                 
+          <CardComponent number={1} type="Input Area" description="Used when you want confirmation and when you are sure users are confident to give a donation.">
+            <Stack mt={50} mb={50} className={classes.uiBackground} maw={400}>
+              <Text fz="sm">How much would you want to contribute?</Text>
+              <Input 
+              placeholder="Your Donation Amount"
+              variant="filled"
+              onChange={(e) => setInputAmount(e.target.value)}
+              type="number"
+              />
+              <Text fz="xs" c='dimmed'>You will be contributing ${inputAmount ? inputAmount : '0'} to Animal Lovers League.</Text>
+            </Stack>
           </CardComponent>   
         </Group>
         <Group className={classes.stepsBoxes}>
-          <CardComponent  number={2} type="Slider" description="Used to show relevance/relationship between 2 numbers to exaggerate its importance.">
-                 
+          <CardComponent  number={2} type="Slider" description="Used to show relevance/relationship between 2 numbers to highlight a value's importance.">
+              <Stack mt={50} mb={50} maw={400} className={classes.uiBackground}>
+                <Text fz="sm" mb={50}>The shop will boost your donation by 50%</Text>
+                <Text fz="xs">You will donate ${ sliderAmount ? sliderAmount : '0'}</Text>
+                <Slider
+                      w={300}
+                      mb={50}
+                      defaultValue={10}
+                      min={0}
+                      max={200}
+                      marks={[
+                        { value: 0, label: '$0' },
+                        { value: 200, label: '$200' },
+                      ]}
+                      color="dark"
+                      onChange={setSliderAmount}
+                  />
+                <Text fz="xs">The shop will then donate an extra ${ (sliderAmount * 0.5).toFixed(2)} to make the total donation ${ (sliderAmount * 1.5).toFixed(2)}</Text>
+                <Slider
+                      style={{ pointerEvents: "none"}}
+                      w={300}
+                      mb={50}
+                      defaultValue={5}
+                      min={0}
+                      max={200}
+                      marks={[
+                        { value: 30, label: 'No-Boost' },
+                        { value: 500, label: 'Boosted' },
+                      ]}
+                      color="dark"
+                      value={sliderAmount * 2.5}
+                  />
+              </Stack>
           </CardComponent>   
         </Group>
         <Group className={classes.stepsBoxes}>
           <CardComponent  number={3} type="Checkboxes (Multiple Choices)" description="Used to slow down decision making and make some choices more important than the other.">
-                 
+              <Stack mt={50} mb={50} className={classes.uiBackground}>
+                <Checkbox 
+                  label="Add This Donation"
+                  color="dark"
+                />
+                <Checkbox 
+                  label="Add This Too"
+                  color="dark"
+                />
+                <Checkbox
+                  label="How about this?"
+                  color="dark"
+                />
+              </Stack>
           </CardComponent>   
         </Group>
         <Group className={classes.stepsBoxes}>
           <CardComponent  number={4} type="Spinners" description="Used when adding an element of chance to a decision. Gives an element of surprise & fun!">
-                 
+            <Stack mt={50} mb={50} className={classes.uiBackground}>
+                  dsadsa
+            </Stack>
           </CardComponent>   
         </Group>
       </Stack>
