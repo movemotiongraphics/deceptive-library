@@ -1,6 +1,7 @@
-import { createStyles, Card, Image, Text, Group, RingProgress, Badge, Container, Stack, Paper, Title, Button } from '@mantine/core';
+import { createStyles, Flex, Card, Image, Text, Group, RingProgress, Badge, Container, Stack, Paper, Title, Button } from '@mantine/core';
 import { Carousel } from '@mantine/carousel';
 import { useState, useEffect } from 'react';
+import { ChevronLeft, ChevronRight } from 'tabler-icons-react';
 
 import ScenarioData from '../components/Data/Scenarios-Grid.json';
 import ObservationData from '../components/Data/Observation-Grid.json';
@@ -29,8 +30,8 @@ const useStyles = createStyles((theme) => ({
       category: {
         color: theme.black,
         opacity: 0.7,
-        fontWeight: 700,
-        textTransform: 'uppercase',
+        fontWeight: 500,
+        fontFamily: "Space Mono",
       }
 
 }));
@@ -42,7 +43,6 @@ const CardSlides = ({ title, category }) => {
         <Paper
           shadow="md"
           p="xl"
-          radius="md"
           className={classes.card}
         >
           <div>
@@ -142,38 +142,83 @@ const ChooseMachine = () => {
     // }, [currentContextIndex])
   
     return(
-        <Stack>
-          <Group>
+        <Stack w={"100%"}>
+          <Flex w={"100%"} spacing={0} style={{ justifyContent: "flex-start"}}>
             <Stack>
-            <Text fz="sm" >You might be designing for...</Text>
-            <Carousel 
-              maw={320} 
-              slideGap="md"
-              withIndicators
-              onSlideChange={
-                (index) => {
-                  setContextIndex(index);
+              <Carousel 
+                w={400}
+                slideGap="md"
+                onSlideChange={
+                  (index) => {
+                    setContextIndex(index);
+                  }
                 }
-              }>
-                { contextSlides }
-            </Carousel>
+                styles={{
+                  control: {
+                    background: "transparent",
+                    border: "none",
+                    boxShadow: "none",
+
+                    '&[data-inactive]': {
+                      opacity: 0,
+                      cursor: 'default',
+                    },
+                  },
+                }}
+                nextControlIcon={<ChevronRight size={50} strokeWidth={1} />}
+                previousControlIcon={<ChevronLeft size={50} strokeWidth={1} />}
+                >
+                  { contextSlides }
+              </Carousel>
             </Stack>
     
             <Stack>
-            <Text fz="sm" >and you want to </Text>
-            <Carousel maw={320} withIndicators slideGap="md">
-              { contextArray[currentContextIndex] ? outcomeSlides(contextArray[currentContextIndex]) : "no" }
-            </Carousel>
+              <Carousel 
+                w={400}
+                slideGap="md"
+                styles={{
+                  control: {
+                    background: "transparent",
+                    border: "none",
+                    boxShadow: "none",
+
+                    '&[data-inactive]': {
+                      opacity: 0,
+                      cursor: 'default',
+                    },
+                  },
+                }}
+                nextControlIcon={<ChevronRight size={50} strokeWidth={1} />}
+                previousControlIcon={<ChevronLeft size={50} strokeWidth={1} />}
+              >
+                { contextArray[currentContextIndex] ? outcomeSlides(contextArray[currentContextIndex]) : "no" }
+              </Carousel>
             </Stack>
 
             <Stack>
-            <Text fz="sm" >It's just like</Text>
-            <Carousel maw={320} withIndicators slideGap="md">
-              { contextArray[currentContextIndex] ? inspirationSlides(contextArray[currentContextIndex]) : "no" }
-            </Carousel>
+              <Carousel 
+                w={400}
+                slideGap="md"
+                styles={{
+                  control: {
+                    background: "transparent",
+                    border: "none",
+                    boxShadow: "none",
+
+                    '&[data-inactive]': {
+                      opacity: 0,
+                      cursor: 'default',
+                    },
+                  },
+                }}
+                nextControlIcon={<ChevronRight size={50} strokeWidth={1} />}
+                previousControlIcon={<ChevronLeft size={50} strokeWidth={1} />}
+              >
+                { contextArray[currentContextIndex] ? inspirationSlides(contextArray[currentContextIndex]) : "no" }
+              </Carousel>
             </Stack>
     
-          </Group>
+          </Flex>
         </Stack>
         )
 }

@@ -60,19 +60,28 @@ const useStyles = createStyles((theme) => ({
   },
 
   InspirationBoxes: {
-    aspectRatio: '1 / 1',
+    aspectRatio: '9 / 16',
     display: 'block',
-    backgroundColor: theme.colors.gray[1],
-    padding: '10px',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundImage: 'transparent',
+    filter: 'grayscale(1)',
+    overflow: "hidden",
 
     '&:hover': {
-      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
-      backgroundImage: 'var(--my-image)',
-      color: 'transparent',
+      filter: 'grayscale(0)',
     },
+  },
+
+  InspirationBoxesImage: {
+    maxHeight: "400px",
+    height: "100%",
+    minWidth: "100%",
+  },
+
+  InspirationBoxesDiv: {
+    width: "100%",
+    height: "90%",
+    marginBottom: "10px",
+    borderRadius: '15px',
+    overflow: "hidden",
   },
 
   greyBackground: {
@@ -95,6 +104,27 @@ const useStyles = createStyles((theme) => ({
 
   subTitle: {
     fontFamily: "Space Mono",
+  },
+
+  spinnerClass: {
+    width: "300px",
+    height: "300px"
+  },
+
+  spinnerHead: {
+    zIndex: "100",
+    transform: "translate(100px, 0px)",
+
+    '&:hover': {
+      filter: "brightness(1.2)",
+    },
+  },
+
+  spinnerBackground: {
+    transition: "2s ease all",
+    position: "absolute",
+    transform: "translate(0px, 0px)",
+    zIndex: "0",
   }
 }));
 
@@ -106,11 +136,12 @@ export default function HomePage() {
   const [insightRecords, setInsightRecords] = useState([]);
   const [scenarioRecords, setScenarioRecords] = useState([]);
   const [contextRecords, setContextRecords] = useState([]);
-  const [seenBeforeRecords, setSeenBeforeRecords] = useState([])
+  const [seenBeforeRecords, setSeenBeforeRecords] = useState([]);
   
   //interactiveComponents
   const [inputAmount, setInputAmount] = useState(0)
   const [sliderAmount, setSliderAmount] = useState(0)
+  const [spinnerOn, setSpinner] = useState(false);
   
   function retrieveRecords() {
     // const { data } = await axios.get('https://eoyeceylz6rbgls.m.pipedream.net');
@@ -187,6 +218,11 @@ export default function HomePage() {
   useEffect(() => {
     retrieveRecords();
   }, [])
+
+  const handleSpin = () => {
+    setSpinner(!spinnerOn);
+  };
+
 
   return (
     <Container size="xl" px={30}>
@@ -265,7 +301,10 @@ export default function HomePage() {
           <Group position="left" spacing={0} className={classes.helperText}>
             <Grid p={0} m={0}>
               { SeenBeforeData ? SeenBeforeData.map((item) => (
-                  <Grid.Col span={2} className={classes.InspirationBoxes} style={{ '--my-image': `url(${item.ImageURL})` }}>
+                  <Grid.Col className={classes.InspirationBoxes} span={2}>
+                    <div className={classes.InspirationBoxesDiv}>
+                      <img className={classes.InspirationBoxesImage} src={item.ImageURL} ></img>
+                    </div>
                     {item.InspirationName}
                   </Grid.Col>
                 )) : ''}
@@ -375,23 +414,53 @@ export default function HomePage() {
         <Group className={classes.stepsBoxes}>
           <CardComponent  number={4} type="Spinners" description="Used when adding an element of chance to a decision. Gives an element of surprise & fun!">
             <Stack mt={50} mb={50} className={classes.uiBackground}>
-                  dsadsa
+              <div className={classes.spinnerClass}>
+                <Image maw={300} className={classes.spinnerBackground} style={{ transform: `rotate(${spinnerOn ? `1200deg` : `0deg`})`}} src="../img/components/Spinner.svg" ></Image>
+                <Image maw={100} onClick={handleSpin} className={classes.spinnerHead} src="../img/components/SpinningHead.svg"></Image>
+              </div>
             </Stack>
           </CardComponent>   
         </Group>
       </Stack>
 
-      <Stack spacing={20}>
-        <Stack mt={100} mb={100}>
-        <h1 className={classes.title}>You're on your way!</h1>
-          <Group position="left" spacing="xs" className={classes.helperText} mb={100} w={"50%"}>
-          <Text fz="md">Let's convert that example into an interface, here are some real world examples of those interfaces being used.</Text>
-          </Group>
-          <Group >
+      <Group mt={20} className={classes.greyBackgroundAlternate} position="center" justifyContent="center" mih={600}>
+          <Stack w="100%" align="center" >
+            <Text fz="xs" className={classes.subTitle}>Now we put those components into action!</Text>
+            <Image maw={600} src="../img/chapter3.svg"></Image>
+          </Stack>
+      </Group>
+
+      <Stack spacing={20} mt={20}>
+        <Stack spacing={0}>
+          <Stack className={classes.greyBackground} position="left" align="flex-start" mih={800} p={50}>
+          <Text fz="xs" className={classes.subTitle} grow>3. Adopting a Strategy</Text>
+          <h1 className={classes.title}>Think about who your users are</h1>
+          <Grid mt="auto">
+              <Grid.Col span={4}>
+              <Text fz="sm" mb={50}>After understanding the influence of deceptive schemes and interface components, we can now formulate a unique interface for your specific audience. Think about who your users are and what you want to achieve.</Text>
+              </Grid.Col>
+              <Grid.Col span={4}>
+              <Text fz="sm" mb={50}>Some strategies are more effective for specific scenarios. Swipe those cards to explore different combinations of possible strategies.</Text>
+              </Grid.Col>
+            </Grid>
+          </Stack>
+          <Stack className={classes.greyBackgroundAlternate} position="left" align="flex-start">
             <ChooseMachine />
-          </Group>
+          </Stack>
+
+          <Stack className={classes.greyBackgroundAlternate} position="left" align="flex-start" mih={800} p={50}>
+            <Text fz="xs" className={classes.subTitle} grow>3. Adopting a Strategy</Text>
+            <h1 className={classes.title}>Do it like how they did it!</h1>
+            </Stack>
         </Stack>
       </Stack>
+
+      <Group mt={20} className={classes.greyBackgroundAlternate} position="center" justifyContent="center" mih={600}>
+            <Stack w="100%" align="center" >
+              <Text fz="xs" className={classes.subTitle}>Measuring the final outcome!</Text>
+              <Image maw={600} src="../img/chapter4.svg"></Image>
+            </Stack>
+        </Group>
 
       <Stack spacing={20}>
         <Group mt={100} mb={100}>
@@ -407,18 +476,6 @@ export default function HomePage() {
           <DeceptiveChart scenarios={scenarioRecords} strategies={strategyRecords}></DeceptiveChart>
         </div>
       </Stack>
-
-      <Stack spacing={20}>
-        <Stack mt={100} mb={100}>
-        <h1 className={classes.title}>Do it like they did!</h1>
-          <Group position="left" spacing="xs" className={classes.helperText} mb={100} w={"50%"}>
-          <Text fz="md">dasdad.</Text>
-          </Group>
-          <Group >
-          </Group>
-        </Stack>
-      </Stack>
-
 
     </Container>
   );

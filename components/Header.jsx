@@ -61,9 +61,10 @@ const useStyles = createStyles((theme) => ({
     fontWeight: 500,
     marginRight: "20px",
 
-    // '&:hover': {
-    //   backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
-    // },
+    '&:hover': {
+      borderBottom: `1px solid ${theme.colors.dark[9]}`,
+      marginTop: "1px",
+    },
 
     [theme.fn.smallerThan('sm')]: {
       borderRadius: 0,
@@ -72,7 +73,8 @@ const useStyles = createStyles((theme) => ({
   },
 
   linkActive: {
-    borderBottom: `1px solid ${theme.colors.dark[9]}`
+    borderBottom: `1px solid ${theme.colors.dark[9]}`,
+    marginTop: "1px",
   }
 
 }));
@@ -89,7 +91,6 @@ const NavBarComponent = ({ links }) => {
       href={link.link}
       className={cx(classes.link, { [classes.linkActive]: active === link.link })}
       onClick={(event) => {
-        event.preventDefault();
         setActive(link.link);
         close();
       }}
