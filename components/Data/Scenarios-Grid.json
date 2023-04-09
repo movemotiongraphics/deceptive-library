@@ -6,7 +6,7 @@
    "Strategy": "Framing donation as a chance to win",
    "Observation": "They had to factor money they lost in relation to the donation.,Took longer because they gave it a few try and looked at how their basket went up or down.,Chance mechanics are relatively high in cognitive load,There can be an element of pressure if there was a time limit.,Participants focus on minimising the loss rather than gaining a profit after awhile.",
    "Actionable (from Observation) 2": "Vary the donation amount",
-   "EffectiveIn (from Observation)": "I am building fun experiences",
+   "EffectiveIn (from Observation)": "building fun experiences",
    "Summary (from Observation)": "Participants tend to focus on minimising the loss rather than gaining a profit.",
    "Actionable (from Observation)": "Vary the donation amount",
    "Observation (from Observation)": "They had to factor money they lost in relation to the donation., Took longer because they gave it a few try and looked at how their basket went up or down., Chance mechanics are relatively high in cognitive load, There can be an element of pressure if there was a time limit., Participants focus on minimising the loss rather than gaining a profit after awhile.",
@@ -19,7 +19,7 @@
    "Number": 0,
    "SeenBefore": "Participating in Lucky Draws,Shopee Bundle Sales,Lazada,TaoBao,Circles.life Website",
    "PrototypeLink": "http://yj-order-app.bubbleapps.io/version-test/check_out_-_3",
-   "Observation 2": "They had to factor money they lost in relation to the donation."
+   "componentList": "Spinners"
  },
  {
    "Scenario": "Split Button",
@@ -41,7 +41,7 @@
    "Number": 1,
    "SeenBefore": "Humble Bundle's Checkout,eCommerce Stores ,Gambling Games,Face to Face Donations",
    "PrototypeLink": "http://checkout-test-2023-1.bubbleapps.io/version-test/screen_1",
-   "Observation 2": ""
+   "componentList": "Buttons"
  },
  {
    "Scenario": "Highest Donation Wins",
@@ -50,7 +50,7 @@
    "Strategy": "Framing donation as a chance to win",
    "Observation": "Everyone seems suspicious.,Seems to be a fresh/new mechanism.,Some of them tried to outsmart the mechanism.,People tried to keep winning the prize.,\"People felt a sense of \"\"competitive spirit\"\".\"",
    "Actionable (from Observation) 2": "Remove doubts",
-   "EffectiveIn (from Observation)": "I am designing for large donations",
+   "EffectiveIn (from Observation)": "designing for large donations",
    "Summary (from Observation)": "People tried to outsmart the mechanism, leading to a sense of competitive spirit.",
    "Actionable (from Observation)": "Remove doubts",
    "Observation (from Observation)": "Everyone seems suspicious., Seems to be a fresh/new mechanism., Some of them tried to outsmart the mechanism., People tried to keep winning the prize., People felt a sense of \"competitive spirit\".",
@@ -63,7 +63,7 @@
    "Number": 2,
    "SeenBefore": "Scam Advertisement,MacDonald Kiosk,Save the Dog Donation Boxes",
    "PrototypeLink": "https://checkout-test-2023-12.bubbleapps.io/version-test/screen_1?debug_mode=true",
-   "Observation 2": ""
+   "componentList": "Input Area"
  },
  {
    "Scenario": "Dog Shirt + Rice Bundle",
@@ -72,7 +72,7 @@
    "Strategy": "Attaching material value to donation.",
    "Observation": "\"Almost everyone talked about the gift, no one noticed how expensive the donation was. (35 instead of 5)\",Gift bundle only appealed to some people.,Being rewarded with a gift makes it feel like the organisation is putting some effort behind the donation.",
    "Actionable (from Observation) 2": "",
-   "EffectiveIn (from Observation)": "I am designing for small donations",
+   "EffectiveIn (from Observation)": "designing for small donations",
    "Summary (from Observation)": "Gift bundle rewards people for making a donation, making it a good effort.",
    "Actionable (from Observation)": "",
    "Observation (from Observation)": "Almost everyone talked about the gift, no one noticed how expensive the donation was. (35 instead of 5), Gift bundle only appealed to some people., Being rewarded with a gift makes it feel like the organisation is putting some effort behind the donation.",
@@ -85,7 +85,7 @@
    "Number": 3,
    "SeenBefore": "eCommerce Stores ,Kickstarter Campaigns,News Apps Subscription,Tissue Selling Aunties/Uncles",
    "PrototypeLink": "https://checkout-test-2023-2.bubbleapps.io/version-test/screen_5",
-   "Observation 2": ""
+   "componentList": "Buttons"
  },
  {
    "Scenario": "Split cost of Rice with Participants",
@@ -94,7 +94,7 @@
    "Strategy": "Introducing social Influence to make people donate",
    "Observation": "Friends make donation more comfortable.,People felt like they were ‘real’ supporters.,Makes the donation seem more affordable because it's shared across many people.",
    "Actionable (from Observation) 2": "Leverage on the community to build confidence",
-   "EffectiveIn (from Observation)": "I am designing for small donations",
+   "EffectiveIn (from Observation)": "designing for small donations",
    "Summary (from Observation)": "Friends make donations less intimidating by sharing their support.",
    "Actionable (from Observation)": "Leverage on the community to build confidence",
    "Observation (from Observation)": "Friends make donation more comfortable., People felt like they were ‘real’ supporters., Makes the donation seem more affordable because it's shared across many people.",
@@ -107,7 +107,7 @@
    "Number": 4,
    "SeenBefore": "eCommerce Stores ,Kickstarter Campaigns",
    "PrototypeLink": "http://checkout-scenario-4-jan.bubbleapps.io/version-test/screen_6",
-   "Observation 2": ""
+   "componentList": "Buttons"
  },
  {
    "Scenario": "Shared Reachable Goal",
@@ -116,7 +116,7 @@
    "Strategy": "Introducing social Influence to make people donate",
    "Observation": "Confusing mechanism that couldn’t ensure them of the amount they were donating,People wanted a clear understanding of what the total amount of funds raised is currently.",
    "Actionable (from Observation) 2": "Leverage on the community to build confidence",
-   "EffectiveIn (from Observation)": "I am designing for large donations",
+   "EffectiveIn (from Observation)": "designing for large donations",
    "Summary (from Observation)": "People wanted a clear understanding of the total amount of funds raised.",
    "Actionable (from Observation)": "Leverage on the community to build confidence",
    "Observation (from Observation)": "Confusing mechanism that couldn’t ensure them of the amount they were donating, People wanted a clear understanding of what the total amount of funds raised is currently.",
@@ -129,7 +129,7 @@
    "Number": 5,
    "SeenBefore": "Massdrop Checkout,Humble Bundle's Checkout,Kickstarter Campaigns",
    "PrototypeLink": "https://checkout-scenario-5-jan.bubbleapps.io/version-test/screen_1",
-   "Observation 2": ""
+   "componentList": "Input Area"
  },
  {
    "Scenario": "Donation Slider",
@@ -138,7 +138,7 @@
    "Strategy": "Leveraging on consumer’s relationship with store to make people donate",
    "Observation": "People mentioned that there was a relationship with the organisation/shop.,\"Someone felt like he should be doing more, because the shop was already doing so much.\",They also felt like it was uncommon to have so much decision making power.,They felt happy that the shop is donating as well.,Some people doubt the shop would donate that much.",
    "Actionable (from Observation) 2": "Leverage on the community to build confidence",
-   "EffectiveIn (from Observation)": "I am designing for small donations",
+   "EffectiveIn (from Observation)": "designing for small donations",
    "Summary (from Observation)": "People felt the shop should do more than them.",
    "Actionable (from Observation)": "Leverage on the community to build confidence",
    "Observation (from Observation)": "People mentioned that there was a relationship with the organisation/shop., Someone felt like he should be doing more, because the shop was already doing so much., They also felt like it was uncommon to have so much decision making power., They felt happy that the shop is donating as well., Some people doubt the shop would donate that much.",
@@ -151,7 +151,7 @@
    "Number": 6,
    "SeenBefore": "Humble Bundle's Checkout,Cotton On Bundles",
    "PrototypeLink": "http://checkout-test-2023-scenario-6.bubbleapps.io/version-test/screen_8",
-   "Observation 2": ""
+   "componentList": "Slider"
  },
  {
    "Scenario": "Default Donation",
@@ -173,7 +173,7 @@
    "Number": 7,
    "SeenBefore": "MacDonald Kiosk",
    "PrototypeLink": "https://checkout-test-2023-scenario-7.bubbleapps.io/version-test/screen_1",
-   "Observation 2": ""
+   "componentList": "Checkboxes"
  },
  {
    "Scenario": "Passing $2 to you",
@@ -182,7 +182,7 @@
    "Strategy": "Introducing social Influence to make people donate",
    "Observation": "The feedback from friend makes it very engaging.,It felt like they were helping and earning at the same time.,Users reported a high cognitive load.,Users think about the shop’s participation in it.,\"Some people are afraid of ruining the \"\"streak\"\" of donation.\",Some people didn't know that the $2 discount only applies when they donate more than $15.",
    "Actionable (from Observation) 2": "Leverage on the community to build confidence",
-   "EffectiveIn (from Observation)": "I am designing for small donations",
+   "EffectiveIn (from Observation)": "designing for small donations",
    "Summary (from Observation)": "People are afraid of ruining the donation \"streak\".",
    "Actionable (from Observation)": "Leverage on the community to build confidence",
    "Observation (from Observation)": "The feedback from friend makes it very engaging., It felt like they were helping and earning at the same time., Users reported a high cognitive load., Users think about the shop’s participation in it., Some people are afraid of ruining the \"streak\" of donation., Some people didn't know that the $2 discount only applies when they donate more than $15.",
@@ -195,7 +195,7 @@
    "Number": 8,
    "SeenBefore": "TikTok Videos",
    "PrototypeLink": "https://checkout-test-2023-scenario-8.bubbleapps.io/version-test/screen_1",
-   "Observation 2": ""
+   "componentList": "Input Area"
  },
  {
    "Scenario": "Triple Split Option",
@@ -204,7 +204,7 @@
    "Strategy": "Attaching material value to donation.",
    "Observation": "People felt like there’s a minimum requirement to help.,People are afraid of other people viewing their decisions.,The gift makes it feel like there’s an effort to drive donations.,\"People started to compare different tiers, and took notice of which one was more suitable for them.\"",
    "Actionable (from Observation) 2": "Build trust within users and organisation",
-   "EffectiveIn (from Observation)": "I am designing for small donations",
+   "EffectiveIn (from Observation)": "designing for small donations",
    "Summary (from Observation)": "People compare tiers to decide which one is more suitable for them.",
    "Actionable (from Observation)": "Build trust within users and organisation",
    "Observation (from Observation)": "People felt like there’s a minimum requirement to help., People are afraid of other people viewing their decisions., The gift makes it feel like there’s an effort to drive donations., People started to compare different tiers, and took notice of which one was more suitable for them.",
@@ -217,7 +217,7 @@
    "Number": 9,
    "SeenBefore": "eCommerce Stores ,Shopee Bundle Sales,Game Stores",
    "PrototypeLink": "http://checkout-test-2023-scenario-9.bubbleapps.io/version-test/screen_1",
-   "Observation 2": ""
+   "componentList": "Checkboxes"
  },
  {
    "Scenario": "Default to Average Donation",
@@ -239,7 +239,7 @@
    "Number": 10,
    "SeenBefore": "Chinese New Year Ang Paos",
    "PrototypeLink": "http://checkout-test-2023-scenario-10.bubbleapps.io/version-test/screen_1",
-   "Observation 2": ""
+   "componentList": "Slider"
  },
  {
    "Scenario": "Donation Boost by Chance",
@@ -261,6 +261,6 @@
    "Number": 11,
    "SeenBefore": "TikTok Videos",
    "PrototypeLink": "http://checkout-test-2023-scenario-11.bubbleapps.io/version-test/screen_1",
-   "Observation 2": ""
+   "componentList": "Spinners"
  }
 ]

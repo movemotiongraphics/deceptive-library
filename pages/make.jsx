@@ -1,5 +1,5 @@
-import { Group, Flex, Stack, Container, createStyles, Image, Badge, Text, Grid } from '@mantine/core';
-import { useState, useEffect } from 'react';
+import { Group, Flex, Stack, Container, createStyles, Image, Badge, Text, Grid, Button } from '@mantine/core';
+import { useState, useEffect, useRef } from 'react';
 import { Plus } from 'tabler-icons-react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { useListState } from '@mantine/hooks';
@@ -59,14 +59,17 @@ const useStyles = createStyles((theme) => ({
     },
     
     cardContainer: {
-      padding: 10,
+      padding: 2,
       height: 500,
       overflowY: "hidden",
+      borderRadius: "10px",
+      border: "1px solid rgba(0,0,0,0)",
+      transition: "0.3s ease all",
     },
 
     draggableCard: {
       padding: 10,
-      border: "1px solid black",
+      backgroundColor: theme.colors.gray[0],
       borderRadius: "10px",
       display: "inline-block",
     },
@@ -76,14 +79,23 @@ const useStyles = createStyles((theme) => ({
     },
 
     itemDragging: {
-      backgroundColor: theme.colors.gray[5],
       transition: "0.3s ease all",
+      boxShadow: "1px 10px 29px 0px rgba(0,0,0,0.33)",
     },
 
     containerDragging: {
-      backgroundColor: theme.colors.gray[5],
+      border: "1px solid rgba(0,0,0,0.33)",
       transition: "0.3s ease all",
-    }
+    },
+
+    solutionCorner: {
+      border: "1px solid rgba(0,0,0,0.33)",
+      padding: 30,
+    },
+
+    recommendationCorner: {
+      backgroundColor: theme.colors.gray[1],
+    },
 
 }));
 
@@ -98,10 +110,9 @@ const CardPrompt = ({ index, category, element, children }) => {
       {...provided.draggableProps}
       {...provided.dragHandleProps}
       ref={provided.innerRef}
-      mih={100}
       justify="space-around"
       >
-        <Text fz="xs" className={classes.alternateText}>{category}</Text>
+        <Text c="dimmed" fz="xs" className={classes.alternateText}>{category}</Text>
         <Text fz="sm" className={classes.alternateText}>{element}</Text>
         {children}
       </Stack>
@@ -167,6 +178,7 @@ const StudyPage = () => {
         currentContextObject.outcome = [];
         currentContextObject.inspirations = [];
         currentContextObject.scenarios = [];
+        currentContextObject.componentList = [];
 
         onlyFields.forEach((scenario) => {
           if (scenario["EffectiveIn (from Observation)"] == context) {
@@ -176,6 +188,9 @@ const StudyPage = () => {
             if (scenario.SeenBefore) {
               let splitArray = scenario.SeenBefore.split(",")
               currentContextObject.inspirations.push(splitArray);
+            }
+            if (scenario.componentList) {
+              currentContextObject.componentList.push(scenario.componentList);
             }
             currentContextObject.scenarios.push(scenario);
           }
@@ -193,6 +208,45 @@ const StudyPage = () => {
   useEffect(() => {
     retrieveRecords();
   },[])
+
+  const checkScenarioMatch = (element, searchCategory) => {
+
+    let scenario;
+
+    //check where card is from
+    if ( searchCategory === 'outcomesList' ) {
+      scenario = contextArray.find((scenario) => {
+        return scenario.outcome.includes(element);
+      });
+    } else if ( searchCategory === 'solutionList') {
+      return;
+    } else if ( searchCategory === 'inspirationList') {
+      scenario = contextArray.find((scenario) => {
+        return scenario.inspirations.includes(element);
+      });
+    } else if ( searchCategory === 'componentList') {
+      scenario = contextArray.find((scenario) => {
+        return scenario.componentList.includes(element);
+      });
+    }
+
+    console.log(scenario)
+
+    if (scenario != null) {
+      setRecommendationArray([scenario]);
+    } else {
+      return;
+    }
+
+    console.log(recommendationArray);
+  };
+
+  //reset drag drop
+  const handleReset = () => {
+    setRecommendationArray([]);
+    retrieveRecords();
+    setSelectedSolution([]);
+  };
 
   //dragging and dropping rearrange
   const handleOutcomeDrop = (result) => {
@@ -273,19 +327,18 @@ const StudyPage = () => {
       oldArray.splice(source.index, 1);
       setArray(oldArray, start)
     }
+
+    if ( finish === 'solutionList') {
+      //get current card
+      let currentCard = startArray[source.index]
+      
+      //check for the cards dropped and see if theres a solution
+      checkScenarioMatch(currentCard, start)
+    }
  
   };
 
-  const checkScenarioMatch = (context, outcome, inspiration) => {
 
-    const scenario = contextArray.find((scenario) => {
-      return scenario.outcome.includes(outcome);
-    });
-
-    console.log(scenario)
-
-    setMatchingScenario(scenario);
-  };
 
     return (
       <Container size="xl" px={30}>
@@ -298,71 +351,14 @@ const StudyPage = () => {
           <Stack spacing={20} mt={20}>
             <DragDropContext onDragEnd={handleOutcomeDrop}>
 
-            {/* <Stack>
-              <Stack className={classes.greyBackground} position="left" align="flex-start"  p={50}>
-              <Text fz="xs" className={classes.alternateText}>Your Cards</Text>
-              <h1 className={classes.title}>Pick a few cards to generate your own deceptive interface!</h1>
-              </Stack>
-            </Stack> */}
-            
-            <Group grow style={{ justifyContent: "flex-start", alignItems: "flex-start" }} p={50}>
-              <div style={{ display: "block" }}>
-                <Text fz="xs" className={classes.alternateText}>Outcomes</Text>
-                    <Droppable droppableId="outcomesList" direction="vertical">
-                      {(provided, snapshot) => (
-                          <Stack 
-                          ref={provided.innerRef}
-                          className={cx(classes.cardContainer, { [classes.containerDragging]: snapshot.isDraggingOver })}
-                          {...provided.droppableProps}>
-                            { outcomeArray ? outcomeArray.map((element, index) => (
-                                  <CardPrompt key={"outcomes" + index} index={index} category={"outcomes"} element={element}/>
-                          )) : "no"}
-                          {provided.placeholder}
-                          </Stack>
-                      )}
-                    </Droppable>
-                </div>
-
-                <div style={{ display: "block" }}>
-                <Text fz="xs" className={classes.alternateText}>Inspiration</Text>
-                    <Droppable droppableId="inspirationList" direction="vertical">
-                      {(provided, snapshot) => (
-                          <Stack 
-                          ref={provided.innerRef}
-                          className={cx(classes.cardContainer, { [classes.containerDragging]: snapshot.isDraggingOver })}
-                          {...provided.droppableProps}>
-                            { inspirationArray ? inspirationArray.map((element, index) => (
-                                  <CardPrompt key={"inspiration" + index} index={index} category={"inspiration"} element={element}/>
-                          )) : "no"}
-                          {provided.placeholder}
-                          </Stack>
-                      )}
-                    </Droppable>
-                </div>
-
-                <div style={{ display: "block" }}>
-                <Text fz="xs" className={classes.alternateText}>Components</Text>
-                    <Droppable droppableId="componentList" direction="vertical">
-                      {(provided, snapshot) => (
-                          <Stack 
-                          ref={provided.innerRef}
-                          className={cx(classes.cardContainer, { [classes.containerDragging]: snapshot.isDraggingOver })}
-                          {...provided.droppableProps}>
-                            { componentArray ? componentArray.map((element, index) => (
-                                  <CardPrompt key={"component" + index} index={index} category={"component"} element={element}/>
-                          )) : "no"}
-                          {provided.placeholder}
-                          </Stack>
-                      )}
-                    </Droppable>
-                </div>
-            </Group>
-
-              <Stack p={50}>
-                <Grid mih={500}>
+            <Stack p={50}>
+                <Grid mih={500} className={classes.solutionCorner}>
                   <Grid.Col span={6}>
                     <div>
-                      <Text fz="xs" className={classes.alternateText}>Drop some cards here!</Text>
+                      <Group position="apart">
+                        <Text fz="xs" className={classes.alternateText} pb={20}>Drop some cards here!</Text>
+                        <Button color="gray" radius="xl" size="xs" onClick={handleReset}>Clear</Button>
+                      </Group>
                       <Stack>
                           <Droppable droppableId="solutionList" direction="vertical">
                             {(provided, snapshot) => (
@@ -381,28 +377,79 @@ const StudyPage = () => {
                     </div>
                   </Grid.Col>
 
-                  <Grid.Col span={6}>
+                  <Grid.Col span={6} className={classes.recommendationCorner}>
                     <div>
-                      <Text fz="xs" className={classes.alternateText}>Your Solutions!</Text>
+                      <Text fz="xs" className={classes.alternateText} pb={20}>Your Recommendations!</Text>
                       <Stack>
-                          <Droppable droppableId="recommendationList" direction="horizontal">
-                            {(provided, snapshot) => (
-                                <Stack 
-                                ref={provided.innerRef}
-                                className={cx(classes.cardContainer, { [classes.containerDragging]: snapshot.isDraggingOver })}
-                                {...provided.droppableProps}>
-                                  { recommendationArray ? recommendationArray.map((element, index) => (
-                                        <CardPrompt key={"rec" + index} index={index} category={"rec"} element={element}/>
-                                )) : "no"}
-                                {provided.placeholder}
-                                </Stack>
-                            )}
-                          </Droppable>
+                          { recommendationArray.length > 0 ? recommendationArray.map((element, index) => (
+                                        <div>Imagine you are {element.contextName} to {(element.outcome[0]).toLowerCase()}, you can {(element.scenarios[0].Instruction).toLowerCase()}</div>
+                            )) : "Start by dragging some cards over to the left."}
                       </Stack>
                     </div>
                   </Grid.Col>
                 </Grid>
               </Stack>
+
+
+            {/* <Stack>
+              <Stack className={classes.greyBackground} position="left" align="flex-start"  p={50}>
+              <Text fz="xs" className={classes.alternateText}>Your Cards</Text>
+              <h1 className={classes.title}>Pick a few cards to generate your own deceptive interface!</h1>
+              </Stack>
+            </Stack> */}
+            
+            <Group grow style={{ justifyContent: "flex-start", alignItems: "flex-start" }} p={50}>
+              <div style={{ display: "block" }}>
+                <Text fz="xs" className={classes.alternateText} pb={20}>Outcomes</Text>
+                    <Droppable droppableId="outcomesList" direction="vertical">
+                      {(provided, snapshot) => (
+                          <Stack 
+                          ref={provided.innerRef}
+                          className={cx(classes.cardContainer, { [classes.containerDragging]: snapshot.isDraggingOver })}
+                          {...provided.droppableProps}>
+                            { outcomeArray ? outcomeArray.map((element, index) => (
+                                  <CardPrompt key={"outcomes" + index} index={index} category={"outcomes"} element={element}/>
+                          )) : "no"}
+                          {provided.placeholder}
+                          </Stack>
+                      )}
+                    </Droppable>
+                </div>
+
+                <div style={{ display: "block" }}>
+                <Text fz="xs" className={classes.alternateText} pb={20}>Inspiration</Text>
+                    <Droppable droppableId="inspirationList" direction="vertical">
+                      {(provided, snapshot) => (
+                          <Stack 
+                          ref={provided.innerRef}
+                          className={cx(classes.cardContainer, { [classes.containerDragging]: snapshot.isDraggingOver })}
+                          {...provided.droppableProps}>
+                            { inspirationArray ? inspirationArray.map((element, index) => (
+                                  <CardPrompt key={"inspiration" + index} index={index} category={"inspiration"} element={element}/>
+                          )) : "no"}
+                          {provided.placeholder}
+                          </Stack>
+                      )}
+                    </Droppable>
+                </div>
+
+                <div style={{ display: "block" }}>
+                <Text fz="xs" className={classes.alternateText} pb={20}>Components</Text>
+                    <Droppable droppableId="componentList" direction="vertical">
+                      {(provided, snapshot) => (
+                          <Stack 
+                          ref={provided.innerRef}
+                          className={cx(classes.cardContainer, { [classes.containerDragging]: snapshot.isDraggingOver })}
+                          {...provided.droppableProps}>
+                            { componentArray ? componentArray.map((element, index) => (
+                                  <CardPrompt key={"component" + index} index={index} category={"component"} element={element}/>
+                          )) : "no"}
+                          {provided.placeholder}
+                          </Stack>
+                      )}
+                    </Droppable>
+                </div>
+            </Group>
 
           </DragDropContext>
           </Stack>

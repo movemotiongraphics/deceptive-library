@@ -91,7 +91,7 @@ const HeroTitle = () => {
           <Stack>
             <Group position="apart" align="end">
             <Text fz="sm" >This might be your current design,</Text>
-            <Badge color="gray" size="lg" radius="sm">+0% Participation</Badge>
+            <Badge color="gray" size="lg" radius="sm">+0% clicked donate</Badge>
             </Group>
            <div className={classes.imageBorder}>
             {/* rive animation here */}
@@ -102,7 +102,7 @@ const HeroTitle = () => {
           <Stack>
           <Group position="apart" align="end">
           <Text fz="sm">but these might be better.</Text>
-            <Badge color="green" size="lg" radius="sm">+50% Participation</Badge>
+            <Badge color="green" size="lg" radius="sm">+50% clicked donate</Badge>
           </Group>
           
            <div className={classes.imageBorder}>

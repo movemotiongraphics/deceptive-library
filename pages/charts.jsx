@@ -1,6 +1,13 @@
 import { Group, Flex, Stack, Container, createStyles, Image, Badge, Text, Grid } from '@mantine/core';
+import DeceptiveChart from '../components/DeceptiveChart';
+import { useState, useEffect } from 'react' 
 
 const BREAKPOINT = '@media (max-width: 755px)';
+
+//static data
+import ScenarioData from '../components/Data/Scenarios-Grid.json';
+import ObservationData from '../components/Data/Observation-Grid.json';
+import SeenBeforeData from '../components/Data/Inspirations-Grid.json';
 
 const useStyles = createStyles((theme) => ({
   
@@ -36,6 +43,10 @@ const useStyles = createStyles((theme) => ({
 
   },
 
+  chart: {
+    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
+  },
+
   subTitle: {
     fontFamily: "Space Mono",
   },
@@ -46,12 +57,61 @@ const useStyles = createStyles((theme) => ({
   
   greyBackgroundAlternate: {
     backgroundColor: theme.colors.gray[0],
+  },
+
+  scenarioIcon: {
+    display: "inline-block",
+    width: 20,
+    height: 20,
+    borderRadius: 5,
+    backgroundColor: theme.colors.green[5],
   }
 
 }));
 
 const ChartsPage = () => {
   const { classes } = useStyles();
+  const [scenarioRecords, setScenarioRecords] = useState([]);
+  const [strategyRecords, setStrategyRecords] = useState([]);
+
+
+  function retrieveRecords() {
+
+    //get only fields
+    let onlyFields = ScenarioData;
+    setScenarioRecords(onlyFields);
+    console.log(onlyFields);
+
+    //find distinct strategies
+    const findDistinct = (value, index, self) => {
+      return self.indexOf(value) === index;
+    }
+    let differentStrategies = onlyFields.map((e, i) => e.Strategy).filter(item => item).filter(findDistinct);
+    
+
+    //push different strategies into each array
+    const strategyArray = [];
+    differentStrategies.map((strategy, i) => {
+      const currentStrategyObject = {};
+      currentStrategyObject.strategyName = strategy;
+      currentStrategyObject.strategyScenarios = [];
+
+      onlyFields.forEach((scenario) => {
+        if (scenario.Strategy == strategy) {
+          currentStrategyObject.strategyScenarios.push(scenario)
+        }
+      })
+
+      strategyArray.push(currentStrategyObject);
+    })
+
+    setStrategyRecords(strategyArray)
+
+  }
+
+  useEffect(() => {
+    retrieveRecords();
+  }, [])
 
     return (
       <Container size="xl" px={30}>
@@ -61,16 +121,19 @@ const ChartsPage = () => {
             </h1>
           </Group>
 
-          <Stack spacing={20} mt={20}>
-            <Stack>
-              <Stack className={classes.greyBackground} position="left" align="flex-start" mih={700} p={50}>
-              <Text fz="xs" className={classes.subTitle} grow>Your Cards</Text>
-              <h1 className={classes.title}>The deceptive interfaces framework helps designers to design effective choices with 4 steps.</h1>
-              <Grid mt="auto">
-                <Grid.Col span={6}><Text fz="sm" mb={0}>This set of instruction consists of four libraries that are designed to be considered in sequence. You can visit each of them by clicking on it here, or follow the guide to make your own deceptive interface.</Text></Grid.Col>
-              </Grid>
-              </Stack>
-            </Stack>
+          <Stack spacing={20}>
+            <Group mt={100} mb={100}>
+            <h1 className={classes.title}>Follow some of these strategies.</h1>
+            <Group position="left" spacing="xs" className={classes.helperText}>
+              Click on these 
+              <span className={classes.scenarioIcon}></span> 
+              scenarios to learn more.
+            </Group>
+            </Group>
+
+            <div className={classes.chart}>
+              <DeceptiveChart scenarios={scenarioRecords} strategies={strategyRecords}></DeceptiveChart>
+            </div>
           </Stack>
       </Container>
     )
