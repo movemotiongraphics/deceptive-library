@@ -108,7 +108,7 @@ const NavBarComponent = ({ links }) => {
           direction="row"
           style={{width: "100%"}}>
           <div>
-            <Link href={`/`} style={{textDecoration: 'none', color: 'inherit', display: "Flex", flexDirection: "row", alignItems: "center", justifyContent: "center"}}>
+            <Link onClick={(event) => { setActive("/"); }} href={`/`} style={{textDecoration: 'none', color: 'inherit', display: "Flex", flexDirection: "row", alignItems: "center", justifyContent: "center"}}>
               <Image maw="240px" mr="md" src="../img/logo-text.svg" alt="Logo" />
             </Link>
           </div>

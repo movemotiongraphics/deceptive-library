@@ -1,0 +1,27 @@
+[
+ {
+   "ElementName": "Input Area",
+   "ImageURL": "../img/components/input.svg",
+   "Description": "Used when you want exact confirmation and when you feel confident enough to ask for a donation."
+ }, 
+ {
+  "ElementName": "Slider",
+  "ImageURL": "../img/components/slider-only.svg",
+  "Description": "Used to show relevance/relationship between 2 numbers to exaggerate its importance."
+ },
+ {
+  "ElementName": "Buttons",
+  "ImageURL": "../img/components/button.svg",
+  "Description": "Used to show clear actions and help with fast decision making."
+ },
+ {
+  "ElementName": "Checkboxes",
+  "ImageURL": "../img/components/checkboxes.svg",
+  "Description": "Used to slow down decision making and make some choices more important than the other."
+ },
+ {
+  "ElementName": "Spinners",
+  "ImageURL": "../img/components/spinner.svg",
+  "Description": "Used when adding an element of chance to a decision. Gives an element of surprise & fun!"
+ }
+]

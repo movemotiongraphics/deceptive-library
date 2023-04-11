@@ -1,4 +1,6 @@
-import { Group, Flex, Stack, Container, createStyles, Image, Badge, Text, Grid, Button } from '@mantine/core';
+import { Group, Flex, Stack, Container, createStyles, Image, Badge, Text, Grid, Button, Divider } from '@mantine/core';
+import { ExternalLink } from 'tabler-icons-react';
+import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
 import { Plus } from 'tabler-icons-react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
@@ -6,7 +8,8 @@ import { useListState } from '@mantine/hooks';
 
 import ScenarioData from '../components/Data/Scenarios-Grid.json';
 import ObservationData from '../components/Data/Observation-Grid.json';
-import InspirationData from '../components/Data/Inspirations-Grid.json'
+import InspirationData from '../components/Data/Inspirations-Grid.json';
+import componentImgData from '../components/Data/Components-Grid.json';
 
 let componentData = ["Input Area", "Slider", "Buttons", "Checkboxes", "Spinners"]
 
@@ -67,11 +70,25 @@ const useStyles = createStyles((theme) => ({
       transition: "0.3s ease all",
     },
 
+    cardContainerHorizontal: {
+      padding: 2,
+      height: 200,
+      borderRadius: "10px",
+      border: "1px solid rgba(0,0,0,0)",
+      transition: "0.3s ease all",
+      overflowX: "hidden",
+    },
+
     draggableCard: {
       padding: 10,
       backgroundColor: theme.colors.gray[0],
       borderRadius: "10px",
       display: "inline-block",
+      marginRight: 10,
+    },
+
+    draggableCardHorizontal: {
+      width: 200,
     },
   
     plusIcon: {
@@ -80,7 +97,7 @@ const useStyles = createStyles((theme) => ({
 
     itemDragging: {
       transition: "0.3s ease all",
-      boxShadow: "1px 10px 29px 0px rgba(0,0,0,0.33)",
+      boxShadow: "1px 10px 29px 0px rgba(0,0,0,0.1)",
     },
 
     containerDragging: {
@@ -89,31 +106,49 @@ const useStyles = createStyles((theme) => ({
     },
 
     solutionCorner: {
-      border: "1px solid rgba(0,0,0,0.33)",
+      backgroundColor: theme.colors.gray[1],
       padding: 30,
     },
 
     recommendationCorner: {
-      backgroundColor: theme.colors.gray[1],
     },
+
+    solutionShortLinks: {
+      listStyle: "none",
+      backgroundColor: theme.colors.gray[3],
+      borderRadius: 10,
+      padding: 20,
+      margin: "0 0 15px 0",
+      textDecoration: "none",
+      color: theme.colors.blue,
+      textDecoration: "none",
+    },
+
+    resetVisitedLink: {
+      color: 'inherit',
+      textDecoration: 'none',
+      '&:visited': {
+        color: 'inherit',
+        textDecoration: 'none',
+      },
+    }
 
 }));
 
-const CardPrompt = ({ index, category, element, children }) => {
+const CardPrompt = ({ index, category, element, children, horizontal }) => {
   const { classes, cx } = useStyles();
   const [ isCurrentlyDragging, setDragging ] = useState(false)
 
   return <Draggable key={category + index} draggableId={category + index} index={index}>
     {(provided, snapshot) => {
       return <Stack 
-      className={cx(classes.draggableCard, { [classes.itemDragging]: snapshot.isDragging })}
+      className={cx(classes.draggableCard, { [classes.draggableCardHorizontal]: horizontal }, { [classes.itemDragging]: snapshot.isDragging })}
       {...provided.draggableProps}
       {...provided.dragHandleProps}
       ref={provided.innerRef}
-      justify="space-around"
       >
-        <Text c="dimmed" fz="xs" className={classes.alternateText}>{category}</Text>
-        <Text fz="sm" className={classes.alternateText}>{element}</Text>
+        <Text c="dimmed" fz="xs" className={classes.alternateText} pb={5} >{category}</Text>
+        <Text fz="sm">{element}</Text>
         {children}
       </Stack>
     }}
@@ -208,6 +243,16 @@ const StudyPage = () => {
   useEffect(() => {
     retrieveRecords();
   },[])
+
+  const findImagefromName = (currentElement, array) => {
+    const foundElement = array.find((c) => c.ElementName === currentElement)
+    if (foundElement) {
+      return foundElement.ImageURL
+    } else {
+      return;
+    }
+
+  }
 
   const checkScenarioMatch = (element, searchCategory) => {
 
@@ -352,11 +397,11 @@ const StudyPage = () => {
             <DragDropContext onDragEnd={handleOutcomeDrop}>
 
             <Stack p={50}>
-                <Grid mih={500} className={classes.solutionCorner}>
-                  <Grid.Col span={6}>
+                <Group mih={500} className={classes.solutionCorner} spacing={50} align="flex-start" noWrap>
+                  <Stack justify="flex-start" miw={400}>
                     <div>
-                      <Group position="apart">
-                        <Text fz="xs" className={classes.alternateText} pb={20}>Drop some cards here!</Text>
+                      <Group position="apart" align="flex-start">
+                        <Text fz="xs" className={classes.alternateText} pb={20} align="center">Drop some cards here!</Text>
                         <Button color="gray" radius="xl" size="xs" onClick={handleReset}>Clear</Button>
                       </Group>
                       <Stack>
@@ -375,19 +420,35 @@ const StudyPage = () => {
                           </Droppable>
                       </Stack>
                     </div>
-                  </Grid.Col>
+                  </Stack>
 
-                  <Grid.Col span={6} className={classes.recommendationCorner}>
-                    <div>
-                      <Text fz="xs" className={classes.alternateText} pb={20}>Your Recommendations!</Text>
+                  <Divider orientation="vertical" maw={10}/>
+
+                  <Stack className={classes.recommendationCorner} style={{ flexGrow: 1 }}>
+                    <Stack justify="flex-start">
+                      <Text fz="xs" className={classes.alternateText} pb={20}>Your Recommendations</Text>
                       <Stack>
                           { recommendationArray.length > 0 ? recommendationArray.map((element, index) => (
+                                        <>
                                         <div>Imagine you are {element.contextName} to {(element.outcome[0]).toLowerCase()}, you can {(element.scenarios[0].Instruction).toLowerCase()}</div>
+                                        <div><Text>In fact, this is just like these scenarios!</Text>
+                                          <ul style={{ paddingInlineStart: 0, width: "auto" }}>
+                                            {element.scenarios.map((c) => (<li className={classes.solutionShortLinks}>
+                                              <Link href={`./scenario/${c.Number}`} className={classes.resetVisitedLink}>
+                                                <Group position="apart">
+                                                <Text fz="xs" c="black" className={classes.alternateText}>{c.Scenario}</Text>
+                                                <ExternalLink color="black" size={15} strokeWidth={1.5} />
+                                                </Group>
+                                              </Link>
+                                            </li>))}
+                                          </ul> 
+                                          </div>
+                                        </>
                             )) : "Start by dragging some cards over to the left."}
                       </Stack>
-                    </div>
-                  </Grid.Col>
-                </Grid>
+                    </Stack>
+                  </Stack>
+                </Group>
               </Stack>
 
 
@@ -398,58 +459,64 @@ const StudyPage = () => {
               </Stack>
             </Stack> */}
             
-            <Group grow style={{ justifyContent: "flex-start", alignItems: "flex-start" }} p={50}>
+            <Stack w={"100%"} style={{ justifyContent: "flex-start", alignItems: "flex-start" }} p={50}>
               <div style={{ display: "block" }}>
                 <Text fz="xs" className={classes.alternateText} pb={20}>Outcomes</Text>
-                    <Droppable droppableId="outcomesList" direction="vertical">
+                    <Droppable droppableId="outcomesList" direction="horizontal">
                       {(provided, snapshot) => (
-                          <Stack 
+                          <Flex 
+                          direction="row"
                           ref={provided.innerRef}
-                          className={cx(classes.cardContainer, { [classes.containerDragging]: snapshot.isDraggingOver })}
+                          className={cx(classes.cardContainerHorizontal, { [classes.containerDragging]: snapshot.isDraggingOver })}
                           {...provided.droppableProps}>
                             { outcomeArray ? outcomeArray.map((element, index) => (
-                                  <CardPrompt key={"outcomes" + index} index={index} category={"outcomes"} element={element}/>
+                                  <CardPrompt key={"outcomes" + index} index={index} category={"outcomes"} element={element} horizontal/>
                           )) : "no"}
                           {provided.placeholder}
-                          </Stack>
+                          </Flex>
                       )}
                     </Droppable>
                 </div>
 
-                <div style={{ display: "block" }}>
+                <div style={{ display: "block", maxWidth: "100%" }}>
                 <Text fz="xs" className={classes.alternateText} pb={20}>Inspiration</Text>
-                    <Droppable droppableId="inspirationList" direction="vertical">
+                    <Droppable droppableId="inspirationList" direction="horizontal">
                       {(provided, snapshot) => (
-                          <Stack 
+                          <Flex 
+                          direction="row"
                           ref={provided.innerRef}
-                          className={cx(classes.cardContainer, { [classes.containerDragging]: snapshot.isDraggingOver })}
+                          className={cx(classes.cardContainerHorizontal, { [classes.containerDragging]: snapshot.isDraggingOver })}
                           {...provided.droppableProps}>
                             { inspirationArray ? inspirationArray.map((element, index) => (
-                                  <CardPrompt key={"inspiration" + index} index={index} category={"inspiration"} element={element}/>
+                                  <CardPrompt key={"inspiration" + index} index={index} category={"inspiration"} element={element} horizontal/>
                           )) : "no"}
                           {provided.placeholder}
-                          </Stack>
+                          </Flex>
                       )}
                     </Droppable>
                 </div>
 
                 <div style={{ display: "block" }}>
                 <Text fz="xs" className={classes.alternateText} pb={20}>Components</Text>
-                    <Droppable droppableId="componentList" direction="vertical">
+                    <Droppable droppableId="componentList" direction="horizontal">
                       {(provided, snapshot) => (
-                          <Stack 
+                          <Flex 
+                          direction="row"
+                          w={"100%"}
                           ref={provided.innerRef}
-                          className={cx(classes.cardContainer, { [classes.containerDragging]: snapshot.isDraggingOver })}
+                          className={cx(classes.cardContainerHorizontal, { [classes.containerDragging]: snapshot.isDraggingOver })}
                           {...provided.droppableProps}>
                             { componentArray ? componentArray.map((element, index) => (
-                                  <CardPrompt key={"component" + index} index={index} category={"component"} element={element}/>
+                                  <CardPrompt key={"component" + index} index={index} category={"component"} element={element} horizontal>
+                                    <Image src={ findImagefromName(element, componentImgData) } maw={100} />
+                                  </CardPrompt>
                           )) : "no"}
                           {provided.placeholder}
-                          </Stack>
+                          </Flex>
                       )}
                     </Droppable>
                 </div>
-            </Group>
+            </Stack>
 
           </DragDropContext>
           </Stack>
