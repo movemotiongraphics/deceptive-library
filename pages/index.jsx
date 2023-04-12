@@ -1,4 +1,4 @@
-import { AppShell, Navbar, Header, Group, Flex, Stack, BackgroundImage, Grid, Badge, Image, Input, Slider, Checkbox  } from '@mantine/core';
+import { AppShell, Navbar, Header, Group, Flex, Stack, BackgroundImage, Divider, Grid, Badge, Image, Input, Slider, Checkbox  } from '@mantine/core';
 // import axios, { all } from 'axios';
 import { useState, useEffect } from 'react';
 import {
@@ -84,6 +84,10 @@ const useStyles = createStyles((theme) => ({
     overflow: "hidden",
   },
 
+  alternateText: {
+    fontFamily: "Space Mono",
+  },
+
   greyBackground: {
     backgroundColor: theme.colors.gray[2],
   },
@@ -98,8 +102,25 @@ const useStyles = createStyles((theme) => ({
     backgroundColor: theme.colors.gray[1],
   },
 
+  badgeLight: {
+    padding: 10,
+    borderRadius: 100,
+    backgroundColor: theme.colors.gray[2],
+    color: theme.colors.gray[5],
+    width: 50,
+    display: "flex",
+    justifyContent: "center",
+  },
+
+  badgeDark: {
+    padding: "10px 15px 10px 15px",
+    borderRadius: 100,
+    backgroundColor: theme.colors.gray[7],
+    color: theme.colors.gray[1],
+  },
+
   greyBackgroundAlternate: {
-    backgroundColor: theme.colors.gray[0],
+    backgroundColor: "transparent",
   },
 
   subTitle: {
@@ -228,59 +249,80 @@ export default function HomePage() {
     <Container size="xl" px={30}>
       <HeroTitle></HeroTitle>
 
-      <Group mt={20} className={classes.greyBackgroundAlternate} position="center" justifyContent="center" mih={600}>
+      <Stack mt={200} mb={200}>
+        <Divider my="sm" />
+        <Group spacing={0}>
+            <div className={classes.badgeLight}><Text fz="xs" className={classes.alternateText}>0</Text></div>
+            <div className={classes.badgeDark}><Text fz="xs" className={classes.alternateText}>Introduction</Text></div>
+        </Group>
+      </Stack>
+
+      <Group mt={130} mb={150} className={classes.greyBackgroundAlternate} position="center" justifyContent="center" mih={600}>
           <Stack w="100%" align="center" >
-            <Text fz="xs" className={classes.subTitle}>Make people do what you want them to!</Text>
-            <Image maw={600} src="../img/dif.svg"></Image>
+            <Group mb={100} position="center">
+            <Text fz="xs" className={classes.subTitle}>Yes! Make people do what you want them to, without suspicion!</Text>
+            <h1 className={classes.title} style={{textAlign: "center"}}>
+            The deceptive interfaces framework helps designers make socially acceptable deceptive interfaces in 4 simple steps.
+            </h1>
+            </Group>
+            <Image mt={50} maw={200} src="../img/dif.svg"></Image>
           </Stack>
       </Group>
 
-      <Stack spacing={20} mt={20}>
+      <Group grow>
+            <Group span={3} h={550} className={classes.stepsBoxes}>
+              <CardComponent  number={1} type="Getting Inspiration" description="Getting inspiration from common deceptive schemes.">
+                  <Image maw={400} style={{ filter: "grayscale(100%)" }} radius="md" src="../img/components/inspomixed.png"></Image>
+              </CardComponent>
+            </Group>
+            <Group span={3} h={550} className={classes.stepsBoxes}>
+              <CardComponent  number={2} type="Using Components" description="A list of ways that UI components influences our behaviour.">
+                <Image maw={"100%"} radius="md" src="../img/components/mix.svg"></Image>
+              </CardComponent>
+            </Group>
+            <Group span={3} h={550} className={classes.stepsBoxes}>
+              <CardComponent  number={3} type="Picking Strategies" description="A collection of insights to help you bring these components together to create deceptive strategies.">
+                <Image maw={"100%"} radius="md" src="../img/components/slider.svg"></Image>
+              </CardComponent>
+            </Group>
+            <Group span={3} h={550} className={classes.stepsBoxes}>
+              <CardComponent  number={4} type="Measurements" description="How do we measure how effective those interfaces are?">
+              <Image maw={"100%"} radius="md" src="../img/components/testing.svg"></Image>
+              </CardComponent>
+            </Group>
+      </Group>
+
+      <Stack mt={200} mb={200}>
         <Stack>
-          <Stack className={classes.greyBackground} position="left" align="flex-start" mih={700} p={50}>
+          <Stack position="left" align="flex-start" spacing={20} >
           <Text fz="xs" className={classes.subTitle} grow>About the Deceptive Interfaes Framework</Text>
-          <h1 className={classes.title}>The deceptive interfaces framework helps designers to design effective choices with 4 steps.</h1>
           <Grid mt="auto">
-            <Grid.Col span={6}><Text fz="sm" mb={0}>This set of instruction consists of four libraries that are designed to be considered in sequence. You can visit each of them by clicking on it here, or follow the guide to make your own deceptive interface.</Text></Grid.Col>
+            <Grid.Col span={6}><Text fz="md" mb={0}>This set of instruction consists of four libraries that are designed to be considered in sequence. You can visit each of them by clicking on the cards above, or follow the guide to make your own deceptive interface.</Text></Grid.Col>
+
           </Grid>
           </Stack>
         </Stack>
       </Stack>
 
-      <Grid p={0} m={0} gutter={0}>
-            <Grid.Col span={3} mih={200} className={classes.stepsBoxes}>
-              <CardComponent  number={1} type="Inspiration" description="Getting inspiration from common deceptive schemes.">
-                  <Image maw={"100%"} style={{ filter: "grayscale(100%)" }} radius="md" src="../img/components/inspomixed.png"></Image>
-              </CardComponent>
-            </Grid.Col>
-            <Grid.Col span={3} mih={200} className={classes.stepsBoxes}>
-            <CardComponent  number={2} type="Components" description="A list of ways that UI components influences our behaviour.">
-              <Image maw={"100%"} radius="md" src="../img/components/mix.svg"></Image>
-            </CardComponent>
-            </Grid.Col>
-            <Grid.Col span={3} mih={200} className={classes.stepsBoxes}>
-            <CardComponent  number={3} type="Strategies" description="A collection of insights to help you bring these components together to create deceptive strategies.">
-              <Image maw={"100%"} radius="md" src="../img/components/slider.svg"></Image>
-            </CardComponent>
-            </Grid.Col>
-            <Grid.Col span={3} mih={200} className={classes.stepsBoxes}>
-            <CardComponent  number={4} type="Measurements" description="How do we measure how effective those interfaces are?">
-            <Image maw={"100%"} radius="md" src="../img/components/testing.svg"></Image>
-            </CardComponent>
-            </Grid.Col>
-      </Grid>
+      <Stack>
+        <Divider my="sm" />
+        <Group spacing={0}>
+            <div className={classes.badgeLight}><Text fz="xs" className={classes.alternateText}>1</Text></div>
+            <div className={classes.badgeDark}><Text fz="xs" className={classes.alternateText}>Getting Inspiration</Text></div>
+        </Group>
+      </Stack>
 
       <Group mt={20} className={classes.greyBackgroundAlternate} position="center" justifyContent="center" mih={600}>
           <Stack w="100%" align="center" >
-            <Text fz="xs" className={classes.subTitle}>We're learning from fraud!</Text>
+            <Text fz="xs" className={classes.subTitle}>We're learning from deceptive schemes!</Text>
             <Image maw={600} src="../img/chapter1.svg"></Image>
           </Stack>
       </Group>
 
       <Stack spacing={20} mt={20}>
         <Stack>
-          <Stack className={classes.greyBackground} position="left" align="flex-start" mih={800} p={50}>
-          <Text fz="xs" className={classes.subTitle} grow>1. Getting Inspiration</Text>
+          <Stack position="left" align="flex-start" mih={600} mb={200}>
+          <Text fz="xs" className={classes.subTitle} grow>A question to ask yourself</Text>
           <h1 className={classes.title}>When did you feel like you were influenced to participate in an activity?</h1>
           <Grid mt="auto">
               <Grid.Col span={4}>
