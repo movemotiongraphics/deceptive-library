@@ -14,6 +14,10 @@ const useStyles = createStyles((theme) => ({
         fontSize: theme.fontSizes.xs,
       },
 
+      alternateText: {
+        fontFamily: "Space Mono",
+      },
+
       footer: {
         height: 200,
         paddingTop: 20,
@@ -29,9 +33,11 @@ const Footer = () => {
             <div className={classes.wrapper}>
                 <div className={classes.root}>
                     <Group className={classes.footer} position="flex-start" align="flex-start">
-                        <div style={{flexGrow: 3}}>interface.tools is a collection of tools to help designers design better interfaces.</div>
+                        <div style={{flexGrow: 3}} className={classes.alternateText}>
+                        Interface.tools help designers create socially-acceptable interfaces that leverages on deception.
+                            </div>
                         <Stack>
-                            Made by Yuan Jie
+                            <Text fz="xs" className={classes.alternateText}>Made by Yuan Jie</Text>
                         </Stack>
                     </Group>
                 </div>

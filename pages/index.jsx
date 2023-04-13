@@ -1,4 +1,4 @@
-import { AppShell, Navbar, Header, Group, Flex, Stack, BackgroundImage, Divider, Grid, Badge, Image, Input, Slider, Checkbox  } from '@mantine/core';
+import { AppShell, Navbar, Header, Group, Flex, Stack, Button, BackgroundImage, Divider, Grid, Badge, Image, Input, Slider, Checkbox  } from '@mantine/core';
 // import axios, { all } from 'axios';
 import { useState, useEffect } from 'react';
 import {
@@ -64,9 +64,12 @@ const useStyles = createStyles((theme) => ({
     display: 'block',
     filter: 'grayscale(1)',
     overflow: "hidden",
+    width: 100,
+    transition: '0.3s ease all',
 
     '&:hover': {
       filter: 'grayscale(0)',
+      transition: '0.3s ease all',
     },
   },
 
@@ -78,7 +81,7 @@ const useStyles = createStyles((theme) => ({
 
   InspirationBoxesDiv: {
     width: "100%",
-    height: "90%",
+    height: "70%",
     marginBottom: "10px",
     borderRadius: '15px',
     overflow: "hidden",
@@ -146,7 +149,14 @@ const useStyles = createStyles((theme) => ({
     position: "absolute",
     transform: "translate(0px, 0px)",
     zIndex: "0",
-  }
+  },
+
+  inputArea: {
+    backgroundColor: theme.colors.gray[1],
+    borderRadius: 5,
+    padding: "10px 0 10px 20px",
+  },
+
 }));
 
 
@@ -260,14 +270,23 @@ export default function HomePage() {
       <Group mt={130} mb={150} className={classes.greyBackgroundAlternate} position="center" justifyContent="center" mih={600}>
           <Stack w="100%" align="center" >
             <Group mb={100} position="center">
-            <Text fz="xs" className={classes.subTitle}>Yes! Make people do what you want them to, without suspicion!</Text>
+            <Text fz="xs" className={classes.subTitle}>Yes! Make people do what you want them to digitally!</Text>
             <h1 className={classes.title} style={{textAlign: "center"}}>
-            The deceptive interfaces framework helps designers make socially acceptable deceptive interfaces in 4 simple steps.
+            This framework helps designers make socially acceptable deceptive interfaces in 4 simple steps.
             </h1>
             </Group>
             <Image mt={50} maw={200} src="../img/dif.svg"></Image>
           </Stack>
       </Group>
+
+      <Stack my={200} align="center" w="100%">
+                <Group maw={800}>
+                  <Text fz="xs" className={classes.subTitle}>About the Deceptive Interfaes Framework</Text>
+                  <Stack mt="auto">
+                      <Text fz="md">This set of instruction consists of four libraries that are designed to be considered in sequence. You can visit each of them by clicking on the cards above, or follow the guide to make your own deceptive interface.</Text>
+                  </Stack>
+                </Group>
+      </Stack>
 
       <Group grow>
             <Group span={3} h={550} className={classes.stepsBoxes}>
@@ -292,16 +311,12 @@ export default function HomePage() {
             </Group>
       </Group>
 
-      <Stack mt={200} mb={200}>
-        <Stack>
-          <Stack position="left" align="flex-start" spacing={20} >
-          <Text fz="xs" className={classes.subTitle} grow>About the Deceptive Interfaes Framework</Text>
-          <Grid mt="auto">
-            <Grid.Col span={6}><Text fz="md" mb={0}>This set of instruction consists of four libraries that are designed to be considered in sequence. You can visit each of them by clicking on the cards above, or follow the guide to make your own deceptive interface.</Text></Grid.Col>
-
-          </Grid>
-          </Stack>
-        </Stack>
+      <Stack my={200} align="center" w="100%">
+                <Group maw={800}>
+                  <Stack mt="auto">
+                      <Text fz="md">The Deceptive Interface Framework is a quick research done by Yuan Jie for his thesis in NUS!</Text>
+                  </Stack>
+                </Group>
       </Stack>
 
       <Stack>
@@ -312,79 +327,153 @@ export default function HomePage() {
         </Group>
       </Stack>
 
-      <Group mt={20} className={classes.greyBackgroundAlternate} position="center" justifyContent="center" mih={600}>
+      <Group mt={130} mb={150} className={classes.greyBackgroundAlternate} position="center" justifyContent="center" mih={600}>
           <Stack w="100%" align="center" >
-            <Text fz="xs" className={classes.subTitle}>We're learning from deceptive schemes!</Text>
-            <Image maw={600} src="../img/chapter1.svg"></Image>
+            <Stack mb={100} align="center" position="center">
+            <Text fz="xs" className={classes.subTitle}>A question to ask yourself</Text>
+            <h1 className={classes.title} style={{textAlign: "center"}}>
+            When did you feel like you were influenced to participate in an activity?
+            </h1>
+            </Stack>
+            <Image mt={50} maw={200} src="../img/chapter1.svg"></Image>
           </Stack>
       </Group>
 
-      <Stack spacing={20} mt={20}>
+      <Stack spacing={20} mt={20} mb={50}>
         <Stack>
-          <Stack position="left" align="flex-start" mih={600} mb={200}>
+          <Stack position="left" align="center" mb={50}>
           <Text fz="xs" className={classes.subTitle} grow>A question to ask yourself</Text>
-          <h1 className={classes.title}>When did you feel like you were influenced to participate in an activity?</h1>
-          <Grid mt="auto">
-              <Grid.Col span={4}>
-              <Text fz="sm" mb={50}>Think back to a situation that made you feel cheated or when someone took advantage of your trust, it is likely that you’ve been through a deceptive scheme.</Text>
-              </Grid.Col>
-              <Grid.Col span={4}>
-              <Text fz="sm" mb={50}>These deceptive schemes commonly leverage on human biases, which are common patterns that leverage the irrational decision-making of people. These patterns can be used as ideas to form a deceptive strategy.</Text>
-              <Text fz="sm" mb={50}>Take a look at a few inspirations below submitted by the community.</Text>
-              </Grid.Col>
-
-            </Grid>
+          <Stack align="center" w="100%">
+            <Text fz="md">When did you feel like you were influenced to participate in an activity?</Text>
+              <Group>
+                <div className={classes.inputArea}>
+                  <Input
+                      placeholder="Try finding one here"
+                      radius="xl"
+                      variant="unstyled"
+                      size="md"
+                      w={500}
+                      className={classes.subTitle}
+                    />
+                </div>
+                <Button color="dark" radius="xl" size="xl" style={{ fontSize: '16px', fontWeight: 400 }}>Enter</Button>
+              </Group>
           </Stack>
+          </Stack>
+        </Stack>
+      </Stack>
+
+      <Stack spacing={20} className={classes.greyBackground} p={30} mb={100}>
+        <Stack>
+          <Text fz="xs" className={classes.subTitle} grow>Community Responses</Text>
+          <Group position="left" spacing={0} className={classes.helperText} style={{ overflowY: "hidden", overflowX: "hidden" }}>
+            <Group p={0} m={0} align="flex-start">
+              { SeenBeforeData ? SeenBeforeData.map((item) => (
+                  <Stack className={classes.InspirationBoxes} span={2}>
+                    <div className={classes.InspirationBoxesDiv}>
+                      <img className={classes.InspirationBoxesImage} src={item.ImageURL} ></img>
+                    </div>
+                    {item.InspirationName}
+                  </Stack>
+                )) : ''}
+            </Group>
+          </Group>
         </Stack>
       </Stack>
 
       <Stack spacing={20}>
         <Stack>
-          <Group position="left" spacing={0} className={classes.helperText}>
-            <Grid p={0} m={0}>
-              { SeenBeforeData ? SeenBeforeData.map((item) => (
-                  <Grid.Col className={classes.InspirationBoxes} span={2}>
-                    <div className={classes.InspirationBoxesDiv}>
-                      <img className={classes.InspirationBoxesImage} src={item.ImageURL} ></img>
-                    </div>
-                    {item.InspirationName}
-                  </Grid.Col>
-                )) : ''}
-                <Grid.Col span={2} className={classes.InspirationBoxes}>Felt anything similar?</Grid.Col>
-            </Grid>
-          </Group>
-          <Group className={classes.greyBackground}>
-            By thinking of a fraud as an activity, you can adapt the behaviour outcome... give 1 example
-          </Group>
+          <Stack position="left" align="flex-start" mb={200}>
+          <Stack align="center" w="100%">
+            <Group maw={800}>
+              <Text fz="xs" className={classes.subTitle} grow>Inspiration from Activities</Text>
+              <Stack mt="auto" mb={100}>
+                  <Text fz="md">Think back to a situation that made you feel cheated or when someone took advantage of your trust, it is likely that you’ve been through a deceptive scheme.</Text>
+                  <Text fz="md">These activities commonly leverage on human biases, which are common patterns that leverage the irrational decision-making of people. These patterns can be used as ideas to form a deceptive strategy.</Text>
+                  <Text fz="md">Let's take a look at a few examples.</Text>
+              </Stack>
+            </Group>
+          </Stack>
+
+            <Group>
+              <Group grow h={700}>
+                <Group className={classes.stepsBoxes} h={"100%"}>
+                  <CardComponent  number={1} title="I felt cheated..." type="Experience" description="On Kickstarter when I was convinced to participate in their fundraiser.">
+                    <Image mx="auto" maw={"80%"} radius="md" src="../img/inspo/kickstarter.png"></Image>
+                  </CardComponent>
+                </Group>
+                <Group className={classes.stepsBoxes} h={"100%"}>
+                  <CardComponent  number={1} title="I participated because..." type="Human Bias" description="I made the decisions believing that other people did the same.">
+                    <Image maw={"100%"} radius="md" src="../img/examples/example1-bandwagoneffect.svg"></Image>
+                  </CardComponent>
+                </Group>
+                <Group className={classes.stepsBoxes} h={"100%"}>
+                  <CardComponent  number={1} title="If I could receate it..." type="Deceptive Strategy" description="I will want to make a huge audience believe in each other to donate together.">
+                    <Image maw={"100%"} radius="md" src="../img/examples/example1-outcome.svg"></Image>
+                  </CardComponent>
+                </Group>
+              </Group>
+            </Group>
+
+            <Group>
+              <Group grow h={700}>
+                <Group className={classes.stepsBoxes} h={"100%"}>
+                  <CardComponent  number={2} title="I felt cheated..." type="Experience" description="When I bought tissues from the auntie down the street.">
+                    <Image mx="auto" maw={"80%"} radius="md" src="../img/inspo/tissueAuntie.jpg"></Image>
+                  </CardComponent>
+                </Group>
+                <Group className={classes.stepsBoxes} h={"100%"}>
+                  <CardComponent  number={2} title="I participated because..." type="Human Bias" description="I felt bad if I didn't get the tissue because the auntie is directly selling to me.">
+                    <Image maw={"100%"} radius="md" src="../img/examples/example2-victimeffect.svg"></Image>
+                  </CardComponent>
+                </Group>
+                <Group className={classes.stepsBoxes} h={"100%"}>
+                  <CardComponent  number={2} title="If I could receate it..." type="Deceptive Strategy" description="I will want to let one person convince the next person to donate.">
+                    <Image mx="auto" maw={"80%"} radius="md" src="../img/examples/example2-outcome.svg"></Image>
+                  </CardComponent>
+                </Group>
+              </Group>
+            </Group>
+          </Stack>
         </Stack>
       </Stack>
 
-      <Group mt={20} className={classes.greyBackgroundAlternate} position="center" justifyContent="center" mih={600}>
+      <Stack>
+        <Divider my="sm" />
+        <Group spacing={0}>
+            <div className={classes.badgeLight}><Text fz="xs" className={classes.alternateText}>2</Text></div>
+            <div className={classes.badgeDark}><Text fz="xs" className={classes.alternateText}>Exploring Components</Text></div>
+        </Group>
+      </Stack>
+
+      <Group mt={130} mb={150} className={classes.greyBackgroundAlternate} position="center" justifyContent="center" mih={600}>
           <Stack w="100%" align="center" >
-            <Text fz="xs" className={classes.subTitle}>No more simple buttons and toggles!</Text>
-            <Image maw={600} src="../img/chapter2.svg"></Image>
+            <Stack mb={100} align="center" position="center">
+            <Text fz="xs" className={classes.subTitle}>A question to ask yourself</Text>
+            <h1 className={classes.title} style={{textAlign: "center"}}>
+            How can we make users think a little more before they make a decision?
+            </h1>
+            </Stack>
+            <Image mt={50} maw={200} src="../img/chapter2.svg"></Image>
           </Stack>
       </Group>
 
       <Stack spacing={20} mt={20}>
         <Stack>
-          <Stack className={classes.greyBackground} position="left" align="flex-start" mih={800} p={50}>
-          <Text fz="xs" className={classes.subTitle} grow>2. Exploring Interface Components</Text>
-          <h1 className={classes.title}>Make users think a little more before they make a decision.</h1>
-          <Grid mt="auto">
-              <Grid.Col span={4}>
-              <Text fz="sm" mb={50}>A simple choice is a straightforward method of requesting something, but in certain circumstances, its effectiveness can be improved by prolonging and expanding the decision-making process.</Text>
-              </Grid.Col>
-              <Grid.Col span={4}>
-              <Text fz="sm" mb={50}>Instead of relying on just a button, these UI components have various influences on decision making and make some information more important.</Text>
-              <Text fz="sm" mb={50}>Here are 4 different UI components and their influences.</Text>
-              </Grid.Col>
-            </Grid>
-          </Stack>
+          <Stack align="center" w="100%">
+              <Group maw={800}>
+                <Text fz="xs" className={classes.subTitle} grow>Components and Decision Making</Text>
+                <Stack mt="auto" mb={100}>
+                    <Text fz="md">A simple choice is a straightforward method of requesting something, but in certain circumstances, its effectiveness can be improved by prolonging and expanding the decision-making process.</Text>
+                    <Text fz="md">Instead of relying on just a button, these UI components have various influences on decision making and make some information more important.</Text>
+                    <Text fz="md">Here are 4 different UI components and their influences.</Text>
+                </Stack>
+              </Group>
+            </Stack>
         </Stack>
       </Stack>
 
-      <Stack p={0} m={0} spacing={0}>
+      <Stack p={0} m={0} spacing={30} mb={200}>
         <Group className={classes.stepsBoxes} align="flex-start">
           <CardComponent number={1} type="Input Area" description="Used when you want confirmation and when you are sure users are confident to give a donation.">
             <Stack mt={50} mb={50} className={classes.uiBackground} maw={400}>
@@ -465,59 +554,81 @@ export default function HomePage() {
         </Group>
       </Stack>
 
-      <Group mt={20} className={classes.greyBackgroundAlternate} position="center" justifyContent="center" mih={600}>
+      <Stack>
+        <Divider my="sm" />
+        <Group spacing={0}>
+            <div className={classes.badgeLight}><Text fz="xs" className={classes.alternateText}>3</Text></div>
+            <div className={classes.badgeDark}><Text fz="xs" className={classes.alternateText}>Using a Strategy</Text></div>
+        </Group>
+      </Stack>
+
+      <Group mt={130} mb={150} className={classes.greyBackgroundAlternate} position="center" justifyContent="center" mih={600}>
           <Stack w="100%" align="center" >
-            <Text fz="xs" className={classes.subTitle}>Now we put those components into action!</Text>
-            <Image maw={600} src="../img/chapter3.svg"></Image>
+            <Stack mb={100} align="center" position="center">
+            <Text fz="xs" className={classes.subTitle}>A question to ask yourself</Text>
+            <h1 className={classes.title} style={{textAlign: "center"}}>
+            What do I know about my target audience?
+            </h1>
+            </Stack>
+            <Image mt={50} maw={200} src="../img/chapter3.svg"></Image>
           </Stack>
       </Group>
 
       <Stack spacing={20} mt={20}>
         <Stack spacing={0}>
-          <Stack className={classes.greyBackground} position="left" align="flex-start" mih={800} p={50}>
-          <Text fz="xs" className={classes.subTitle} grow>3. Adopting a Strategy</Text>
-          <h1 className={classes.title}>Think about who your users are</h1>
-          <Grid mt="auto">
-              <Grid.Col span={4}>
-              <Text fz="sm" mb={50}>After understanding the influence of deceptive schemes and interface components, we can now formulate a unique interface for your specific audience. Think about who your users are and what you want to achieve.</Text>
-              </Grid.Col>
-              <Grid.Col span={4}>
-              <Text fz="sm" mb={50}>Some strategies are more effective for specific scenarios. Swipe those cards to explore different combinations of possible strategies.</Text>
-              </Grid.Col>
-            </Grid>
+          
+          <Stack align="center" w="100%">
+                <Group maw={800}>
+                  <Text fz="xs" className={classes.subTitle}>Limitations of a Deceptive Strategy</Text>
+                  <Stack mt="auto" mb={100}>
+                      <Text fz="md">After understanding the influence of deceptive schemes and interface components, we can now formulate a unique interface for your specific audience. Think about who your users are and what you want to achieve. Here are a few strategies and their limitatioins.</Text>
+                  </Stack>
+                </Group>
           </Stack>
+
+          <Stack>
+            <Stack className={classes.greyBackground} p={30} >
+              <Text fz="xs" c="dimmed" className={classes.subTitle}>Strategy 1</Text>
+              <Text fz="md">Framing donation as a chance to win</Text>
+            </Stack>
+          </Stack>
+
+          <Stack align="center" w="100%" mt={100}>
+                <Group maw={800}>
+                  <Text fz="xs" className={classes.subTitle} grow>Library</Text>
+                  <Stack mt="auto" mb={100}>
+                      <Text fz="md">We've compiled some strategies based on common target audiences!</Text>
+                  </Stack>
+                </Group>
+          </Stack>
+
           <Stack className={classes.greyBackgroundAlternate} position="left" align="flex-start">
             <ChooseMachine />
           </Stack>
 
-          <Stack className={classes.greyBackgroundAlternate} position="left" align="flex-start" mih={800} p={50}>
-            <Text fz="xs" className={classes.subTitle} grow>3. Adopting a Strategy</Text>
-            <h1 className={classes.title}>Do it like how they did it!</h1>
-            </Stack>
+
         </Stack>
       </Stack>
 
-      <Group mt={20} className={classes.greyBackgroundAlternate} position="center" justifyContent="center" mih={600}>
-            <Stack w="100%" align="center" >
-              <Text fz="xs" className={classes.subTitle}>Measuring the final outcome!</Text>
-              <Image maw={600} src="../img/chapter4.svg"></Image>
-            </Stack>
+      <Stack>
+        <Divider my="sm" />
+        <Group spacing={0}>
+            <div className={classes.badgeLight}><Text fz="xs" className={classes.alternateText}>4</Text></div>
+            <div className={classes.badgeDark}><Text fz="xs" className={classes.alternateText}>Measuring your Interface</Text></div>
         </Group>
-
-      <Stack spacing={20}>
-        <Group mt={100} mb={100}>
-        <h1 className={classes.title}>Follow some of these strategies.</h1>
-        <Group position="left" spacing="xs" className={classes.helperText}>
-          Click on these 
-          <span className={classes.scenarioIcon}></span> 
-          scenarios to learn more.
-        </Group>
-        </Group>
-
-        <div className={classes.chart}>
-          <DeceptiveChart scenarios={scenarioRecords} strategies={strategyRecords}></DeceptiveChart>
-        </div>
       </Stack>
+
+      <Group mt={130} mb={150} className={classes.greyBackgroundAlternate} position="center" justifyContent="center" mih={600}>
+          <Stack w="100%" align="center" >
+            <Stack mb={100} align="center" position="center">
+            <Text fz="xs" className={classes.subTitle}>A question to ask yourself</Text>
+            <h1 className={classes.title} style={{textAlign: "center"}}>
+            Did my interface become more effective*?
+            </h1>
+            </Stack>
+            <Image mt={50} maw={200} src="../img/chapter4.svg"></Image>
+          </Stack>
+      </Group>
 
     </Container>
   );

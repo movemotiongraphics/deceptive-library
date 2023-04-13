@@ -2,7 +2,7 @@ import { useState } from 'react';
 import NextApp, { AppProps, AppContext } from 'next/app';
 import { getCookie, setCookie } from 'cookies-next';
 import Head from 'next/head';
-import { MantineProvider, ColorScheme, ColorSchemeProvider } from '@mantine/core';
+import { MantineProvider, ColorScheme, ColorSchemeProvider, GlobalStyles } from '@mantine/core';
 import { NotificationsProvider } from '@mantine/notifications';
 import NavBarComponent from '../components/Header';
 import CustomFont from '../components/customFonts';

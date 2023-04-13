@@ -110,7 +110,7 @@ const ChooseMachine = () => {
     const contextSlides = contextArray.map((item) => (
 
       <Carousel.Slide key={item.Scenario} h={400}>
-        <CardSlides title={item.contextName} category={"context"}/>
+        <CardSlides title={item.contextName} category={"You might be"}/>
       </Carousel.Slide>
 
     ))
@@ -120,7 +120,7 @@ const ChooseMachine = () => {
       return outcomes.map((item, index) => {
         // console.log(item)
         return <Carousel.Slide key={index + 'outcome'} h={400}>
-                  <CardSlides title={item} category={"outcome"}/>
+                  <CardSlides title={item} category={"With some strategies, you can"}/>
                </Carousel.Slide>
       })
     }
@@ -130,7 +130,7 @@ const ChooseMachine = () => {
       return inspirations.map((item, index) => {
         // console.log(item)
         return <Carousel.Slide key={index + 'inspiration'} h={400}>
-                  <CardSlides title={item} category={"inspiration"}/>
+                  <CardSlides title={item} category={"Just like"}/>
                </Carousel.Slide>
       })
     }
@@ -143,10 +143,9 @@ const ChooseMachine = () => {
   
     return(
         <Stack w={"100%"}>
-          <Flex w={"100%"} spacing={0} style={{ justifyContent: "flex-start"}}>
-            <Stack>
+          <Flex w={"100%"} style={{ justifyContent: "flex-start"}}>
+            <Stack spacing={30} >
               <Carousel 
-                w={400}
                 slideGap="md"
                 onSlideChange={
                   (index) => {
