@@ -45,6 +45,7 @@ const useStyles = createStyles((theme) => ({
       padding: 0,
       color: theme.colorScheme === 'dark' ? theme.white : theme.black,
       width: "80%",
+      lineHeight: 1.1,
   
       [BREAKPOINT]: {
         fontSize: 42,
@@ -389,7 +390,7 @@ const StudyPage = () => {
       <Container size="xl" px={30}>
           <Group mt={130} mb={170} position="center" align="center">
             <h1 className={classes.headerTitle} style={{ textAlign: "center"}}>
-              Build your own deceptive interface with card prompts.
+              Get inspired with summary card prompts.
             </h1>
           </Group>
 

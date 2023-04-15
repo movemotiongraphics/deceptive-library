@@ -263,6 +263,29 @@ export default function HomePage() {
         <Divider my="sm" />
         <Group spacing={0}>
             <div className={classes.badgeLight}><Text fz="xs" className={classes.alternateText}>0</Text></div>
+            <div className={classes.badgeDark}><Text fz="xs" className={classes.alternateText}>Preface</Text></div>
+        </Group>
+      </Stack>
+
+      <Stack my={200} align="center" w="100%">
+                <Group maw={800}>
+                  <Text fz="xs" className={classes.subTitle}>Deception and User Interfaces</Text>
+                  <Stack mt="auto" spacing={50}>
+                      <Text fz="md">This framework is developed as a part of my study in design school. In this study, deception is defined as a method to alter information by creating hidden points of comparisons through being less transparent, creating pressure and encouraging risk-taking. This allows the deceiver to make people favour a decision that benefits the themselves.</Text>
+                      <Text fz="md">I wonder if deception can be used by designers as a strategy to further influence behaviour for altruistic outcomes? This framework is the summarised outcome of how I designed socially-acceptable deceptive interfaces for my study.</Text>
+                      <div>
+                      <a href={"./about"}>
+                        <Button variant="outline" color="dark" radius="xl" size="xl" style={{ fontSize: '16px', fontWeight: 400 }}>More about this project</Button>
+                      </a>
+                      </div>
+                  </Stack>
+                </Group>
+      </Stack>
+
+      <Stack mt={200} mb={200}>
+        <Divider my="sm" />
+        <Group spacing={0}>
+            <div className={classes.badgeLight}><Text fz="xs" className={classes.alternateText}>0</Text></div>
             <div className={classes.badgeDark}><Text fz="xs" className={classes.alternateText}>Introduction</Text></div>
         </Group>
       </Stack>
@@ -272,7 +295,7 @@ export default function HomePage() {
             <Group mb={100} position="center">
             <Text fz="xs" className={classes.subTitle}>Yes! Make people do what you want them to digitally!</Text>
             <h1 className={classes.title} style={{textAlign: "center"}}>
-            This framework helps designers make socially acceptable deceptive interfaces in 4 simple steps.
+            Make socially acceptable deceptive interfaces in 4 simple steps.
             </h1>
             </Group>
             <Image mt={50} maw={200} src="../img/dif.svg"></Image>
@@ -283,7 +306,7 @@ export default function HomePage() {
                 <Group maw={800}>
                   <Text fz="xs" className={classes.subTitle}>About the Deceptive Interfaes Framework</Text>
                   <Stack mt="auto">
-                      <Text fz="md">This set of instruction consists of four libraries that are designed to be considered in sequence. You can visit each of them by clicking on the cards above, or follow the guide to make your own deceptive interface.</Text>
+                      <Text fz="md">The framework consists of four libraries that are designed to be considered in sequence. Each step consists of examples and guides that you can adopt in your own design. Follow the guide to make your own deceptive interface.</Text>
                   </Stack>
                 </Group>
       </Stack>
@@ -311,15 +334,7 @@ export default function HomePage() {
             </Group>
       </Group>
 
-      <Stack my={200} align="center" w="100%">
-                <Group maw={800}>
-                  <Stack mt="auto">
-                      <Text fz="md">The Deceptive Interface Framework is a quick research done by Yuan Jie for his thesis in NUS!</Text>
-                  </Stack>
-                </Group>
-      </Stack>
-
-      <Stack>
+      <Stack mt={50}>
         <Divider my="sm" />
         <Group spacing={0}>
             <div className={classes.badgeLight}><Text fz="xs" className={classes.alternateText}>1</Text></div>
@@ -586,12 +601,17 @@ export default function HomePage() {
                 </Group>
           </Stack>
 
-          <Stack>
-            <Stack className={classes.greyBackground} p={30} >
-              <Text fz="xs" c="dimmed" className={classes.subTitle}>Strategy 1</Text>
-              <Text fz="md">Framing donation as a chance to win</Text>
-            </Stack>
-          </Stack>
+          <Grid p={0} m={0} justify='left'>
+            { scenarioRecords ? scenarioRecords.map((element) => (
+              <>
+                <Grid.Col className={classes.greyBackground} md={2} sm={4} xs={12} h={200}>
+                   <Stack>
+                    Scenrio {element.Number}
+                   </Stack>
+                </Grid.Col>
+              </>
+            )) : "" }
+          </Grid>
 
           <Stack align="center" w="100%" mt={100}>
                 <Group maw={800}>

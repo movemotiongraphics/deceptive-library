@@ -35,6 +35,7 @@ const useStyles = createStyles((theme) => ({
     padding: 0,
     color: theme.colorScheme === 'dark' ? theme.white : theme.black,
     width: "80%",
+    lineHeight: 1.1,
 
     [BREAKPOINT]: {
       fontSize: 42,
@@ -117,9 +118,18 @@ const ChartsPage = () => {
       <Container size="xl" px={30}>
           <Group mt={130} mb={170} position="center" alignItems="center">
             <h1 className={classes.headerTitle} style={{ textAlign: "center"}}>
-              Get inspired by the insights from the study.
+              The deception score measures 
             </h1>
           </Group>
+
+          <Stack my={200} align="center" w="100%">
+                <Group maw={800}>
+                  <Text fz="xs" className={classes.subTitle}>Where these insights come from</Text>
+                  <Stack mt="auto">
+                      <Text fz="md">The framework consists of four libraries that are designed to be considered in sequence. Each step consists of examples and guides that you can adopt in your own design. Follow the guide to make your own deceptive interface.</Text>
+                  </Stack>
+                </Group>
+          </Stack>
 
           <Stack spacing={20}>
             <Group mt={100} mb={100}>

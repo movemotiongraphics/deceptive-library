@@ -15,6 +15,7 @@ const useStyles = createStyles((theme) => ({
       padding: 0,
       color: theme.colorScheme === 'dark' ? theme.white : theme.black,
       width: "80%",
+      lineHeight: 1.1,
 
       [BREAKPOINT]: {
         fontSize: 42,
