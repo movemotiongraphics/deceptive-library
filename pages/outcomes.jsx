@@ -1,4 +1,4 @@
-import { Group, Flex, Stack, Container, createStyles, Image, Badge, Text, Grid, Divider } from '@mantine/core';
+import { Button, Group, Flex, Stack, Container, createStyles, Image, Badge, Text, Grid, Divider } from '@mantine/core';
 import DeceptiveChart from '../components/DeceptiveChart';
 import { useState, useEffect } from 'react' 
 import { RiveAnimation } from '../components/riveDonate';
@@ -88,8 +88,7 @@ const useStyles = createStyles((theme) => ({
   },
 
   imageBorder: {
-    backgroundColor: theme.colors.gray[1],
-    height: 700,
+    height: 400,
   },
 
 }));
@@ -158,38 +157,69 @@ const ChartsPage = () => {
           <Stack>
             
             <Stack mb={100}>
-              <Divider my="sm" />
+              <Divider my="sm"/>
               <Group spacing={0}>
-                  <div className={classes.badgeLight}><Text fz="xs" className={classes.subTitle}>1</Text></div>
-                  <div className={classes.badgeDark}><Text fz="xs" className={classes.subTitle}>Spinning Wheel</Text></div>
+                  <div className={classes.badgeLight}><Text fz="xs" className={classes.subTitle}>0</Text></div>
+                  <div className={classes.badgeDark}><Text fz="xs" className={classes.subTitle}>Articles</Text></div>
               </Group>
             </Stack>
 
-            <Stack align="center">
-              <Stack w={"100%"}>
-                <div className={classes.imageBorder}>
-                  <RiveAnimation scenarioNumber={0} />
-                </div>
-              </Stack>
+            <Group w={"100%"}>
+              <Grid gutter={20}>
+                <Grid.Col span={12} md={4} sm={6}>
+                  <Stack>
+                    <Stack className={classes.greyBackground}>
+                      <div className={classes.imageBorder}>
+                        <RiveAnimation scenarioNumber={0} />
+                      </div>
+                    </Stack>
 
-              <Stack mt={50} mb={200} align="center" w="100%">
-                <Stack maw={800}>
-                  <Group mb={50}>
-                    <Badge color="gray" size="lg" radius="sm">100% clicked donate</Badge>
-                    <Badge color="gray" size="lg" radius="sm">560% average amount</Badge>
-                    <Badge color="gray" size="lg" radius="sm">3.25 deception score</Badge>
-                  </Group>
-                  <Text fz="xs" className={classes.subTitle}>Spinning Wheel</Text>
-                  <Stack mt="auto">
-                      <Text fz="md">In this experiment, I changed the donate button into a spinning wheel that gives a chance to win a $5 discount or make a small $2 donation. The spinning wheel adds a chance of incentivisation to attract participation. Seems like people were initially motivated in participating, but soon found out about it's low winning probability.</Text>
+                    <Stack>
+                      <Text fz="xs" className={classes.subTitle}>Insight 1</Text>
+                      <Stack mt="auto">
+                          <Text fz="md">The attractiveness of using a chance mechanism that wears out fast.</Text>
+                      </Stack>
+                    </Stack>
                   </Stack>
-                  <Text fz="xs" className={classes.subTitle}>Insight</Text>
-                  <Stack mt="auto">
-                      <Text fz="md">The attractiveness of using a chance mechanism that wears out fast, and becomes really suspicious.</Text>
+                </Grid.Col>
+
+                <Grid.Col span={12} md={4} sm={6} xs={12}>
+                  <Stack>
+                    <Stack className={classes.greyBackground}>
+                      <div className={classes.imageBorder}>
+                        <RiveAnimation scenarioNumber={1} />
+                      </div>
+                    </Stack>
+
+                    <Stack>
+                      <Text fz="xs" className={classes.subTitle}>Insight 2</Text>
+                      <Stack mt="auto">
+                          <Text fz="md">A lack of control over the donation amount deters people from donating, even if it's an amount they might usually donate.</Text>
+                      </Stack>
+                    </Stack>
                   </Stack>
-                </Stack>
-              </Stack>
-            </Stack>
+                </Grid.Col>
+
+                <Grid.Col span={12} md={4} sm={6} xs={12}>
+                  <Stack>
+                    <Stack className={classes.greyBackground}>
+                      <div className={classes.imageBorder}>
+                        <RiveAnimation scenarioNumber={2} />
+                      </div>
+                    </Stack>
+
+                    <Stack>
+                      <Text fz="xs" className={classes.subTitle}>Insight 3</Text>
+                      <Stack mt="auto">
+                          <Text fz="md">People find it hard to commit to a unpredictable amount of reward.</Text>
+                      </Stack>
+                    </Stack>
+                  </Stack>
+                </Grid.Col>
+
+
+              </Grid>
+            </Group>
 
 
           </Stack>
