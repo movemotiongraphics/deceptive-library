@@ -26,7 +26,7 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
     label: 'Outcomes',
     link: '/outcomes'
   }, {
-    label: 'Chart',
+    label: 'Strategies',
     link: '/chart'
   }, {
     label: 'Inspirations',

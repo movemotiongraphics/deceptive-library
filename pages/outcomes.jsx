@@ -89,6 +89,13 @@ const useStyles = createStyles((theme) => ({
 
   imageBorder: {
     height: 400,
+    opacity: 0.3,
+    transition: "0.3s ease all",
+
+    '&:hover': {
+      opacity: 1,
+      transition: "0.3s ease all",
+    },
   },
 
 }));
@@ -165,18 +172,19 @@ const ChartsPage = () => {
             </Stack>
 
             <Group w={"100%"}>
-              <Grid gutter={20}>
+
+              <Grid gutter={20} mb={50}>
                 <Grid.Col span={12} md={4} sm={6}>
                   <Stack>
                     <Stack className={classes.greyBackground}>
                       <div className={classes.imageBorder}>
-                        <RiveAnimation scenarioNumber={0} />
+                        <RiveAnimation scenarioNumber={0} hoverToPlay/>
                       </div>
                     </Stack>
 
                     <Stack>
                       <Text fz="xs" className={classes.subTitle}>Insight 1</Text>
-                      <Stack mt="auto">
+                      <Stack>
                           <Text fz="md">The attractiveness of using a chance mechanism that wears out fast.</Text>
                       </Stack>
                     </Stack>
@@ -187,7 +195,7 @@ const ChartsPage = () => {
                   <Stack>
                     <Stack className={classes.greyBackground}>
                       <div className={classes.imageBorder}>
-                        <RiveAnimation scenarioNumber={1} />
+                        <RiveAnimation scenarioNumber={1} hoverToPlay/>
                       </div>
                     </Stack>
 
@@ -204,7 +212,7 @@ const ChartsPage = () => {
                   <Stack>
                     <Stack className={classes.greyBackground}>
                       <div className={classes.imageBorder}>
-                        <RiveAnimation scenarioNumber={2} />
+                        <RiveAnimation scenarioNumber={2} hoverToPlay/>
                       </div>
                     </Stack>
 
@@ -216,9 +224,62 @@ const ChartsPage = () => {
                     </Stack>
                   </Stack>
                 </Grid.Col>
-
-
               </Grid>
+
+              <Grid gutter={20}>
+                <Grid.Col span={12} md={4} sm={6}>
+                  <Stack>
+                    <Stack className={classes.greyBackground}>
+                      <div className={classes.imageBorder}>
+                        <RiveAnimation scenarioNumber={4} hoverToPlay/>
+                      </div>
+                    </Stack>
+
+                    <Stack>
+                      <Text fz="xs" className={classes.subTitle}>Insight 4</Text>
+                      <Stack>
+                          <Text fz="md">Friends who are closer are better influences to make people donate.</Text>
+                      </Stack>
+                    </Stack>
+                  </Stack>
+                </Grid.Col>
+
+                <Grid.Col span={12} md={4} sm={6} xs={12}>
+                  <Stack>
+                    <Stack className={classes.greyBackground}>
+                      <div className={classes.imageBorder}>
+                        <RiveAnimation scenarioNumber={5} hoverToPlay/>
+                      </div>
+                    </Stack>
+
+                    <Stack>
+                      <Text fz="xs" className={classes.subTitle}>Insight 5</Text>
+                      <Stack mt="auto">
+                          <Text fz="md">In a community, some people found it unlikely that everyone will do "good".</Text>
+                      </Stack>
+                    </Stack>
+                  </Stack>
+                </Grid.Col>
+
+                <Grid.Col span={12} md={4} sm={6} xs={12}>
+                  <Stack>
+                    <Stack className={classes.greyBackground}>
+                      <div className={classes.imageBorder}>
+                        <RiveAnimation scenarioNumber={6} hoverToPlay/>
+                      </div>
+                    </Stack>
+
+                    <Stack>
+                      <Text fz="xs" className={classes.subTitle}>Insight 6</Text>
+                      <Stack mt="auto">
+                          <Text fz="md">People feel pressured when someone else is putting more effort than them.</Text>
+                      </Stack>
+                    </Stack>
+                  </Stack>
+                </Grid.Col>
+              </Grid>
+
+
             </Group>
 
 

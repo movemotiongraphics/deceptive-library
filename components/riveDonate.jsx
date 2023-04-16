@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 
 let CurrentDonationAmount = 0;
 
-const RiveAnimation = ({ scenarioNumber }) => {
+const RiveAnimation = ({ scenarioNumber, hoverToPlay }) => {
 
     const StateMachineName = "UserFlow";
     const stateMachineDonateInput = "Donate";
@@ -100,7 +100,6 @@ const RiveAnimation = ({ scenarioNumber }) => {
     const { rive, RiveComponent } = useRive({
         artboard: `${currentScenario.artboard}`,
         src: `${currentScenario.src}`,
-        autoplay: true,
         stateMachines: StateMachineName,
         // onLoop: (event) => {
         //     console.log(currentScenario);
@@ -124,7 +123,11 @@ const RiveAnimation = ({ scenarioNumber }) => {
 
     return (
         <>
-        <RiveComponent />
+          { hoverToPlay ? <RiveComponent       
+                onMouseEnter={() => rive && rive.play()}
+                onMouseLeave={() => rive && rive.pause()}
+                autoplay={false}
+            /> : <RiveComponent autoplay={true}/> }
         </>
     )
 }
