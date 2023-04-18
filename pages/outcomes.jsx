@@ -173,7 +173,7 @@ const ChartsPage = () => {
 
             <Group w={"100%"}>
 
-              <Grid gutter={20} mb={50}>
+              <Grid gutter={20} mb={80}>
                 <Grid.Col span={12} md={4} sm={6}>
                   <Stack>
                     <Stack className={classes.greyBackground}>
@@ -185,7 +185,7 @@ const ChartsPage = () => {
                     <Stack>
                       <Text fz="xs" className={classes.subTitle}>Insight 1</Text>
                       <Stack>
-                          <Text fz="md">The attractiveness of using a chance mechanism that wears out fast.</Text>
+                          <Text fz="md">Chance mechanisms lose their appeal over time.</Text>
                       </Stack>
                     </Stack>
                   </Stack>
@@ -202,7 +202,7 @@ const ChartsPage = () => {
                     <Stack>
                       <Text fz="xs" className={classes.subTitle}>Insight 2</Text>
                       <Stack mt="auto">
-                          <Text fz="md">A lack of control over the donation amount deters people from donating, even if it's an amount they might usually donate.</Text>
+                          <Text fz="md">When people lack control over the donation amount, they won't donate, even if they would normally do so.</Text>
                       </Stack>
                     </Stack>
                   </Stack>
@@ -219,14 +219,14 @@ const ChartsPage = () => {
                     <Stack>
                       <Text fz="xs" className={classes.subTitle}>Insight 3</Text>
                       <Stack mt="auto">
-                          <Text fz="md">People find it hard to commit to a unpredictable amount of reward.</Text>
+                          <Text fz="md">It is difficult to commit to a reward that is unpredictable.</Text>
                       </Stack>
                     </Stack>
                   </Stack>
                 </Grid.Col>
               </Grid>
 
-              <Grid gutter={20}>
+              <Grid gutter={20} mb={80}>
                 <Grid.Col span={12} md={4} sm={6}>
                   <Stack>
                     <Stack className={classes.greyBackground}>
@@ -238,7 +238,7 @@ const ChartsPage = () => {
                     <Stack>
                       <Text fz="xs" className={classes.subTitle}>Insight 4</Text>
                       <Stack>
-                          <Text fz="md">Friends who are closer are better influences to make people donate.</Text>
+                          <Text fz="md">In order to make people donate, closer friends are more influential.</Text>
                       </Stack>
                     </Stack>
                   </Stack>
@@ -255,7 +255,7 @@ const ChartsPage = () => {
                     <Stack>
                       <Text fz="xs" className={classes.subTitle}>Insight 5</Text>
                       <Stack mt="auto">
-                          <Text fz="md">In a community, some people found it unlikely that everyone will do "good".</Text>
+                          <Text fz="md">People thought it was unlikely that everyone would do "good".</Text>
                       </Stack>
                     </Stack>
                   </Stack>
@@ -272,7 +272,7 @@ const ChartsPage = () => {
                     <Stack>
                       <Text fz="xs" className={classes.subTitle}>Insight 6</Text>
                       <Stack mt="auto">
-                          <Text fz="md">People feel pressured when someone else is putting more effort than them.</Text>
+                          <Text fz="md">It is sometimes stressful when someone puts more effort into donating than you do.</Text>
                       </Stack>
                     </Stack>
                   </Stack>
