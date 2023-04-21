@@ -284,7 +284,7 @@ const ChartsPage = () => {
                   <Stack>
                     <Stack className={classes.greyBackground}>
                       <div className={classes.imageBorder}>
-                        <RiveAnimation scenarioNumber={6} hoverToPlay/>
+                        <RiveAnimation scenarioNumber={8} hoverToPlay/>
                       </div>
                     </Stack>
 
