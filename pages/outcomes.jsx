@@ -291,7 +291,7 @@ const ChartsPage = () => {
                     <Stack>
                       <Text fz="xs" className={classes.subTitle}>Insight 7</Text>
                       <Stack>
-                          <Text fz="md">Explicitly explaining why someone donates leaves a positive impression that influences others.</Text>
+                          <Text fz="md">Sometimes, it doesn't require a whole group but just one influence that explicitly explaining he donates.</Text>
                       </Stack>
                     </Stack>
                   </Stack>
