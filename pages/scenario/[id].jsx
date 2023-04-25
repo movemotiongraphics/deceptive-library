@@ -70,7 +70,7 @@ const scenarioPage = ({ currentScenario }) => {
         <Group mb={100}>
         <h1 className={classes.title}> 
         {
-            id == 1 || id == 3 ? 'This is the typical donation interface we are used to seeing.' : `When the "${ currentScenario.Scenario }" interface is used to replace the typical one, we created sense of ${ currentScenario[`Insight (from Observation)`][0] }` 
+            id == 1 || id == 3 || id== 7 ? 'This particular experiment did not end with any insights.' : `When the "${ currentScenario.Scenario }" interface is used to replace the typical one, we created sense of ${ currentScenario[`Insight (from Observation)`][0] }` 
         } 
         </h1>
         </Group>
