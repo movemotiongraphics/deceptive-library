@@ -6,6 +6,11 @@ import { useEffect, useState } from 'react';
 
 const BREAKPOINT = '@media (max-width: 755px)';
 
+//static data
+import ScenarioData from '../../components/Data/Scenarios-Grid.json';
+import ObservationData from '../../components/Data/Observation-Grid.json';
+import SeenBeforeData from '../../components/Data/Inspirations-Grid.json';
+
 const useStyles = createStyles((theme) => ({
   
     title: {
@@ -59,7 +64,18 @@ const useStyles = createStyles((theme) => ({
 
 const scenarioPage = ({ currentScenario }) => {
 
-    console.log({ currentScenario })
+    console.log(currentScenario)
+    const [seenBeforeRecords, setSeenBeforeRecords] = useState([]);
+
+    // function getContexts() {
+    //     let currentInspirations = currentScenario.seenBefore.split(",");
+    //     setSeenBeforeRecords(currentInspirations)
+    // }
+
+    // useEffect(() => {
+    //     getContexts();
+    //   }, [])
+
     const { classes } = useStyles();
     const router = useRouter()
     const { id } = router.query
@@ -90,7 +106,7 @@ const scenarioPage = ({ currentScenario }) => {
                 <Group position="apart" align="end">
                 <div>Experiment</div>
                 {
-                    currentScenario.ParticipationRate < 34 ? <Badge color="green" size="lg" radius="sm">{ currentScenario.ParticipationRate * 100 }% Participation</Badge> : <Badge color="red" size="lg" radius="sm">{ currentScenario.ParticipationRate * 100 }% Participation</Badge> 
+                    Number(currentScenario.ParticipationRate.replace('%', '')) < 34 ? <Badge color="green" size="lg" radius="sm">{ currentScenario.ParticipationRate * 100 }% Participation</Badge> : <Badge color="red" size="lg" radius="sm">{ currentScenario.ParticipationRate * 100 }% Participation</Badge> 
                 }
                 </Group>
                     <Stack className={classes.imageBorder} align="center" justify="center" >
@@ -115,7 +131,7 @@ const scenarioPage = ({ currentScenario }) => {
             align="flex-start"
             direction="row"
             wrap="wrap" >
-                    { currentScenario.SeenBefore.map((e, i) => {
+                    { currentScenario.SeenBefore.split(",").map((e, i) => {
                             return <Stack h={300} w={300} justify="center" align="center" className={classes.quotes}>
                                         <Text fz="md">{e}</Text>
                                     </Stack>                              
@@ -130,7 +146,7 @@ const scenarioPage = ({ currentScenario }) => {
             <Group grow align="flex-start" justify="flex-start" mb={200}>
                 <div></div>
                 <Stack>
-                    { currentScenario["Observation (from Observation)"].map((e, i) => {
+                    { currentScenario["Observation (from Observation)"].split(",").map((e, i) => {
                             return <Flex 
                             className={classes.quotes} spacing="sm"       
                             justify="flex-start"
@@ -174,9 +190,9 @@ const scenarioPage = ({ currentScenario }) => {
 export default scenarioPage
 
 export async function getStaticPaths() {
-    const { data } = await axios.get('https://eoyeceylz6rbgls.m.pipedream.net');
+    // const { data } = await axios.get('https://eoyeceylz6rbgls.m.pipedream.net');
     // console.log(data)
-    let onlyFields = data.map((record, index) => (record.fields));
+    let onlyFields = ScenarioData
 
     const paths = onlyFields.map((e, i) => ({
         params: { id: e.Number.toString() }
@@ -189,8 +205,8 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-    const { data } = await axios.get('https://eoyeceylz6rbgls.m.pipedream.net');
-    let onlyFields = data.map((record, index) => (record.fields));
+    // const { data } = await axios.get('https://eoyeceylz6rbgls.m.pipedream.net');
+    let onlyFields = ScenarioData;
 
     let currentScenario = onlyFields.find((element) => element.Number == params.id )
 
