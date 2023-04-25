@@ -92,42 +92,26 @@ const RiveAnimation = ({ scenarioNumber, hoverToPlay }) => {
     const searchIndex = allScenarios.findIndex((element) => element.scenario == scenarioNumber);
     let currentScenario = allScenarios[searchIndex];
 
-    const isParticipating = (percentage) => {
-        const willParticipate = Math.random() > percentage ? true : false;
-        return willParticipate;
-    }
 
     const { rive, RiveComponent } = useRive({
         artboard: `${currentScenario.artboard}`,
         src: `${currentScenario.src}`,
         stateMachines: StateMachineName,
-        // onLoop: (event) => {
-        //     console.log(currentScenario);
-        //     setMoney(5);
-        // },
         layout: new Layout({
             fit: Fit.Cover,
             alignment: Alignment.TopCenter,
           }),
       })
-    
+
     const userDonate = useStateMachineInput(rive, StateMachineName, stateMachineDonateInput);
     const userNoDonate = useStateMachineInput(rive, StateMachineName, stateMachineNoDonateInput);
-
-    // const [ currentMoney, setMoney ] = useState(0);
-
-    // useEffect(() => {
-    //     CurrentDonationAmount = currentMoney;
-    //     console.log(currentMoney);
-    // }, [currentMoney])
 
     return (
         <>
           { hoverToPlay ? <RiveComponent       
                 onMouseEnter={() => rive && rive.play()}
                 onMouseLeave={() => rive && rive.pause()}
-                autoplay={false}
-            /> : <RiveComponent autoplay={true}/> }
+            /> : <RiveComponent /> }
         </>
     )
 }

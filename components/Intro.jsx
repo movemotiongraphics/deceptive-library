@@ -1,4 +1,4 @@
-import { createStyles, Container, Text, Button, Group, Select, Stack, Image, Badge } from '@mantine/core';
+import { createStyles, Container, Text, Button, Group, Select, Stack, Image, Badge, Grid } from '@mantine/core';
 import { useState } from 'react';
 import { RiveAnimation, CurrentDonationAmount } from './riveDonate';
 
@@ -87,29 +87,33 @@ const HeroTitle = () => {
           </h1>
         </Group>
 
-        <Group grow mt={30} position="left" align="flex-start">
-          <Stack>
+        <Grid mt={30} position="left" align="flex-start">
+          <Grid.Col md={6} sm={12} xs={12}>
+            <Stack>
+              <Group position="apart" align="end">
+              <Text fz="sm" >This might be your current design,</Text>
+              <Badge color="gray" size="lg" radius="sm">+0% clicked donate</Badge>
+              </Group>
+            <div className={classes.imageBorder}>
+              {/* rive animation here */}
+              <RiveAnimation scenarioNumber={99} />
+            </div>
+            </Stack>
+          </Grid.Col>
+
+          <Grid.Col md={6} sm={12} xs={12}>
+            <Stack>
             <Group position="apart" align="end">
-            <Text fz="sm" >This might be your current design,</Text>
-            <Badge color="gray" size="lg" radius="sm">+0% clicked donate</Badge>
+            <Text fz="sm">but these might be better.</Text>
+              <Badge color="green" size="lg" radius="sm">+50% clicked donate</Badge>
             </Group>
-           <div className={classes.imageBorder}>
-            {/* rive animation here */}
-            <RiveAnimation scenarioNumber={99} />
-           </div>
-          </Stack>
-          
-          <Stack>
-          <Group position="apart" align="end">
-          <Text fz="sm">but these might be better.</Text>
-            <Badge color="green" size="lg" radius="sm">+50% clicked donate</Badge>
-          </Group>
-          
-           <div className={classes.imageBorder}>
-            <RiveAnimation scenarioNumber={2} />
-           </div>
-          </Stack>
-        </Group>
+            
+            <div className={classes.imageBorder}>
+              <RiveAnimation scenarioNumber={2} />
+            </div>
+            </Stack>
+          </Grid.Col>
+        </Grid>
 
       </Container>
     </div>

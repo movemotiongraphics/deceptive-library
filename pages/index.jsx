@@ -96,13 +96,13 @@ const useStyles = createStyles((theme) => ({
   },
 
   uiBackground: {
-    backgroundColor: "white",
+    backgroundColor: theme.colors.gray[0],
     padding: "20px",
     borderRadius: "10px",
   },
 
   stepsBoxes: {
-    backgroundColor: theme.colors.gray[1],
+    borderLeft: "1px dotted #D0D0D0",
   },
 
   badgeLight: {
@@ -128,6 +128,7 @@ const useStyles = createStyles((theme) => ({
 
   subTitle: {
     fontFamily: "Space Mono",
+    textAlign: "center",
   },
 
   spinnerClass: {
@@ -206,6 +207,7 @@ export default function HomePage() {
 
       strategyArray.push(currentStrategyObject);
     })
+    console.log(strategyArray);
 
     //find different insights
     let differentInsights = onlyFields.map((e, i) => e["Insight (from Observation)"]).filter(item => item).filter(findDistinct).flat(1);
@@ -311,28 +313,28 @@ export default function HomePage() {
                 </Group>
       </Stack>
 
-      <Group grow>
-            <Group span={3} h={550} className={classes.stepsBoxes}>
+      <Grid gutter={0}>
+            <Grid.Col md={3} sm={12} xs={12} span={12} mih={550} className={classes.stepsBoxes}>
               <CardComponent  number={1} type="Getting Inspiration" description="Getting inspiration from common deceptive schemes.">
                   <Image maw={400} style={{ filter: "grayscale(100%)" }} radius="md" src="../img/components/inspomixed.png"></Image>
               </CardComponent>
-            </Group>
-            <Group span={3} h={550} className={classes.stepsBoxes}>
+            </Grid.Col>
+            <Grid.Col md={3} sm={12} xs={12} mih={550} className={classes.stepsBoxes}>
               <CardComponent  number={2} type="Using Components" description="A list of ways that UI components influences our behaviour.">
                 <Image maw={"100%"} radius="md" src="../img/components/mix.svg"></Image>
               </CardComponent>
-            </Group>
-            <Group span={3} h={550} className={classes.stepsBoxes}>
+            </Grid.Col>
+            <Grid.Col md={3} sm={12} xs={12} mih={550} className={classes.stepsBoxes}>
               <CardComponent  number={3} type="Picking Strategies" description="A collection of insights to help you bring these components together to create deceptive strategies.">
                 <Image maw={"100%"} radius="md" src="../img/components/slider.svg"></Image>
               </CardComponent>
-            </Group>
-            <Group span={3} h={550} className={classes.stepsBoxes}>
+            </Grid.Col>
+            <Grid.Col md={3} sm={12} xs={12} mih={550} className={classes.stepsBoxes}>
               <CardComponent  number={4} type="Measurements" description="How do we measure how effective those interfaces are?">
               <Image maw={"100%"} radius="md" src="../img/components/testing.svg"></Image>
               </CardComponent>
-            </Group>
-      </Group>
+            </Grid.Col>
+      </Grid>
 
       <Stack mt={50}>
         <Divider my="sm" />
@@ -360,19 +362,23 @@ export default function HomePage() {
           <Text fz="xs" className={classes.subTitle} grow>A question to ask yourself</Text>
           <Stack align="center" w="100%">
             <Text fz="md">When did you feel like you were influenced to participate in an activity?</Text>
-              <Group>
+              <Grid>
+                <Grid.Col md={10} sm={12}>
                 <div className={classes.inputArea}>
                   <Input
                       placeholder="Try finding one here"
                       radius="xl"
                       variant="unstyled"
                       size="md"
-                      w={500}
+                      w={"100%"}
                       className={classes.subTitle}
                     />
                 </div>
+                </Grid.Col>
+                <Grid.Col md={2}>
                 <Button color="dark" radius="xl" size="xl" style={{ fontSize: '16px', fontWeight: 400 }}>Enter</Button>
-              </Group>
+                </Grid.Col>
+              </Grid>
           </Stack>
           </Stack>
         </Stack>
@@ -410,45 +416,46 @@ export default function HomePage() {
             </Group>
           </Stack>
 
-            <Group>
-              <Group grow h={700}>
-                <Group className={classes.stepsBoxes} h={"100%"}>
+            <Group mb={50}>
+              <Grid>
+                <Grid.Col md={4} sm={12} xs={12} className={classes.stepsBoxes} h={"100%"}>
                   <CardComponent  number={1} title="I felt cheated..." type="Experience" description="On Kickstarter when I was convinced to participate in their fundraiser.">
-                    <Image mx="auto" maw={"80%"} radius="md" src="../img/inspo/kickstarter.png"></Image>
+                    {/* <Image mx="auto" maw={"80%"} radius="md" src="../img/inspo/kickstarter.png"></Image> */}
                   </CardComponent>
-                </Group>
-                <Group className={classes.stepsBoxes} h={"100%"}>
-                  <CardComponent  number={1} title="I participated because..." type="Human Bias" description="I made the decisions believing that other people did the same.">
-                    <Image maw={"100%"} radius="md" src="../img/examples/example1-bandwagoneffect.svg"></Image>
+                </Grid.Col>
+                <Grid.Col md={4} sm={12} xs={12} className={classes.stepsBoxes} h={"100%"}>
+                  <CardComponent  number={2} title="I participated because..." type="Human Bias" description="I made the decisions believing that other people did the same.">
+                    {/* <Image maw={"100%"} radius="md" src="../img/examples/example1-bandwagoneffect.svg"></Image> */}
                   </CardComponent>
-                </Group>
-                <Group className={classes.stepsBoxes} h={"100%"}>
-                  <CardComponent  number={1} title="If I could receate it..." type="Deceptive Strategy" description="I will want to make a huge audience believe in each other to donate together.">
-                    <Image maw={"100%"} radius="md" src="../img/examples/example1-outcome.svg"></Image>
+                </Grid.Col>
+                <Grid.Col md={4} sm={12} xs={12} className={classes.stepsBoxes} h={"100%"}>
+                  <CardComponent  number={3} title="If I could receate it..." type="Deceptive Strategy" description="I will want to make a huge audience believe in each other to donate together.">
+                    {/* <Image maw={"100%"} radius="md" src="../img/examples/example1-outcome.svg"></Image> */}
                   </CardComponent>
-                </Group>
-              </Group>
+                </Grid.Col>
+              </Grid>
             </Group>
 
             <Group>
-              <Group grow h={700}>
-                <Group className={classes.stepsBoxes} h={"100%"}>
-                  <CardComponent  number={2} title="I felt cheated..." type="Experience" description="When I bought tissues from the auntie down the street.">
-                    <Image mx="auto" maw={"80%"} radius="md" src="../img/inspo/tissueAuntie.jpg"></Image>
+              <Grid >
+                <Grid.Col md={4} sm={12} xs={12} className={classes.stepsBoxes} h={"100%"}>
+                  <CardComponent  number={1} title="I felt cheated..." type="Experience" description="When I bought tissues from the auntie down the street.">
+                    {/* <Image mx="auto" maw={"80%"} radius="md" src="../img/inspo/tissueAuntie.jpg"></Image> */}
                   </CardComponent>
-                </Group>
-                <Group className={classes.stepsBoxes} h={"100%"}>
+                </Grid.Col>
+                <Grid.Col md={4} sm={12} xs={12} className={classes.stepsBoxes} h={"100%"}>
                   <CardComponent  number={2} title="I participated because..." type="Human Bias" description="I felt bad if I didn't get the tissue because the auntie is directly selling to me.">
-                    <Image maw={"100%"} radius="md" src="../img/examples/example2-victimeffect.svg"></Image>
+                    {/* <Image maw={"100%"} radius="md" src="../img/examples/example2-victimeffect.svg"></Image> */}
                   </CardComponent>
-                </Group>
-                <Group className={classes.stepsBoxes} h={"100%"}>
-                  <CardComponent  number={2} title="If I could receate it..." type="Deceptive Strategy" description="I will want to let one person convince the next person to donate.">
-                    <Image mx="auto" maw={"80%"} radius="md" src="../img/examples/example2-outcome.svg"></Image>
+                </Grid.Col>
+                <Grid.Col md={4} sm={12} xs={12} className={classes.stepsBoxes} h={"100%"}>
+                  <CardComponent  number={3} title="If I could receate it..." type="Deceptive Strategy" description="I will want to let one person convince the next person to donate.">
+                    {/* <Image mx="auto" maw={"80%"} radius="md" src="../img/examples/example2-outcome.svg"></Image> */}
                   </CardComponent>
-                </Group>
-              </Group>
+                </Grid.Col>
+              </Grid>
             </Group>
+
           </Stack>
         </Stack>
       </Stack>
@@ -596,34 +603,56 @@ export default function HomePage() {
                 <Group maw={800}>
                   <Text fz="xs" className={classes.subTitle}>Limitations of a Deceptive Strategy</Text>
                   <Stack mt="auto" mb={100}>
-                      <Text fz="md">After understanding the influence of deceptive schemes and interface components, we can now formulate a unique interface for your specific audience. Think about who your users are and what you want to achieve. Here are a few strategies and their limitatioins.</Text>
+                      <Text fz="md">After understanding the influence of deceptive schemes and interface components, we can now formulate a unique interface for your specific audience. Think about who your users are and what you want to achieve. Here are a few strategies and their limitations.</Text>
                   </Stack>
                 </Group>
           </Stack>
 
           <Grid p={0} m={0} justify='left'>
-            { scenarioRecords ? scenarioRecords.map((element) => (
-              <>
-                <Grid.Col className={classes.greyBackground} md={2} sm={4} xs={12} h={200}>
+              <Grid.Col className={classes.stepsBoxes} md={6} sm={12} xs={12} h={200} p={20}>
                    <Stack>
-                    Scenrio {element.Number}
+                    <Text fz="xs" className={classes.alternateText}>Strategy 1</Text>
+                    <Text fz="md">Framing donation as a chance to win.</Text>
                    </Stack>
-                </Grid.Col>
-              </>
-            )) : "" }
+              </Grid.Col>
+              <Grid.Col className={classes.stepsBoxes} md={6} sm={12} xs={12} h={200} p={20}>
+                   <Stack>
+                   <Text fz="xs" className={classes.alternateText}>Strategy 2</Text>
+                   <Text fz="md">Attaching material value to donation.</Text>
+                   </Stack>
+              </Grid.Col>
+              <Grid.Col className={classes.stepsBoxes} md={6} sm={12} xs={12} h={200} p={20}>
+                   <Stack>
+                   <Text fz="xs" className={classes.alternateText}>Strategy 3</Text>
+                   <Text fz="md">Introducing social Influence to make people donate.</Text>
+                   </Stack>
+              </Grid.Col>
+              <Grid.Col className={classes.stepsBoxes} md={6} sm={12} xs={12} h={200} p={20}>
+                   <Stack>
+                   <Text fz="xs" className={classes.alternateText}>Strategy 4</Text>
+                   <Text fz="md">Leveraging on consumer’s relationship with store to make people donate.</Text>
+                   </Stack>
+              </Grid.Col>
+              <Grid.Col className={classes.stepsBoxes} md={6} sm={12} xs={12} h={200} p={20}>
+                   <Stack>
+                   <Text fz="xs" className={classes.alternateText}>Strategy 5</Text>
+                   <Text fz="md">Adjusting defaults to fit various appetites.</Text>
+                   </Stack>
+              </Grid.Col>
           </Grid>
 
-          <Stack align="center" w="100%" mt={100}>
-                <Group maw={800}>
-                  <Text fz="xs" className={classes.subTitle} grow>Library</Text>
-                  <Stack mt="auto" mb={100}>
-                      <Text fz="md">We've compiled some strategies based on common target audiences!</Text>
-                  </Stack>
-                </Group>
-          </Stack>
 
-          <Stack className={classes.greyBackgroundAlternate} position="left" align="flex-start">
-            <ChooseMachine />
+
+          <Stack align="center" w="100%" pb={100} pt={170} mt={100} className={classes.greyBackground} style={{ borderRadius: "20px" }}>
+                <Group maw={800} mb={50}>
+                  <Text fz="xs" className={classes.subTitle} grow>Inspirations</Text>
+                  <Stack mt="auto" mb={20}>
+                      <Text fz="md">We've compiled some strategies based on common target audiences! Visit the inspiration tab to search for some.</Text>
+                  </Stack>
+                  <a href={"./inspiration"}>
+                        <Button variant="outline" color="dark" radius="xl" size="xl" style={{ fontSize: '16px', fontWeight: 400 }}>Get more inspiration</Button>
+                  </a>
+                </Group>
           </Stack>
 
 
@@ -643,12 +672,116 @@ export default function HomePage() {
             <Stack mb={100} align="center" position="center">
             <Text fz="xs" className={classes.subTitle}>A question to ask yourself</Text>
             <h1 className={classes.title} style={{textAlign: "center"}}>
-            Did my interface become more effective*?
+            Is my interface socially acceptable?
             </h1>
             </Stack>
             <Image mt={50} maw={200} src="../img/chapter4.svg"></Image>
           </Stack>
       </Group>
+
+      <Stack>
+        <Stack align="center" w="100%">
+                <Group maw={800}>
+                  <Text fz="xs" className={classes.subTitle}>Measuring your outcome</Text>
+                  <Stack mt="auto" mb={100}>
+                      <Text fz="md">In my time observing a few deceptive schemes, I noticed that there are a few parameters used to create deception. These parameters are common methods that deceptive schemes try to achieve. As such, we can use them to measure how "shady" our interfaces are.</Text>
+                  </Stack>
+                </Group>
+          </Stack>
+
+          <Group>
+              <Grid >
+                <Grid.Col md={4} sm={12} xs={12} className={classes.stepsBoxes} h={"100%"}>
+                  <CardComponent  number={1} title="Transparency" description="Hiding the deceiver's intentions to distract users. The deceiver aims to reveal just enough information and consider how aware the targets are at a given time while being in a deceptive scheme, a common way to measure how suspicious people are.
+">
+
+                  </CardComponent>
+                </Grid.Col>
+                <Grid.Col md={4} sm={12} xs={12} className={classes.stepsBoxes} h={"100%"}>
+                  <CardComponent  number={2} title="Situational Pressure" description="The deceiver aims to create enough situational pressure to make people act faster. This is done through multiple techniques, an example is how a victim got placed in a group full of people pressuring him to act.
+">
+                  </CardComponent>
+                </Grid.Col>
+                <Grid.Col md={4} sm={12} xs={12} className={classes.stepsBoxes} h={"100%"}>
+                  <CardComponent  number={3} title="Risk" description="The deceiver aims to encourage people to take risks through incentivisation or promises.">
+                  </CardComponent>
+                </Grid.Col>
+              </Grid>
+            </Group>
+
+            <Stack align="center" w="100%" mt={200}>
+                <Group maw={800}>
+                  <Text fz="xs" className={classes.subTitle}>In practical scenarios</Text>
+                  <Stack mt="auto" mb={100}>
+                      <Text fz="md">In my experiments, I gathered those measurements using surveys that asked questions like these. After getting their results, we can tabulate this into a score, which we can use to determine how socially acceptable our interfaces are. Try it below!</Text>
+                  </Stack>
+                </Group>
+          </Stack>
+
+          <Grid>
+            <Grid.Col md={4} sm={12} xs={12}>
+              <Group className={classes.stepsBoxes} align="flex-start">
+                <CardComponent number={1}>
+                  <Stack mt={50} mb={50} p={30} className={classes.uiBackground} maw={400}>
+                    <Text fz="sm">How much of a risk was it to donate in this scenario?</Text>
+                    <Slider mb={30}
+                      marks={[
+                        { value: 0, label: 'Not Risky' },
+                        { value: 25, label: '' },
+                        { value: 50, label: '' },
+                        { value: 75, label: '' },
+                        { value: 100, label: 'Very Risky' },
+                      ]}
+                    />
+                  </Stack>
+                </CardComponent>   
+              </Group>
+            </Grid.Col>
+
+            <Grid.Col md={4} sm={12} xs={12}>
+              <Group className={classes.stepsBoxes} align="flex-start">
+                <CardComponent number={1}>
+                  <Stack mt={50} mb={50} p={30} className={classes.uiBackground} maw={400}>
+                    <Text fz="sm">When using this interface, how often do you feel unsure or uncertain about the outcome that will be given to you?</Text>
+                    <Slider mb={30}
+                      marks={[
+                        { value: 0, label: 'Not Often' },
+                        { value: 25, label: '' },
+                        { value: 50, label: '' },
+                        { value: 75, label: '' },
+                        { value: 100, label: 'Very Often' },
+                      ]}
+                    />
+                  </Stack>
+                </CardComponent>   
+              </Group>
+            </Grid.Col>
+
+            <Grid.Col md={4} sm={12} xs={12}>
+              <Group className={classes.stepsBoxes} align="flex-start">
+                <CardComponent number={1}>
+                  <Stack mt={50} mb={50} p={30} className={classes.uiBackground} maw={400}>
+                    <Text fz="sm">On a scale of 1-5, how pressuring was the experience in asking you to donate?</Text>
+                    <Slider mb={30}
+                      marks={[
+                        { value: 0, label: 'Not Pressuring' },
+                        { value: 25, label: '' },
+                        { value: 50, label: '' },
+                        { value: 75, label: '' },
+                        { value: 100, label: 'Pressuring' },
+                      ]}
+                      styles={{
+                        markLabel: {
+                          textAlign: "left",
+                        }
+                      }}
+                    />
+                  </Stack>
+                </CardComponent>   
+              </Group>
+            </Grid.Col>
+          </Grid>
+      </Stack>
 
     </Container>
   );

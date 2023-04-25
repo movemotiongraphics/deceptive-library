@@ -1,4 +1,4 @@
-import { createStyles, Flex, Card, Image, Text, Group, RingProgress, Badge, Container, Stack, Paper, Title, Button } from '@mantine/core';
+import { createStyles, Flex, Card, Image, Text, Group, Grid, RingProgress, Badge, Container, Stack, Paper, Title, Button } from '@mantine/core';
 import { Carousel } from '@mantine/carousel';
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'tabler-icons-react';
@@ -143,8 +143,8 @@ const ChooseMachine = () => {
   
     return(
         <Stack w={"100%"}>
-          <Flex w={"100%"} style={{ justifyContent: "flex-start"}}>
-            <Stack spacing={30} >
+          <Grid gutter={20} style={{ justifyContent: "flex-start"}}>
+            <Grid.Col md={4} sm={12} xs={12} spacing={30} >
               <Carousel 
                 slideGap="md"
                 onSlideChange={
@@ -169,11 +169,10 @@ const ChooseMachine = () => {
                 >
                   { contextSlides }
               </Carousel>
-            </Stack>
+            </Grid.Col>
     
-            <Stack>
+            <Grid.Col md={4} sm={12} xs={12}>
               <Carousel 
-                w={400}
                 slideGap="md"
                 styles={{
                   control: {
@@ -192,11 +191,10 @@ const ChooseMachine = () => {
               >
                 { contextArray[currentContextIndex] ? outcomeSlides(contextArray[currentContextIndex]) : "no" }
               </Carousel>
-            </Stack>
+            </Grid.Col>
 
-            <Stack>
+            <Grid.Col md={4} sm={12} xs={12} >
               <Carousel 
-                w={400}
                 slideGap="md"
                 styles={{
                   control: {
@@ -215,9 +213,9 @@ const ChooseMachine = () => {
               >
                 { contextArray[currentContextIndex] ? inspirationSlides(contextArray[currentContextIndex]) : "no" }
               </Carousel>
-            </Stack>
+            </Grid.Col>
     
-          </Flex>
+          </Grid>
         </Stack>
         )
 }
