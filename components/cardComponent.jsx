@@ -5,10 +5,6 @@ const useStyles = createStyles((theme) => ({
     width: "100%",
     height: "100%",
     transition: "0.3s ease all",
-
-    '&:hover': {
-      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.blue[0],
-    },
   },
 
   elementsOnCard: {

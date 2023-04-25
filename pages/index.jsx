@@ -1,4 +1,4 @@
-import { AppShell, Navbar, Header, Group, Flex, Stack, Button, BackgroundImage, Divider, Grid, Badge, Image, Input, Slider, Checkbox  } from '@mantine/core';
+import { AppShell, Navbar, Header, Group, Flex, Stack, Button, BackgroundImage, Divider, Grid, Badge, Image, Input, Slider, Checkbox, Textarea, ScrollArea  } from '@mantine/core';
 // import axios, { all } from 'axios';
 import { useState, useEffect } from 'react';
 import {
@@ -10,6 +10,7 @@ import {
   useMantineTheme,
   createStyles,
 } from '@mantine/core';
+import { QuestionMark, AppWindow, Paperclip, Telescope, Artboard } from 'tabler-icons-react';
 
 import DeceptiveCard from '../components/DeceptiveCard';
 import StrategyCard from '../components/StrategyCard';
@@ -60,12 +61,44 @@ const useStyles = createStyles((theme) => ({
   },
 
   InspirationBoxes: {
-    aspectRatio: '9 / 16',
+    maxHeight: 400,
     display: 'block',
-    filter: 'grayscale(1)',
     overflow: "hidden",
-    width: 100,
+    border: "1px solid rgba(0,0,0,0.22)",
+    backgroundColor: "white",
+    borderRadius: 5,
+    padding: 15,
+    width: 250,
     transition: '0.3s ease all',
+
+    '&:hover': {
+      boxShadow: "14px 13px 41px 0px rgba(0,0,0,0.18)",
+    },
+
+  },
+
+  InspirationProfile: {
+    width: 30,
+    height: 30,
+    borderRadius: 10,
+    backgroundColor: theme.colors.grape[2],
+
+  },
+
+  InspirationDot: {
+    width: 8,
+    height: 8,
+    borderRadius: 20,
+    backgroundColor: theme.colors.green[5],
+    marginLeft: "-20px",
+    marginTop: "25px",
+    outline: "3px solid white"
+  },
+
+  InspirationBoxesImage: {
+    maxHeight: 200,
+    minWidth: "100%",
+    filter: "grayscale(1)",
 
     '&:hover': {
       filter: 'grayscale(0)',
@@ -73,17 +106,11 @@ const useStyles = createStyles((theme) => ({
     },
   },
 
-  InspirationBoxesImage: {
-    maxHeight: "400px",
-    height: "100%",
-    minWidth: "100%",
-  },
-
   InspirationBoxesDiv: {
+    borderRadius: 5,
     width: "100%",
     height: "70%",
     marginBottom: "10px",
-    borderRadius: '15px',
     overflow: "hidden",
   },
 
@@ -97,8 +124,20 @@ const useStyles = createStyles((theme) => ({
 
   uiBackground: {
     backgroundColor: theme.colors.gray[0],
-    padding: "20px",
     borderRadius: "10px",
+    padding: 20,
+    boxShadow: "11px 19px 40px 0px rgba(0,0,0,0.10)",
+    border: "1px solid rgba(0,0,0,0.22)",
+    overflow: "hidden",
+
+  },
+  
+  uiShell: {
+    borderBottom: "1px solid rgba(0,0,0,0.22)",
+    marginLeft: "-30px",
+    paddingLeft: 20,
+    paddingBottom: 20,
+    width: "120%",
   },
 
   stepsBoxes: {
@@ -157,6 +196,28 @@ const useStyles = createStyles((theme) => ({
     borderRadius: 5,
     padding: "10px 0 10px 20px",
   },
+
+  postIts: {
+    border: "1px solid rgba(0,0,0,0.22)",
+    borderRadius: 20,
+    padding: 20,
+    overflow: "hidden",
+  },
+
+  postItsSpecial: {
+    border: "1px solid rgba(0,0,0,0.22)",
+    borderRadius: 20,
+    padding: 20,
+    overflow: "hidden",
+    backgroundColor: theme.colors.grape[0],
+    boxShadow: "18px 10px 48px 1px rgba(201,156,221,0.22)",
+  },
+
+  communityResponse: {
+    borderRadius: 20,
+    backgroundColor: theme.colors.gray[1],
+    overflow: "hidden",
+  }
 
 }));
 
@@ -314,22 +375,22 @@ export default function HomePage() {
       </Stack>
 
       <Grid gutter={0}>
-            <Grid.Col md={3} sm={12} xs={12} span={12} mih={550} className={classes.stepsBoxes}>
+            <Grid.Col md={6} sm={12} xs={12} span={12} mih={550} className={classes.stepsBoxes}>
               <CardComponent  number={1} type="Getting Inspiration" description="Getting inspiration from common deceptive schemes.">
                   <Image maw={400} style={{ filter: "grayscale(100%)" }} radius="md" src="../img/components/inspomixed.png"></Image>
               </CardComponent>
             </Grid.Col>
-            <Grid.Col md={3} sm={12} xs={12} mih={550} className={classes.stepsBoxes}>
+            <Grid.Col md={6} sm={12} xs={12} mih={550} className={classes.stepsBoxes}>
               <CardComponent  number={2} type="Using Components" description="A list of ways that UI components influences our behaviour.">
                 <Image maw={"100%"} radius="md" src="../img/components/mix.svg"></Image>
               </CardComponent>
             </Grid.Col>
-            <Grid.Col md={3} sm={12} xs={12} mih={550} className={classes.stepsBoxes}>
+            <Grid.Col md={6} sm={12} xs={12} mih={550} className={classes.stepsBoxes}>
               <CardComponent  number={3} type="Picking Strategies" description="A collection of insights to help you bring these components together to create deceptive strategies.">
                 <Image maw={"100%"} radius="md" src="../img/components/slider.svg"></Image>
               </CardComponent>
             </Grid.Col>
-            <Grid.Col md={3} sm={12} xs={12} mih={550} className={classes.stepsBoxes}>
+            <Grid.Col md={6} sm={12} xs={12} mih={550} className={classes.stepsBoxes}>
               <CardComponent  number={4} type="Measurements" description="How do we measure how effective those interfaces are?">
               <Image maw={"100%"} radius="md" src="../img/components/testing.svg"></Image>
               </CardComponent>
@@ -384,21 +445,37 @@ export default function HomePage() {
         </Stack>
       </Stack>
 
-      <Stack spacing={20} className={classes.greyBackground} p={30} mb={100}>
+      <Stack spacing={20} className={classes.communityResponse} p={30} mb={100}>
         <Stack>
-          <Text fz="xs" className={classes.subTitle} grow>Community Responses</Text>
-          <Group position="left" spacing={0} className={classes.helperText} style={{ overflowY: "hidden", overflowX: "hidden" }}>
-            <Group p={0} m={0} align="flex-start">
-              { SeenBeforeData ? SeenBeforeData.map((item) => (
-                  <Stack className={classes.InspirationBoxes} span={2}>
-                    <div className={classes.InspirationBoxesDiv}>
-                      <img className={classes.InspirationBoxesImage} src={item.ImageURL} ></img>
-                    </div>
-                    {item.InspirationName}
-                  </Stack>
-                )) : ''}
-            </Group>
+          <Group className={classes.uiShell}>
+            <Telescope
+                size={20}
+                strokeWidth={1}
+                color={'gray'}
+                style={{ marginLeft: 10 }}
+              />
+              <Text fz="xs" c="dimmed" className={classes.alternateText}>Community Observations</Text>
           </Group>
+          <ScrollArea h={600} type="always" offsetScrollbars>
+            <Group position="left" spacing={0} className={classes.helperText}>
+              <Group p={0} m={0} align="flex-start">
+                { SeenBeforeData ? SeenBeforeData.map((item, index) => (
+                    <Stack className={classes.InspirationBoxes} spacing={20}>
+                      <Group mb={15}>
+                        <div className={classes.InspirationProfile}></div>
+                        <div className={classes.InspirationDot}></div>
+                        <Text style={{ marginLeft: "-10px" }} fz="xs" className={classes.alternateText}>Person {index}</Text>
+                      </Group>
+                      <div className={classes.InspirationBoxesDiv}>
+                        <img className={classes.InspirationBoxesImage} src={item.ImageURL} ></img>
+                      </div>
+                      <Text mt={20} fz="xs" className={classes.alternateText}>Person {index} felt cheated at {item.InspirationName}.</Text>
+
+                    </Stack>
+                  )) : ''}
+              </Group>
+            </Group>
+          </ScrollArea>
         </Stack>
       </Stack>
 
@@ -409,49 +486,182 @@ export default function HomePage() {
             <Group maw={800}>
               <Text fz="xs" className={classes.subTitle} grow>Inspiration from Activities</Text>
               <Stack mt="auto" mb={100}>
+                  <Text fz="md">A scam is a deceptive scheme used to get an unfair advantage over a situation to get things from people.</Text>
                   <Text fz="md">Think back to a situation that made you feel cheated or when someone took advantage of your trust, it is likely that you’ve been through a deceptive scheme.</Text>
                   <Text fz="md">These activities commonly leverage on human biases, which are common patterns that leverage the irrational decision-making of people. These patterns can be used as ideas to form a deceptive strategy.</Text>
-                  <Text fz="md">Let's take a look at a few examples.</Text>
+                  <Text fz="md">Let's take a look at a few examples of how deceptive schemes can be turned into strategies.</Text>
               </Stack>
             </Group>
           </Stack>
 
             <Group mb={50}>
-              <Grid>
-                <Grid.Col md={4} sm={12} xs={12} className={classes.stepsBoxes} h={"100%"}>
-                  <CardComponent  number={1} title="I felt cheated..." type="Experience" description="On Kickstarter when I was convinced to participate in their fundraiser.">
-                    {/* <Image mx="auto" maw={"80%"} radius="md" src="../img/inspo/kickstarter.png"></Image> */}
-                  </CardComponent>
+              <Grid p={0} m={0}>
+                <Grid.Col md={4} sm={12} xs={12} h={"100%"}>
+                  <Stack className={classes.postIts}>
+                    <Group className={classes.uiShell}>
+                          <Paperclip
+                              size={20}
+                              strokeWidth={1}
+                              color={'gray'}
+                              style={{ marginLeft: 10 }}
+                            />
+                            <Text fz="xs" c="dimmed" className={classes.alternateText}>Post It Thoughts</Text>
+                    </Group>
+                    {/* <Image mx="auto" maw={"100%"} radius="md" src="../img/inspo/tissueAuntie.jpg"></Image> */}
+                    <Text fz="xs" className={classes.alternateText}>I felt cheated...</Text>
+                    <Text fz="sm">On Kickstarter when I was convinced to participate in their fundraiser.</Text>
+                  </Stack>
                 </Grid.Col>
-                <Grid.Col md={4} sm={12} xs={12} className={classes.stepsBoxes} h={"100%"}>
-                  <CardComponent  number={2} title="I participated because..." type="Human Bias" description="I made the decisions believing that other people did the same.">
-                    {/* <Image maw={"100%"} radius="md" src="../img/examples/example1-bandwagoneffect.svg"></Image> */}
-                  </CardComponent>
+                <Grid.Col md={4} sm={12} xs={12} h={"100%"}>
+                  <Stack className={classes.postIts}>
+                      <Group className={classes.uiShell}>
+                            <Paperclip
+                                size={20}
+                                strokeWidth={1}
+                                color={'gray'}
+                                style={{ marginLeft: 10 }}
+                              />
+                              <Text fz="xs" c="dimmed" className={classes.alternateText}>Post It Thoughts</Text>
+                      </Group>
+                      <Text fz="xs" className={classes.alternateText}>I participated because...</Text>
+                      <Text fz="sm">I made the decisions believing that other people did the same.</Text>
+                    </Stack>
                 </Grid.Col>
-                <Grid.Col md={4} sm={12} xs={12} className={classes.stepsBoxes} h={"100%"}>
-                  <CardComponent  number={3} title="If I could receate it..." type="Deceptive Strategy" description="I will want to make a huge audience believe in each other to donate together.">
-                    {/* <Image maw={"100%"} radius="md" src="../img/examples/example1-outcome.svg"></Image> */}
-                  </CardComponent>
+                <Grid.Col md={4} sm={12} xs={12} h={"100%"}>
+                  <Stack className={classes.postItsSpecial}>
+                        <Group className={classes.uiShell}>
+                              <Artboard
+                                  size={20}
+                                  strokeWidth={1}
+                                  color={'gray'}
+                                  style={{ marginLeft: 10 }}
+                                />
+                                <Text fz="xs" c="dimmed" className={classes.alternateText}>Strategy</Text>
+                        </Group>
+                        <Text fz="xs" className={classes.alternateText}>If I could receate it...</Text>
+                        <Text fz="sm">I will want to make a huge audience believe in each other to donate together.</Text>
+                  </Stack>
                 </Grid.Col>
               </Grid>
             </Group>
 
+            <Group mb={50}>
+              <Grid p={0} m={0}>
+                <Grid.Col md={4} sm={12} xs={12} h={"100%"}>
+                  <Stack className={classes.postIts}>
+                    <Group className={classes.uiShell}>
+                          <Paperclip
+                              size={20}
+                              strokeWidth={1}
+                              color={'gray'}
+                              style={{ marginLeft: 10 }}
+                            />
+                            <Text fz="xs" c="dimmed" className={classes.alternateText}>Post It Thoughts</Text>
+                    </Group>
+                    {/* <Image mx="auto" maw={"100%"} radius="md" src="../img/inspo/tissueAuntie.jpg"></Image> */}
+                    <Text fz="xs" className={classes.alternateText}>I felt cheated...</Text>
+                    <Text fz="sm">When I bought tissues from the auntie down the street.</Text>
+                  </Stack>
+                </Grid.Col>
+                <Grid.Col md={4} sm={12} xs={12} h={"100%"}>
+                  <Stack className={classes.postIts}>
+                      <Group className={classes.uiShell}>
+                            <Paperclip
+                                size={20}
+                                strokeWidth={1}
+                                color={'gray'}
+                                style={{ marginLeft: 10 }}
+                              />
+                              <Text fz="xs" c="dimmed" className={classes.alternateText}>Post It Thoughts</Text>
+                      </Group>
+                      <Text fz="xs" className={classes.alternateText}>I participated because...</Text>
+                      <Text fz="sm">I felt bad if I didn't get the tissue because the auntie is directly selling to me.</Text>
+                    </Stack>
+                </Grid.Col>
+                <Grid.Col md={4} sm={12} xs={12} h={"100%"}>
+                  <Stack className={classes.postItsSpecial}>
+                        <Group className={classes.uiShell}>
+                              <Artboard
+                                  size={20}
+                                  strokeWidth={1}
+                                  color={'gray'}
+                                  style={{ marginLeft: 10 }}
+                                />
+                                <Text fz="xs" c="dimmed" className={classes.alternateText}>Strategy</Text>
+                        </Group>
+                        <Text fz="xs" className={classes.alternateText}>If I could receate it...</Text>
+                        <Text fz="sm">I will want to let one person convince the next person to donate.</Text>
+                  </Stack>
+                </Grid.Col>
+              </Grid>
+            </Group>
+
+            <Stack align="center" w="100%">
+            <Group maw={800}>
+              <Text fz="xs" className={classes.subTitle} grow>Try it yourself</Text>
+              <Stack mt="auto" mb={100}>
+                  <Text fz="md">Have you been through a deceptive scheme? Try this one yourself! Think back to a situation that made you feel cheated or when someone took advantage of your trust.</Text>
+              </Stack>
+            </Group>
+          </Stack>
+
             <Group>
-              <Grid >
-                <Grid.Col md={4} sm={12} xs={12} className={classes.stepsBoxes} h={"100%"}>
-                  <CardComponent  number={1} title="I felt cheated..." type="Experience" description="When I bought tissues from the auntie down the street.">
-                    {/* <Image mx="auto" maw={"80%"} radius="md" src="../img/inspo/tissueAuntie.jpg"></Image> */}
-                  </CardComponent>
+              <Grid p={0} m={0} >
+                <Grid.Col md={4} sm={12} xs={12} h={"100%"}>
+                  <Stack className={classes.postIts}>
+                    <Group className={classes.uiShell}>
+                          <Paperclip
+                              size={20}
+                              strokeWidth={1}
+                              color={'gray'}
+                              style={{ marginLeft: 10 }}
+                            />
+                            <Text fz="xs" c="dimmed" className={classes.alternateText}>Post It Thoughts</Text>
+                    </Group>
+                    <Text fz="xs" className={classes.alternateText}>I felt cheated...</Text>
+                      <Textarea
+                        placeholder="I felt cheated when..."
+                        variant="filled"
+                        minRows="6"
+                      />
+                  </Stack>
                 </Grid.Col>
-                <Grid.Col md={4} sm={12} xs={12} className={classes.stepsBoxes} h={"100%"}>
-                  <CardComponent  number={2} title="I participated because..." type="Human Bias" description="I felt bad if I didn't get the tissue because the auntie is directly selling to me.">
-                    {/* <Image maw={"100%"} radius="md" src="../img/examples/example2-victimeffect.svg"></Image> */}
-                  </CardComponent>
+                <Grid.Col md={4} sm={12} xs={12} h={"100%"}>
+                  <Stack className={classes.postIts}>
+                      <Group className={classes.uiShell}>
+                            <Paperclip
+                                size={20}
+                                strokeWidth={1}
+                                color={'gray'}
+                                style={{ marginLeft: 10 }}
+                              />
+                              <Text fz="xs" c="dimmed" className={classes.alternateText}>Post It Thoughts</Text>
+                      </Group>
+                      <Text fz="xs" className={classes.alternateText}>I participated because...</Text>
+                      <Textarea
+                        placeholder="I felt cheated when..."
+                        variant="filled"
+                        minRows="6"
+                      />
+                    </Stack>
                 </Grid.Col>
-                <Grid.Col md={4} sm={12} xs={12} className={classes.stepsBoxes} h={"100%"}>
-                  <CardComponent  number={3} title="If I could receate it..." type="Deceptive Strategy" description="I will want to let one person convince the next person to donate.">
-                    {/* <Image mx="auto" maw={"80%"} radius="md" src="../img/examples/example2-outcome.svg"></Image> */}
-                  </CardComponent>
+                <Grid.Col md={4} sm={12} xs={12} h={"100%"}>
+                  <Stack className={classes.postItsSpecial}>
+                        <Group className={classes.uiShell}>
+                              <Paperclip
+                                  size={20}
+                                  strokeWidth={1}
+                                  color={'gray'}
+                                  style={{ marginLeft: 10 }}
+                                />
+                                <Text fz="xs" c="dimmed" className={classes.alternateText}>Post It Thoughts</Text>
+                        </Group>
+                        <Text fz="xs" className={classes.alternateText}>If I could receate it...</Text>
+                        <Textarea
+                        placeholder="I felt cheated when..."
+                        minRows="6"
+                      />
+                  </Stack>
                 </Grid.Col>
               </Grid>
             </Group>
@@ -499,6 +709,15 @@ export default function HomePage() {
         <Group className={classes.stepsBoxes} align="flex-start">
           <CardComponent number={1} type="Input Area" description="Used when you want confirmation and when you are sure users are confident to give a donation.">
             <Stack mt={50} mb={50} className={classes.uiBackground} maw={400}>
+              <Group className={classes.uiShell}>
+                        <AppWindow
+                            size={20}
+                            strokeWidth={1}
+                            color={'gray'}
+                            style={{ marginLeft: 10 }}
+                          />
+                          <Text fz="xs" c="dimmed" className={classes.alternateText}>Component</Text>
+                  </Group>
               <Text fz="sm">How much would you want to contribute?</Text>
               <Input 
               placeholder="Your Donation Amount"
@@ -513,6 +732,15 @@ export default function HomePage() {
         <Group className={classes.stepsBoxes}>
           <CardComponent  number={2} type="Slider" description="Used to show relevance/relationship between 2 numbers to highlight a value's importance.">
               <Stack mt={50} mb={50} maw={400} className={classes.uiBackground}>
+                <Group className={classes.uiShell}>
+                      <AppWindow
+                          size={20}
+                          strokeWidth={1}
+                          color={'gray'}
+                          style={{ marginLeft: 10 }}
+                        />
+                        <Text fz="xs" c="dimmed" className={classes.alternateText}>Component</Text>
+                </Group>
                 <Text fz="sm" mb={50}>The shop will boost your donation by 50%</Text>
                 <Text fz="xs">You will donate ${ sliderAmount ? sliderAmount : '0'}</Text>
                 <Slider
@@ -549,6 +777,15 @@ export default function HomePage() {
         <Group className={classes.stepsBoxes}>
           <CardComponent  number={3} type="Checkboxes (Multiple Choices)" description="Used to slow down decision making and make some choices more important than the other.">
               <Stack mt={50} mb={50} className={classes.uiBackground}>
+              <Group className={classes.uiShell} style={{ width: "150%"}}>
+                    <AppWindow
+                        size={20}
+                        strokeWidth={1}
+                        color={'gray'}
+                        style={{ marginLeft: 10 }}
+                      />
+                      <Text fz="xs" c="dimmed" className={classes.alternateText}>Component</Text>
+              </Group>
                 <Checkbox 
                   label="Add This Donation"
                   color="dark"
@@ -567,6 +804,16 @@ export default function HomePage() {
         <Group className={classes.stepsBoxes}>
           <CardComponent  number={4} type="Spinners" description="Used when adding an element of chance to a decision. Gives an element of surprise & fun!">
             <Stack mt={50} mb={50} className={classes.uiBackground}>
+              <Group className={classes.uiShell}>
+                    <AppWindow
+                        size={20}
+                        strokeWidth={1}
+                        color={'gray'}
+                        style={{ marginLeft: 10 }}
+                      />
+                      <Text fz="xs" c="dimmed" className={classes.alternateText}>Component</Text>
+              </Group>
+              
               <div className={classes.spinnerClass}>
                 <Image maw={300} className={classes.spinnerBackground} style={{ transform: `rotate(${spinnerOn ? `1200deg` : `0deg`})`}} src="../img/components/Spinner.svg" ></Image>
                 <Image maw={100} onClick={handleSpin} className={classes.spinnerHead} src="../img/components/SpinningHead.svg"></Image>
@@ -723,56 +970,99 @@ export default function HomePage() {
               <Group className={classes.stepsBoxes} align="flex-start">
                 <CardComponent number={1}>
                   <Stack mt={50} mb={50} p={30} className={classes.uiBackground} maw={400}>
+                  <Group className={classes.uiShell}>
+                    <QuestionMark
+                        size={20}
+                        strokeWidth={1}
+                        color={'gray'}
+                      />
+                      <Text fz="xs" c="dimmed" className={classes.alternateText}>Question</Text>
+                  </Group>
                     <Text fz="sm">How much of a risk was it to donate in this scenario?</Text>
                     <Slider mb={30}
                       marks={[
-                        { value: 0, label: 'Not Risky' },
+                        { value: 8, label: 'Not Risky' },
                         { value: 25, label: '' },
                         { value: 50, label: '' },
                         { value: 75, label: '' },
-                        { value: 100, label: 'Very Risky' },
-                      ]}
-                    />
-                  </Stack>
-                </CardComponent>   
-              </Group>
-            </Grid.Col>
-
-            <Grid.Col md={4} sm={12} xs={12}>
-              <Group className={classes.stepsBoxes} align="flex-start">
-                <CardComponent number={1}>
-                  <Stack mt={50} mb={50} p={30} className={classes.uiBackground} maw={400}>
-                    <Text fz="sm">When using this interface, how often do you feel unsure or uncertain about the outcome that will be given to you?</Text>
-                    <Slider mb={30}
-                      marks={[
-                        { value: 0, label: 'Not Often' },
-                        { value: 25, label: '' },
-                        { value: 50, label: '' },
-                        { value: 75, label: '' },
-                        { value: 100, label: 'Very Often' },
-                      ]}
-                    />
-                  </Stack>
-                </CardComponent>   
-              </Group>
-            </Grid.Col>
-
-            <Grid.Col md={4} sm={12} xs={12}>
-              <Group className={classes.stepsBoxes} align="flex-start">
-                <CardComponent number={1}>
-                  <Stack mt={50} mb={50} p={30} className={classes.uiBackground} maw={400}>
-                    <Text fz="sm">On a scale of 1-5, how pressuring was the experience in asking you to donate?</Text>
-                    <Slider mb={30}
-                      marks={[
-                        { value: 0, label: 'Not Pressuring' },
-                        { value: 25, label: '' },
-                        { value: 50, label: '' },
-                        { value: 75, label: '' },
-                        { value: 100, label: 'Pressuring' },
+                        { value: 90, label: 'Very Risky' },
                       ]}
                       styles={{
                         markLabel: {
                           textAlign: "left",
+                          fontFamily: "Space Mono",
+                          fontSize: 12,
+                          marginTop: 10
+                        }
+                      }}
+                    />
+                  </Stack>
+                </CardComponent>   
+              </Group>
+            </Grid.Col>
+
+            <Grid.Col md={4} sm={12} xs={12}>
+              <Group className={classes.stepsBoxes} align="flex-start">
+                <CardComponent number={1}>
+                  <Stack mt={50} mb={50} p={30} className={classes.uiBackground} maw={400}>
+                  <Group className={classes.uiShell}>
+                    <QuestionMark
+                        size={20}
+                        strokeWidth={1}
+                        color={'gray'}
+                      />
+                      <Text fz="xs" c="dimmed" className={classes.alternateText}>Question</Text>
+                  </Group>
+                    <Text fz="sm">When using this interface, how often do you feel unsure or uncertain about the outcome that will be given to you?</Text>
+                    <Slider mb={30}
+                      marks={[
+                        { value: 9, label: 'Not Often' },
+                        { value: 25, label: '' },
+                        { value: 50, label: '' },
+                        { value: 75, label: '' },
+                        { value: 90, label: 'Very Often' },
+                      ]}
+                      styles={{
+                        markLabel: {
+                          textAlign: "left",
+                          fontFamily: "Space Mono",
+                          fontSize: 12,
+                          marginTop: 10
+                        }
+                      }}
+                    />
+                  </Stack>
+                </CardComponent>   
+              </Group>
+            </Grid.Col>
+
+            <Grid.Col md={4} sm={12} xs={12}>
+              <Group className={classes.stepsBoxes} align="flex-start">
+                <CardComponent number={1}>
+                  <Stack mt={50} mb={50} p={30} className={classes.uiBackground} maw={400}>
+                  <Group className={classes.uiShell}>
+                    <QuestionMark
+                        size={20}
+                        strokeWidth={1}
+                        color={'gray'}
+                      />
+                      <Text fz="xs" c="dimmed" className={classes.alternateText}>Question</Text>
+                  </Group>
+                    <Text fz="sm">On a scale of 1-5, how pressuring was the experience in asking you to donate?</Text>
+                    <Slider mb={30}
+                      marks={[
+                        { value: 13, label: 'Not Pressuring' },
+                        { value: 25, label: '' },
+                        { value: 50, label: '' },
+                        { value: 75, label: '' },
+                        { value: 90, label: 'Pressuring' },
+                      ]}
+                      styles={{
+                        markLabel: {
+                          textAlign: "left",
+                          fontFamily: "Space Mono",
+                          fontSize: 12,
+                          marginTop: 10
                         }
                       }}
                     />
