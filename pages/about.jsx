@@ -38,7 +38,7 @@ const AboutPage = () => {
 
           <Group mt={130} mb={170} position="center" align="center">
             <h1 className={classes.headerTitle} style={{ textAlign: "center"}}>
-              Crafting a formula for designers to make effective interfaces.
+              Crafting a formula for designers to make deceptive interfaces.
             </h1>
           </Group>
 

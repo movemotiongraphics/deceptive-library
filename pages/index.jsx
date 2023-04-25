@@ -10,7 +10,7 @@ import {
   useMantineTheme,
   createStyles,
 } from '@mantine/core';
-import { QuestionMark, AppWindow, Paperclip, Telescope, Artboard } from 'tabler-icons-react';
+import { QuestionMark, AppWindow, Paperclip, Telescope, Artboard, OneTwoThree, LineDotted, ArrowNarrowRight } from 'tabler-icons-react';
 
 import DeceptiveCard from '../components/DeceptiveCard';
 import StrategyCard from '../components/StrategyCard';
@@ -46,6 +46,20 @@ const useStyles = createStyles((theme) => ({
       fontSize: 42,
       lineHeight: 1.2,
     },
+  },
+
+  accentBackground: {
+    backgroundColor: theme.colors.blue[5],
+  },
+
+  instructionCard: {
+    border: "1px solid rgba(0,0,0,0.22)",
+    backgroundColor: theme.colors.gray[0],
+    borderRadius: 5,
+    overflow: "hidden",
+    padding: 20,
+    boxShadow: "0px 1px 0px 0px rgba(0,0,0,0.22)",
+
   },
 
   scenarioIcon: {
@@ -215,8 +229,9 @@ const useStyles = createStyles((theme) => ({
 
   communityResponse: {
     borderRadius: 20,
-    backgroundColor: theme.colors.gray[1],
+    backgroundColor: theme.colors.gray[0],
     overflow: "hidden",
+    border: "1px solid rgba(0,0,0,0.22)",
   }
 
 }));
@@ -338,7 +353,7 @@ export default function HomePage() {
                       <Text fz="md">I wonder if deception can be used by designers as a strategy to further influence behaviour for altruistic outcomes? This framework is the summarised outcome of how I designed socially-acceptable deceptive interfaces for my study.</Text>
                       <div>
                       <a href={"./about"}>
-                        <Button variant="outline" color="dark" radius="xl" size="xl" style={{ fontSize: '16px', fontWeight: 400 }}>More about this project</Button>
+                        <Button uppercase rightIcon={<ArrowNarrowRight strokeWidth={1}/>} color="dark" radius={5} size="xl" style={{ fontSize: '14px', fontWeight: 400, fontFamily: "Space Mono" }}>More about this project</Button>
                       </a>
                       </div>
                   </Stack>
@@ -374,28 +389,112 @@ export default function HomePage() {
                 </Group>
       </Stack>
 
-      <Grid gutter={0}>
-            <Grid.Col md={6} sm={12} xs={12} span={12} mih={550} className={classes.stepsBoxes}>
-              <CardComponent  number={1} type="Getting Inspiration" description="Getting inspiration from common deceptive schemes.">
-                  <Image maw={400} style={{ filter: "grayscale(100%)" }} radius="md" src="../img/components/inspomixed.png"></Image>
-              </CardComponent>
-            </Grid.Col>
-            <Grid.Col md={6} sm={12} xs={12} mih={550} className={classes.stepsBoxes}>
-              <CardComponent  number={2} type="Using Components" description="A list of ways that UI components influences our behaviour.">
-                <Image maw={"100%"} radius="md" src="../img/components/mix.svg"></Image>
-              </CardComponent>
-            </Grid.Col>
-            <Grid.Col md={6} sm={12} xs={12} mih={550} className={classes.stepsBoxes}>
-              <CardComponent  number={3} type="Picking Strategies" description="A collection of insights to help you bring these components together to create deceptive strategies.">
-                <Image maw={"100%"} radius="md" src="../img/components/slider.svg"></Image>
-              </CardComponent>
-            </Grid.Col>
-            <Grid.Col md={6} sm={12} xs={12} mih={550} className={classes.stepsBoxes}>
-              <CardComponent  number={4} type="Measurements" description="How do we measure how effective those interfaces are?">
-              <Image maw={"100%"} radius="md" src="../img/components/testing.svg"></Image>
-              </CardComponent>
-            </Grid.Col>
-      </Grid>
+      <Stack align="center">
+        <Grid m={0} p={0} maw={1000}>
+              <Grid.Col md={12} sm={12} xs={12}>
+                <Stack className={classes.instructionCard}>
+                  <Group className={classes.uiShell}>
+                    <OneTwoThree
+                        size={20}
+                        strokeWidth={1}
+                        color={'gray'}
+                        style={{ marginLeft: 10 }}
+                      />
+                      <Text fz="xs" c="dimmed" className={classes.alternateText}>Step 1</Text>
+                  </Group>
+                  <Text fz="md" className={classes.alternateText}>Getting Inspiration</Text>
+                  <Group>
+                  <Text fz="sm" c="dimmed">The idea is to get inspiration from common deceptive schemes. A good question to ask ourselves is “When did you feel like you were influenced to participate in an activity?”. This helps to make human biases easy to replicate and understand.</Text>                  
+                  </Group>
+                </Stack>
+              </Grid.Col>
+
+              <Grid.Col md={12} sm={12} xs={12}>
+                <Stack align="center">
+                  <LineDotted
+                    size={28}
+                    strokeWidth={2}
+                    color={'black'}
+                  />
+                </Stack>
+              </Grid.Col>
+
+              <Grid.Col md={12} sm={12} xs={12}>
+              <Stack className={classes.instructionCard}>
+                  <Group className={classes.uiShell}>
+                    <OneTwoThree
+                        size={20}
+                        strokeWidth={1}
+                        color={'gray'}
+                        style={{ marginLeft: 10 }}
+                      />
+                      <Text fz="xs" c="dimmed" className={classes.alternateText}>Step 2</Text>
+                  </Group>
+                  <Text fz="md" className={classes.alternateText}>Using Components</Text>
+                  <Group>
+                  <Text fz="sm" c="dimmed">Different UI components can make people make decisions faster or slower. Craft the perfect interface using the right components after thinking about your target audience.</Text>                  
+                  </Group>
+                </Stack>
+              </Grid.Col>
+
+              <Grid.Col md={12} sm={12} xs={12}>
+                <Stack align="center">
+                  <LineDotted
+                    size={28}
+                    strokeWidth={2}
+                    color={'black'}
+                  />
+                </Stack>
+              </Grid.Col>
+
+              <Grid.Col md={12} sm={12} xs={12}>
+              <Stack className={classes.instructionCard}>
+                  <Group className={classes.uiShell}>
+                    <OneTwoThree
+                        size={20}
+                        strokeWidth={1}
+                        color={'gray'}
+                        style={{ marginLeft: 10 }}
+                      />
+                      <Text fz="xs" c="dimmed" className={classes.alternateText}>Step 3</Text>
+                  </Group>
+                  <Text fz="md" className={classes.alternateText}>Picking Strategies</Text>
+                  <Group>
+                  <Text fz="sm" c="dimmed">Turning a deceptive scheme into a strategy can help you place different components into your interface. The study contains a collection of insights and strategies to help you bring different components together, to make a deceptive interface.</Text>                  
+                  </Group>
+                </Stack>
+              </Grid.Col>
+
+              <Grid.Col md={12} sm={12} xs={12}>
+                <Stack align="center">
+                  <LineDotted
+                    size={28}
+                    strokeWidth={2}
+                    color={'black'}
+                  />
+                </Stack>
+              </Grid.Col>
+
+              <Grid.Col md={12} sm={12} xs={12}>
+              <Stack className={classes.instructionCard}>
+                  <Group className={classes.uiShell}>
+                    <OneTwoThree
+                        size={20}
+                        strokeWidth={1}
+                        color={'gray'}
+                        style={{ marginLeft: 10 }}
+                      />
+                      <Text fz="xs" c="dimmed" className={classes.alternateText}>Step 3</Text>
+                  </Group>
+                  <Text fz="md" className={classes.alternateText}>Measuring Social Acceptability</Text>
+                  <Group>
+                  <Text fz="sm" c="dimmed">Deceptive interfaces have different social acceptability. Here we learn how to measure how effective those interfaces are.</Text>                  
+                  </Group>
+                </Stack>
+              </Grid.Col>
+
+        </Grid>
+      </Stack>
 
       <Stack mt={50}>
         <Divider my="sm" />
@@ -897,8 +996,8 @@ export default function HomePage() {
                       <Text fz="md">We've compiled some strategies based on common target audiences! Visit the inspiration tab to search for some.</Text>
                   </Stack>
                   <a href={"./inspiration"}>
-                        <Button variant="outline" color="dark" radius="xl" size="xl" style={{ fontSize: '16px', fontWeight: 400 }}>Get more inspiration</Button>
-                  </a>
+                        <Button uppercase rightIcon={<ArrowNarrowRight strokeWidth={1}/>} color="dark" radius={5} size="xl" style={{ fontSize: '14px', fontWeight: 400, fontFamily: "Space Mono" }}>Get more inspiration</Button>
+                      </a>
                 </Group>
           </Stack>
 
