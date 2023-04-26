@@ -379,7 +379,7 @@ const ChartsPage = () => {
                     <Stack>
                       <Text fz="xs" className={classes.subTitle}>Insight 12</Text>
                       <Stack>
-                          <Text fz="md">People want to predict what will happen to their money.</Text>
+                          <Text fz="md">People feel more comfortable when they know what will happen to their donation.</Text>
                       </Stack>
                     </Stack>
                   </Stack>

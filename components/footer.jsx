@@ -1,4 +1,5 @@
 import { createStyles, Card, Image, Text, Group, RingProgress, Badge, Container, Stack } from '@mantine/core';
+import { BrandTwitter, Mail } from 'tabler-icons-react';
 
 const useStyles = createStyles((theme) => ({
     wrapper: {
@@ -32,12 +33,15 @@ const Footer = () => {
         <Container size="xl" px={30}>
             <div className={classes.wrapper}>
                 <div className={classes.root}>
-                    <Group className={classes.footer} position="flex-start" align="flex-start">
-                        <div style={{flexGrow: 3}} className={classes.alternateText}>
-                        Interface.tools help designers create socially-acceptable interfaces that leverages on deception.
-                            </div>
+                    <Group className={classes.footer} position="apart" align="flex-start">
+                        <div style={{flexGrow: 3}}>
+                        <Text fz="xs" className={classes.alternateText} maw={500}>The Deceptive Interfaces Framework help designers create socially-acceptable interfaces using human biases, inspired from deception.</Text></div>
                         <Stack>
-                            <Text fz="xs" className={classes.alternateText}>Made by Yuan Jie</Text>
+                            <Text fz="xs" className={classes.alternateText}>Made by <a style={{ textDecoration: "none", color: "inherit" }}href="https://yuanjie.info/">Yuan Jie</a></Text>
+                            <Group>
+                            <a href="https://yuanjie.info/"><Mail color={"black"} strokeWidth={1}/></a>
+                            <a href="https://twitter.com/quietcomputers"><BrandTwitter color={'black'} strokeWidth={1}/></a>
+                            </Group>
                         </Stack>
                     </Group>
                 </div>

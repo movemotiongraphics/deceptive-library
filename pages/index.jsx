@@ -1367,7 +1367,7 @@ export default function HomePage() {
 
             <Grid.Col md={4} sm={12} xs={12}>
               <Group className={classes.stepsBoxes} align="flex-start">
-                <CardComponent number={1}>
+                <CardComponent number={2}>
                   <Stack mt={50} mb={50} p={30} className={classes.uiBackground} maw={400}>
                   <Group className={classes.uiShell}>
                     <QuestionMark
@@ -1402,7 +1402,7 @@ export default function HomePage() {
 
             <Grid.Col md={4} sm={12} xs={12}>
               <Group className={classes.stepsBoxes} align="flex-start">
-                <CardComponent number={1}>
+                <CardComponent number={3}>
                   <Stack mt={50} mb={50} p={30} className={classes.uiBackground} maw={400}>
                   <Group className={classes.uiShell}>
                     <QuestionMark

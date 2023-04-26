@@ -1,8 +1,10 @@
 import { useRouter } from 'next/router'
-import { Group, Flex, Stack, Container, createStyles, Image, Badge, Text } from '@mantine/core';
+import { Group, Flex, Stack, Slider, Container, createStyles, Image, Badge, Text, Grid } from '@mantine/core';
 import axios, { all } from 'axios';
 import { RiveAnimation } from '../../components/riveDonate';
 import { useEffect, useState } from 'react';
+import CardComponent from '../../components/cardComponent';
+import { AppWindow, QuestionMark } from 'tabler-icons-react';
 
 const BREAKPOINT = '@media (max-width: 755px)';
 
@@ -11,35 +13,127 @@ import ScenarioData from '../../components/Data/Scenarios-Grid.json';
 import ObservationData from '../../components/Data/Observation-Grid.json';
 import SeenBeforeData from '../../components/Data/Inspirations-Grid.json';
 
+const ScoreData = [
+    { 
+      scenarioNumber: 0, 
+      riskScore: 3.666666667,
+      uncertaintyScore: 2,
+      pressureScore: 2.666666667,
+      motivationScore: 3.666666667,
+    },{ 
+      scenarioNumber: 1, 
+      riskScore: 3.75,
+      uncertaintyScore: 4,
+      pressureScore: 1.5,
+      motivationScore: 2.75,
+    },{ 
+      scenarioNumber: 2, 
+      riskScore: 4,
+      uncertaintyScore: 1.833333333,
+      pressureScore: 2,
+      motivationScore: 1.833333333,
+    },{ 
+      scenarioNumber: 3, 
+      riskScore: 2.333333333,
+      uncertaintyScore: 4,
+      pressureScore: 1,
+      motivationScore: 2.666666667,
+    },{ 
+      scenarioNumber: 4, 
+      riskScore: 2,
+      uncertaintyScore: 4.333,
+      pressureScore: 3,
+      motivationScore: 4,
+    },{ 
+      scenarioNumber: 5, 
+      riskScore: 5,
+      uncertaintyScore: 1,
+      pressureScore: 3.33,
+      motivationScore: 1,
+    },{ 
+      scenarioNumber: 6, 
+      riskScore: 2.222,
+      uncertaintyScore: 3.222,
+      pressureScore: 2.666,
+      motivationScore: 3.444,
+    },{ 
+      scenarioNumber: 7, 
+      riskScore: 2.222,
+      uncertaintyScore: 2.777,
+      pressureScore: 3.111,
+      motivationScore: 2.6667,
+    },{ 
+      scenarioNumber: 8, 
+      riskScore: 3.428,
+      uncertaintyScore: 2.4285,
+      pressureScore: 2.142,
+      motivationScore: 2.428,
+    },{ 
+      scenarioNumber: 9, 
+      riskScore: 2,
+      uncertaintyScore: 3.4,
+      pressureScore: 2.2,
+      motivationScore: 3,
+    },{ 
+      scenarioNumber: 10, 
+      riskScore: 3,
+      uncertaintyScore: 2.666,
+      pressureScore: 2.666,
+      motivationScore: 2.666,
+    },{ 
+      scenarioNumber: 11, 
+      riskScore: 4.333,
+      uncertaintyScore: 1.6667,
+      pressureScore: 1.6667,
+      motivationScore: 2.6667,
+    }
+  ]
+
 const useStyles = createStyles((theme) => ({
   
     title: {
-      fontFamily: 'Inter Tight',
-      fontSize: '3rem',
-      fontWeight: 400,
-      margin: 0,
-      padding: 0,
-      color: theme.colorScheme === 'dark' ? theme.white : theme.black,
-      width: "80%",
-  
-      [BREAKPOINT]: {
-        fontSize: 42,
-        lineHeight: 1.2,
+        fontFamily: 'Inter Tight',
+        fontWeight: 400,
+        margin: 0,
+        padding: 0,
+        color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+        width: "80%",
+        lineHeight: 1.1,
+    
+        [BREAKPOINT]: {
+          fontSize: 42,
+          lineHeight: 1.2,
+        },
       },
 
-    },
+        uiShell: {
+            borderBottom: "1px solid rgba(0,0,0,0.22)",
+            marginLeft: "-30px",
+            paddingLeft: 20,
+            paddingBottom: 20,
+            width: "120%",
+        },
+
+        scenarioBorder: {
+            backgroundColor: "white",
+            overflow: "hidden",
+        }, 
     
-    imageBorder: {
-        backgroundColor: theme.colors.gray[1],
+        imageBorder: {
         height: 500,
-      },
+        backgroundColor: theme.colors.gray[1],
+        borderRadius: 20,
+        },
     
-      description: {
-        width: '60%',
+        description: {
 
         [BREAKPOINT]: {
             width: '100%',
             },
+      },
+
+      alternateText: {
+        fontFamily: "Space Mono",
       },
 
       titleSmall: {
@@ -48,6 +142,10 @@ const useStyles = createStyles((theme) => ({
         [BREAKPOINT]: {
             width: '100%',
             },
+      },
+
+      stepsBoxes: {
+        borderLeft: "1px dotted #D0D0D0",
       },
 
 
@@ -59,7 +157,51 @@ const useStyles = createStyles((theme) => ({
         padding: 10,
         borderRadius: 20,
         border: "1px solid black",
-      }
+      },
+
+      uiBackground: {
+        backgroundColor: theme.colors.gray[0],
+        borderRadius: "10px",
+        padding: 20,
+        boxShadow: "11px 19px 40px 0px rgba(0,0,0,0.10)",
+        border: "1px solid rgba(0,0,0,0.22)",
+        overflow: "hidden",
+    
+      },
+
+      seenBeforeBox: {
+        backgroundColor: theme.colors.gray[1],
+        borderRadius: 20,
+        border: "1px solid rgba(0,0,0,0.22)",
+        padding: 30,
+        overflow: "hidden",
+      },
+
+      seenBeforeIndividual: {
+        backgroundColor: theme.colors.gray[0],
+        borderRadius: 20,
+        border: "1px solid rgba(0,0,0,0.22)",
+        padding: 10,
+        overflow: "hidden",
+      },
+
+      InspirationProfile: {
+        width: 30,
+        height: 30,
+        borderRadius: 10,
+        backgroundColor: theme.colors.grape[2],
+    
+      },
+    
+      InspirationDot: {
+        width: 8,
+        height: 8,
+        borderRadius: 20,
+        backgroundColor: theme.colors.green[5],
+        marginLeft: "-20px",
+        marginTop: "25px",
+        outline: "3px solid #F8F9FA"
+      },
 }))
 
 const scenarioPage = ({ currentScenario }) => {
@@ -67,14 +209,7 @@ const scenarioPage = ({ currentScenario }) => {
     console.log(currentScenario)
     const [seenBeforeRecords, setSeenBeforeRecords] = useState([]);
 
-    // function getContexts() {
-    //     let currentInspirations = currentScenario.seenBefore.split(",");
-    //     setSeenBeforeRecords(currentInspirations)
-    // }
-
-    // useEffect(() => {
-    //     getContexts();
-    //   }, [])
+    let currentScores = ScoreData.find(element => element.scenarioNumber === currentScenario.Number)
 
     const { classes } = useStyles();
     const router = useRouter()
@@ -83,104 +218,252 @@ const scenarioPage = ({ currentScenario }) => {
   return (
   <>
     <Container size="xl" px={30}>
-        <Group mb={100}>
-        <h1 className={classes.title}> 
-        {
-            id == 1 || id == 3 || id== 7 ? 'This particular experiment did not end with any insights.' : `When the "${ currentScenario.Scenario }" interface is used to replace the typical one, we created sense of ${ currentScenario[`Insight (from Observation)`][0] }` 
-        } 
-        </h1>
-        </Group>
         <Stack>
-            <Group grow mb={200} align="flex-start"> 
-                <Stack>
-                <Group position="apart" align="end">
-                <div>Typical</div>
-                <Badge color="gray" size="lg" radius="sm">33% Participation</Badge>
-                </Group>
-                    <div className={classes.imageBorder}>
-                        <RiveAnimation scenarioNumber={99} />
-                    </div>
-                    <Text fz="xs" className={classes.description}>This is a typical choice that is seen in our normal checkout user flow in digital experiences. The drawback of this technique is that it might be hard to predict how much control the user wants to donate or their donation appetite.</Text>
-                </Stack>
-                <Stack>
-                <Group position="apart" align="end">
-                <div>Experiment</div>
-                {
-                    Number(currentScenario.ParticipationRate.replace('%', '')) < 34 ? <Badge color="green" size="lg" radius="sm">{ currentScenario.ParticipationRate * 100 }% Participation</Badge> : <Badge color="red" size="lg" radius="sm">{ currentScenario.ParticipationRate * 100 }% Participation</Badge> 
-                }
-                </Group>
-                    <Stack className={classes.imageBorder} align="center" justify="center" >
-                        <RiveAnimation scenarioNumber={ currentScenario.Number } />
+            <Stack mb={100} maw={600}>
+                <Text fz="md" className={classes.alternateText}>In this scenario, I { currentScenario.Instruction.toLowerCase() } { currentScenario['Insight (from Observation)'] ? `I found out that ${currentScenario['Insight (from Observation)'].split(",")[0].toLowerCase()}` : 'The result was similar to the typical interface.' }</Text>
+            </Stack>
+            <Grid mb={100}> 
+                <Grid.Col md={6} sm={12} xs={12}>
+                    <Stack className={classes.scenarioBorder}>
+                            <Text fz="xs" c="dimmed" className={classes.alternateText}>Typical Interface</Text>
+                            <Group className={classes.imageBorder}>
+                                <RiveAnimation scenarioNumber={99} />
+                            </Group>
+                            <Text fz="sm" className={classes.description}>This is a typical choice that is seen in our normal checkout user flow in digital experiences. The drawback of this technique is that it might be hard to predict how much control the user wants to donate or their donation appetite.</Text>
                     </Stack>
-                <Text fz="xs" className={classes.description}>{ currentScenario.Description}</Text>
+                </Grid.Col>
+                <Grid.Col md={6} sm={12} xs={12}>
+                <Stack className={classes.scenarioBorder}>
+                        <Text fz="xs" c="dimmed" className={classes.alternateText}>Scenario { currentScenario.Number }</Text>
+                            <Group className={classes.imageBorder}>
+                                <RiveAnimation scenarioNumber={currentScenario.Number} />
+                            </Group>
+                            <Text fz="sm" className={classes.description}>{ currentScenario.Description}</Text>
+                    </Stack>
+                </Grid.Col>
+            </Grid>
+
+            <Stack mt={130} mb={50} align="center">
+                <Stack maw={1000} align="center">
+                    <Text fz="xs" className={classes.alternateText}>Strategy</Text>
+                    <h1 className={classes.title} style={{textAlign: "center"}}>
+                    { currentScenario.Strategy ? `What happens when we try ${currentScenario.Strategy.toLowerCase().replace(".",'')}?` : ''}
+                    </h1>
                 </Stack>
-            </Group>
-
-            <Group grow align="flex-start" justify="flex-start" mb={200} className={classes.titleSmall}>
-            <h1 className={classes.title}>In summary, this mechanism leveraged on the strategy { currentScenario.Strategy ? <span className={classes.strategyPill}>{currentScenario.Strategy}</span> : '' }.</h1>
-            </Group>
-
-            <Group grow align="flex-start" justify="flex-start" mb={50}>
-            <h1 className={classes.title}>You've probably seen this strategy before.</h1>
-            </Group>
-
-            <Group grow align="flex-start" justify="flex-start" mb={200}>
-            <Flex
-            gap="md"
-            justify="flex-start"
-            align="flex-start"
-            direction="row"
-            wrap="wrap" >
-                    { currentScenario.SeenBefore.split(",").map((e, i) => {
-                            return <Stack h={300} w={300} justify="center" align="center" className={classes.quotes}>
-                                        <Text fz="md">{e}</Text>
-                                    </Stack>                              
-                        }) }
-            </Flex>
-            </Group>
-
-            <Stack align="flex-start" justify="flex-start" mb={50}>
-            <h1 className={classes.title}>{ currentScenario["Summary (from Observation)"] }</h1>
             </Stack>
 
-            <Group grow align="flex-start" justify="flex-start" mb={200}>
-                <div></div>
-                <Stack>
+            <Stack align="flex-start" justify="flex-start" mb={50} className={classes.seenBeforeBox}>
+            <Group className={classes.uiShell}>
+                    <AppWindow
+                        size={20}
+                        strokeWidth={1}
+                        color={'gray'}
+                        style={{ marginLeft: 10 }}
+                      />
+                      <Text fz="xs" c="dimmed" className={classes.alternateText}>Comments</Text>
+            </Group>
+            <Text fz="sm" maw={400}>{ currentScenario["Summary (from Observation)"] } Here's what some people felt!</Text>
+
+            <Group align="flex-start" justify="flex-start">
+                <Group align="left" justify="flex-start">
                     { currentScenario["Observation (from Observation)"].split(",").map((e, i) => {
-                            return <Flex 
-                            className={classes.quotes} spacing="sm"       
-                            justify="flex-start"
-                            align="flex-start"
-                            direction="row">
-                                <Stack h={100} w={100} justify="center" align="center">
-                                    <Text fz="xl">{i+1}</Text>
-                                </Stack>                              
-                                <Stack align="flex-start" justify="flex-start">
-                                <div>
-                                    <Badge color="gray" size="xs" radius="sm">User Comment</Badge> 
-                                </div>
-                                <div>{e}</div>
-                                </Stack>
-                            </Flex>
+                            return <Stack className={classes.seenBeforeIndividual} maw={200}>
+                            <Group mb={15}>
+                                <div className={classes.InspirationProfile}></div>
+                                <div className={classes.InspirationDot}></div>
+                                <Text style={{ marginLeft: "-10px" }} fz="xs" className={classes.alternateText}>Person {i}</Text>
+                            </Group>
+                            <Text fz="xs" className={classes.alternateText}>{e}</Text>
+                            </Stack>
                         }) }
-                </Stack>
+                </Group>
             </Group>
 
-            <Group grow align="flex-start" justify="flex-start" mb={50}>
-            <h1 className={classes.title}>Here's how this strategy performed</h1>
-            </Group>
-
-            <Group grow align="flex-start" justify="flex-start" mb={50}>
-            <h1 className={classes.title}>Steps to make your own</h1>
-            <Stack>
             </Stack>
-            </Group>
+
+            <Stack mt={130} mb={50} align="center">
+                <Stack maw={1000} align="center">
+                    <Text fz="xs" className={classes.alternateText}>Inspiration</Text>
+                    <h1 className={classes.title} style={{textAlign: "center"}}>
+                    You've probably seen this around you before.
+                    </h1>
+                </Stack>
+            </Stack>
 
             <Group grow align="flex-start" justify="flex-start" mb={200}>
-                <Stack>
-                    {  }
-                </Stack>
+            <Group align="flex-start" justify="flex-start">
+                    { currentScenario.SeenBefore.split(",").map((e, i) => {
+                           return <Stack className={classes.seenBeforeIndividual} maw={200}>
+                           <Group mb={15}>
+                               <Text fz="xs" className={classes.alternateText}>Inspiration {i}</Text>
+                           </Group>
+                           <Text fz="xs" className={classes.alternateText}>{e}</Text>
+                           </Stack>                 
+                        }) }
             </Group>
+            </Group>
+
+            <Stack mt={130} mb={50} align="center">
+                <Stack maw={1000} align="center">
+                    <Text fz="xs" className={classes.alternateText}>Measurements</Text>
+                    <h1 className={classes.title} style={{textAlign: "center"}}>
+                    In the experiment, people felt that this interface was { Number(currentScenario.ParticipationRate.replace("%",'')) > 40 ? 'shady' : 'not shady' }.
+                    </h1>
+                </Stack>
+            </Stack>
+
+            <Grid style={{ pointerEvents: "none" }}>
+            <Grid.Col md={6} sm={12} xs={12}>
+              <Group className={classes.stepsBoxes} align="flex-start">
+                <CardComponent number={1}>
+                  <Stack mt={50} mb={50} p={30} className={classes.uiBackground} maw={400}>
+                  <Group className={classes.uiShell}>
+                    <QuestionMark
+                        size={20}
+                        strokeWidth={1}
+                        color={'gray'}
+                      />
+                      <Text fz="xs" c="dimmed" className={classes.alternateText}>Question</Text>
+                  </Group>
+                    <Text fz="sm">How much of a risk was it to donate in this scenario?</Text>
+                    <Slider mb={30}
+                    labelAlwaysOn
+                    defaultValue={ currentScores.riskScore * 10 }
+                      marks={[
+                        { value: 8, label: 'Not Risky' },
+                        { value: 25, label: '' },
+                        { value: 50, label: '' },
+                        { value: 75, label: '' },
+                        { value: 90, label: 'Very Risky' },
+                      ]}
+                      styles={{
+                        markLabel: {
+                          textAlign: "left",
+                          fontFamily: "Space Mono",
+                          fontSize: 12,
+                          marginTop: 10
+                        }
+                      }}
+                    />
+                  </Stack>
+                </CardComponent>   
+              </Group>
+            </Grid.Col>
+
+            <Grid.Col md={6} sm={12} xs={12}>
+              <Group className={classes.stepsBoxes} align="flex-start">
+                <CardComponent number={2}>
+                  <Stack mt={50} mb={50} p={30} className={classes.uiBackground} maw={400}>
+                  <Group className={classes.uiShell}>
+                    <QuestionMark
+                        size={20}
+                        strokeWidth={1}
+                        color={'gray'}
+                      />
+                      <Text fz="xs" c="dimmed" className={classes.alternateText}>Question</Text>
+                  </Group>
+                    <Text fz="sm">When using this interface, how often do you feel unsure or uncertain about the outcome that will be given to you?</Text>
+                    <Slider mb={30}
+                    labelAlwaysOn
+                    defaultValue={ 100 - (currentScores.uncertaintyScore * 10) }
+                      marks={[
+                        { value: 9, label: 'Not Often' },
+                        { value: 25, label: '' },
+                        { value: 50, label: '' },
+                        { value: 75, label: '' },
+                        { value: 90, label: 'Very Often' },
+                      ]}
+                      styles={{
+                        markLabel: {
+                          textAlign: "left",
+                          fontFamily: "Space Mono",
+                          fontSize: 12,
+                          marginTop: 10
+                        }
+                      }}
+                    />
+                  </Stack>
+                </CardComponent>   
+              </Group>
+            </Grid.Col>
+
+            <Grid.Col md={6} sm={12} xs={12}>
+              <Group className={classes.stepsBoxes} align="flex-start">
+                <CardComponent number={3}>
+                  <Stack mt={50} mb={50} p={30} className={classes.uiBackground} maw={400}>
+                  <Group className={classes.uiShell}>
+                    <QuestionMark
+                        size={20}
+                        strokeWidth={1}
+                        color={'gray'}
+                      />
+                      <Text fz="xs" c="dimmed" className={classes.alternateText}>Question</Text>
+                  </Group>
+                    <Text fz="sm">On a scale of 1-5, how pressuring was the experience in asking you to donate?</Text>
+                    <Slider mb={30}
+                    labelAlwaysOn
+                      defaultValue={ currentScores.pressureScore * 10 }
+                      marks={[
+                        { value: 13, label: 'Not Pressuring' },
+                        { value: 25, label: '' },
+                        { value: 50, label: '' },
+                        { value: 75, label: '' },
+                        { value: 90, label: 'Pressuring' },
+                      ]}
+                      styles={{
+                        pointerEvents: "none",
+                        markLabel: {
+                          textAlign: "left",
+                          fontFamily: "Space Mono",
+                          fontSize: 12,
+                          marginTop: 10
+                        }
+                      }}
+                    />
+                  </Stack>
+                </CardComponent>   
+              </Group>
+            </Grid.Col>
+
+            <Grid.Col md={6} sm={12} xs={12}>
+              <Group className={classes.stepsBoxes} align="flex-start">
+                <CardComponent number={4}>
+                  <Stack mt={50} mb={50} p={30} className={classes.uiBackground} maw={400}>
+                  <Group className={classes.uiShell}>
+                    <QuestionMark
+                        size={20}
+                        strokeWidth={1}
+                        color={'gray'}
+                      />
+                      <Text fz="xs" c="dimmed" className={classes.alternateText}>Question</Text>
+                  </Group>
+                    <Text fz="sm">On a scale of 1-5, how motivating was it to donate using this interface?</Text>
+                    <Slider mb={30}
+                    labelAlwaysOn
+                      defaultValue={ currentScores.motivationScore * 10 }
+                      marks={[
+                        { value: 13, label: 'Not Pressuring' },
+                        { value: 25, label: '' },
+                        { value: 50, label: '' },
+                        { value: 75, label: '' },
+                        { value: 90, label: 'Pressuring' },
+                      ]}
+                      styles={{
+                        pointerEvents: "none",
+                        markLabel: {
+                          textAlign: "left",
+                          fontFamily: "Space Mono",
+                          fontSize: 12,
+                          marginTop: 10
+                        }
+                      }}
+                    />
+                  </Stack>
+                </CardComponent>   
+              </Group>
+            </Grid.Col>
+          </Grid>
+
         </Stack>
     </Container>
   </>
