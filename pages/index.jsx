@@ -129,6 +129,10 @@ const useStyles = createStyles((theme) => ({
 
   alternateText: {
     fontFamily: "Space Mono",
+
+    [BREAKPOINT]: {
+      fontSize: 12,
+    },
   },
 
   greyBackground: {
@@ -184,8 +188,13 @@ const useStyles = createStyles((theme) => ({
   },
 
   spinnerClass: {
-    width: "300px",
-    height: "300px"
+    width: "250px",
+    height: "250px",
+
+    [BREAKPOINT]: {
+      width: "250px",
+      height: "250px",
+    },
   },
 
   spinnerHead: {
@@ -252,11 +261,40 @@ const useStyles = createStyles((theme) => ({
     transform: "translate(0px, 200px)",
     boxShadow: "0px 15px 32px 1px rgba(0,0,0,0.10)",
 
+    '::before': {
+      content: '"Go to Scenario"',
+      fontFamily: "Space Mono",
+      display: "flex",
+      justifyItems: "center",
+      textAlign: "center",
+      alignItems: "center",
+      position: "absolute",
+      height: "100%",
+      width: "100%",
+      paddingLeft: "90px",
+      backgroundColor: "rgba(0,0,0,0)",
+      opacity: 0,
+      transition: "0.3s ease all",
+      pointerEvents: "none",
+      color: "white",
+      fontSize: "14px",
+    },
+
     '&:hover': {
       opacity: 1,
       transition: "0.3s ease all",
       transform: "translate(0px, 0px)",
       boxShadow: "15px 15px 32px 1px rgba(0,0,0,0.10)",
+
+      '::before': {
+        backgroundColor: "rgba(0,0,0,0.8)",
+        opacity: 1,
+        transition: "0.3s ease all",
+      }
+    },
+
+    [BREAKPOINT]: {
+      transform: "translate(-5px, 200px)",
     },
   },
 
@@ -377,9 +415,9 @@ export default function HomePage() {
                   <Stack mt="auto" spacing={50}>
                       <Text fz="md">This framework is part of a study where Yuan Jie explores socially acceptable ways of designing interfaces that utilise deception as a method to influence behavior. Deception is defined as altering information through less transparency, creating pressure, and encouraging risk-taking to make people favor a decision that benefits the deceiver. This framework presents the outcomes the study as a instructional guide to help you make your own deceptive interface.  </Text>
                       <div>
-                      <a href={"./about"}>
+                      {/* <a href={"./about"}>
                         <Button uppercase rightIcon={<ArrowNarrowRight strokeWidth={1}/>} color="dark" radius={5} size="xl" style={{ fontSize: '14px', fontWeight: 400, fontFamily: "Space Mono" }}>More about this project</Button>
-                      </a>
+                      </a> */}
                       </div>
                   </Stack>
                 </Group>
@@ -868,7 +906,7 @@ export default function HomePage() {
                 <Text fz="sm" mb={50}>The shop will boost your donation by 50%</Text>
                 <Text fz="xs">You will donate ${ sliderAmount ? sliderAmount : '0'}</Text>
                 <Slider
-                      w={300}
+                      w={"100%"}
                       mb={50}
                       defaultValue={10}
                       min={0}
@@ -883,7 +921,7 @@ export default function HomePage() {
                 <Text fz="xs">The shop will then donate an extra ${ (sliderAmount * 0.5).toFixed(2)} to make the total donation ${ (sliderAmount * 1.5).toFixed(2)}</Text>
                 <Slider
                       style={{ pointerEvents: "none"}}
-                      w={300}
+                      w={"100%"}
                       mb={50}
                       defaultValue={5}
                       min={0}
@@ -899,7 +937,7 @@ export default function HomePage() {
           </CardComponent>   
         </Group>
         <Group className={classes.stepsBoxes}>
-          <CardComponent  number={3} type="Checkboxes (Multiple Choices)" description="Used to slow down decision making and make some choices more important than the other.">
+          <CardComponent  number={3} type="Checkboxes" description="Used to slow down decision making and make some choices more important than the other.">
               <Stack mt={50} mb={50} className={classes.uiBackground}>
               <Group className={classes.uiShell} style={{ width: "150%"}}>
                     <AppWindow
@@ -927,7 +965,7 @@ export default function HomePage() {
         </Group>
         <Group className={classes.stepsBoxes}>
           <CardComponent  number={4} type="Spinners" description="Used when adding an element of chance to a decision. Gives an element of surprise & fun!">
-            <Stack mt={50} mb={50} className={classes.uiBackground}>
+            <Stack mt={50} mb={50} className={classes.uiBackground} w={"100%"} justify="center">
               <Group className={classes.uiShell}>
                     <AppWindow
                         size={20}
@@ -939,8 +977,8 @@ export default function HomePage() {
               </Group>
               
               <div className={classes.spinnerClass}>
-                <Image maw={300} className={classes.spinnerBackground} style={{ transform: `rotate(${spinnerOn ? `1200deg` : `0deg`})`}} src="../img/components/Spinner.svg" ></Image>
-                <Image maw={100} onClick={handleSpin} className={classes.spinnerHead} src="../img/components/SpinningHead.svg"></Image>
+                <Image maw={250} className={classes.spinnerBackground} style={{ transform: `rotate(${spinnerOn ? `1200deg` : `0deg`})`}} src="../img/components/Spinner.svg" ></Image>
+                <Image maw={80} style={{ marginLeft: "-17px" }} onClick={handleSpin} className={classes.spinnerHead} src="../img/components/SpinningHead.svg"></Image>
               </div>
             </Stack>
           </CardComponent>   
