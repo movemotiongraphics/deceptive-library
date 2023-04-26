@@ -56,6 +56,7 @@ const useStyles = createStyles((theme) => ({
 
   greyBackground: {
     backgroundColor: theme.colors.gray[2],
+    borderRadius: 20,
   },
   
   greyBackgroundAlternate: {
@@ -174,7 +175,7 @@ const ChartsPage = () => {
             <Group w={"100%"}>
 
               <Grid gutter={20} mb={80}>
-                <Grid.Col span={12} md={4} sm={6}>
+                <Grid.Col md={4} sm={6} xs={12}>
                   <Stack>
                     <Stack className={classes.greyBackground}>
                       <div className={classes.imageBorder}>
@@ -191,7 +192,7 @@ const ChartsPage = () => {
                   </Stack>
                 </Grid.Col>
 
-                <Grid.Col span={12} md={4} sm={6} xs={12}>
+                <Grid.Col md={4} sm={6} xs={12}>
                   <Stack>
                     <Stack className={classes.greyBackground}>
                       <div className={classes.imageBorder}>
@@ -208,7 +209,7 @@ const ChartsPage = () => {
                   </Stack>
                 </Grid.Col>
 
-                <Grid.Col span={12} md={4} sm={6} xs={12}>
+                <Grid.Col md={4} sm={6} xs={12}>
                   <Stack>
                     <Stack className={classes.greyBackground}>
                       <div className={classes.imageBorder}>
@@ -227,7 +228,7 @@ const ChartsPage = () => {
               </Grid>
 
               <Grid gutter={20} mb={80}>
-                <Grid.Col span={12} md={4} sm={6}>
+                <Grid.Col md={4} sm={6}>
                   <Stack>
                     <Stack className={classes.greyBackground}>
                       <div className={classes.imageBorder}>
@@ -244,7 +245,7 @@ const ChartsPage = () => {
                   </Stack>
                 </Grid.Col>
 
-                <Grid.Col span={12} md={4} sm={6} xs={12}>
+                <Grid.Col md={4} sm={6} xs={12}>
                   <Stack>
                     <Stack className={classes.greyBackground}>
                       <div className={classes.imageBorder}>
@@ -261,7 +262,7 @@ const ChartsPage = () => {
                   </Stack>
                 </Grid.Col>
 
-                <Grid.Col span={12} md={4} sm={6} xs={12}>
+                <Grid.Col md={4} sm={6} xs={12}>
                   <Stack>
                     <Stack className={classes.greyBackground}>
                       <div className={classes.imageBorder}>
@@ -280,7 +281,7 @@ const ChartsPage = () => {
               </Grid>
 
               <Grid gutter={20} mb={80}>
-                <Grid.Col span={12} md={4} sm={6}>
+                <Grid.Col md={4} sm={6} xs={12}>
                   <Stack>
                     <Stack className={classes.greyBackground}>
                       <div className={classes.imageBorder}>
@@ -297,7 +298,7 @@ const ChartsPage = () => {
                   </Stack>
                 </Grid.Col>
 
-                <Grid.Col span={12} md={4} sm={6} xs={12}>
+                <Grid.Col md={4} sm={6} xs={12}>
                   <Stack>
                     <Stack className={classes.greyBackground}>
                       <div className={classes.imageBorder}>
@@ -314,7 +315,7 @@ const ChartsPage = () => {
                   </Stack>
                 </Grid.Col>
 
-                <Grid.Col span={12} md={4} sm={6} xs={12}>
+                <Grid.Col md={4} sm={6} xs={12}>
                   <Stack>
                     <Stack className={classes.greyBackground}>
                       <div className={classes.imageBorder}>
@@ -333,7 +334,7 @@ const ChartsPage = () => {
               </Grid>
 
               <Grid gutter={20} mb={80}>
-                <Grid.Col span={12} md={4} sm={6}>
+                <Grid.Col md={4} sm={6} xs={12}>
                   <Stack>
                     <Stack className={classes.greyBackground}>
                       <div className={classes.imageBorder}>
@@ -350,7 +351,7 @@ const ChartsPage = () => {
                   </Stack>
                 </Grid.Col>
 
-                <Grid.Col span={12} md={4} sm={6} xs={12}>
+                <Grid.Col md={4} sm={6} xs={12}>
                   <Stack>
                     <Stack className={classes.greyBackground}>
                       <div className={classes.imageBorder}>
@@ -367,7 +368,7 @@ const ChartsPage = () => {
                   </Stack>
                 </Grid.Col>
 
-                <Grid.Col span={12} md={4} sm={6}>
+                <Grid.Col md={4} sm={6} xs={12}>
                   <Stack>
                     <Stack className={classes.greyBackground}>
                       <div className={classes.imageBorder}>

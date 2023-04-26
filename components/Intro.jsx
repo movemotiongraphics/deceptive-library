@@ -60,6 +60,7 @@ const useStyles = createStyles((theme) => ({
     height: 500,
     backgroundColor: theme.colors.gray[1],
     objectFit: "cover",
+    borderRadius: 20,
   },
 
   highlightedText: {

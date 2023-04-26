@@ -66,6 +66,10 @@ const useStyles = createStyles((theme) => ({
     height: 20,
     borderRadius: 5,
     backgroundColor: theme.colors.green[5],
+  },
+
+  alternateText: {
+    fontFamily: "Space Mono",
   }
 
 }));
@@ -118,26 +122,25 @@ const ChartsPage = () => {
       <Container size="xl" px={30}>
           <Group mt={130} mb={170} position="center" alignItems="center">
             <h1 className={classes.headerTitle} style={{ textAlign: "center"}}>
-              The deception score measures 
+              How socially acceptable is your interface?
             </h1>
           </Group>
 
           <Stack my={200} align="center" w="100%">
                 <Group maw={800}>
-                  <Text fz="xs" className={classes.subTitle}>Where these insights come from</Text>
+                  <Text fz="xs" className={classes.subTitle}>Deception Score</Text>
                   <Stack mt="auto">
-                      <Text fz="md">The framework consists of four libraries that are designed to be considered in sequence. Each step consists of examples and guides that you can adopt in your own design. Follow the guide to make your own deceptive interface.</Text>
+                      <Text fz="md">The deception score measures how socially acceptable a deceptive interface is. It is used to determine whether your deceptive interface is appropriate for your users. The chart below is a list of 12 scenarios charted against their deceptive score, take a look below to get some inspiration.</Text>
                   </Stack>
                 </Group>
           </Stack>
 
           <Stack spacing={20}>
-            <Group mt={100} mb={100}>
-            <h1 className={classes.title}>Follow some of these strategies.</h1>
-            <Group position="left" spacing="xs" className={classes.helperText}>
-              Click on these 
+            <Group mt={100} mb={20}>
+            <Group position="left" spacing="xs">
+              <Text fz="xs" className={classes.alternateText}>Click on these</Text> 
               <span className={classes.scenarioIcon}></span> 
-              scenarios to learn more.
+              <Text fz="xs" className={classes.alternateText}>scenarios to learn more.</Text>
             </Group>
             </Group>
 

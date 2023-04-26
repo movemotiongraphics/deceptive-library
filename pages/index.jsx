@@ -19,6 +19,7 @@ import InsightCard from '../components/InsightCard';
 import DeceptiveChart from '../components/DeceptiveChart';
 import ChooseMachine from '../components/chooseMachine';
 import CardComponent from '../components/cardComponent';
+import { RiveAnimation } from '../components/riveDonate';
 
 //static data
 import ScenarioData from '../components/Data/Scenarios-Grid.json';
@@ -58,8 +59,6 @@ const useStyles = createStyles((theme) => ({
     borderRadius: 5,
     overflow: "hidden",
     padding: 20,
-    boxShadow: "0px 1px 0px 0px rgba(0,0,0,0.22)",
-
   },
 
   scenarioIcon: {
@@ -133,7 +132,7 @@ const useStyles = createStyles((theme) => ({
   },
 
   greyBackground: {
-    backgroundColor: theme.colors.gray[2],
+    backgroundColor: theme.colors.gray[1],
   },
 
   uiBackground: {
@@ -232,7 +231,34 @@ const useStyles = createStyles((theme) => ({
     backgroundColor: theme.colors.gray[0],
     overflow: "hidden",
     border: "1px solid rgba(0,0,0,0.22)",
-  }
+  },
+
+  strategyBoxes: {
+    borderRadius: 20,
+    backgroundColor: theme.colors.gray[0],
+    overflow: "hidden",
+  },
+
+  strategyScenarioBoxes: {
+    borderRadius: 20,
+    aspectRatio: "10 / 13",
+    margin: "20px 20px 0 0",
+    width: 300,
+    outline: "1px solid rgba(0,0,0,0.1)",
+    overflow: "hidden",
+    opacity: 1,
+    transition: "0.3s ease all",
+    backgroundColor: theme.colors.gray[1],
+    transform: "translate(0px, 200px)",
+    boxShadow: "0px 15px 32px 1px rgba(0,0,0,0.10)",
+
+    '&:hover': {
+      opacity: 1,
+      transition: "0.3s ease all",
+      transform: "translate(0px, 0px)",
+      boxShadow: "15px 15px 32px 1px rgba(0,0,0,0.10)",
+    },
+  },
 
 }));
 
@@ -349,8 +375,7 @@ export default function HomePage() {
                 <Group maw={800}>
                   <Text fz="xs" className={classes.subTitle}>Deception and User Interfaces</Text>
                   <Stack mt="auto" spacing={50}>
-                      <Text fz="md">This framework is developed as a part of my study in design school. In this study, deception is defined as a method to alter information by creating hidden points of comparisons through being less transparent, creating pressure and encouraging risk-taking. This allows the deceiver to make people favour a decision that benefits the themselves.</Text>
-                      <Text fz="md">I wonder if deception can be used by designers as a strategy to further influence behaviour for altruistic outcomes? This framework is the summarised outcome of how I designed socially-acceptable deceptive interfaces for my study.</Text>
+                      <Text fz="md">This framework is part of a study where Yuan Jie explores socially acceptable ways of designing interfaces that utilise deception as a method to influence behavior. Deception is defined as altering information through less transparency, creating pressure, and encouraging risk-taking to make people favor a decision that benefits the deceiver. This framework presents the outcomes the study as a instructional guide to help you make your own deceptive interface.  </Text>
                       <div>
                       <a href={"./about"}>
                         <Button uppercase rightIcon={<ArrowNarrowRight strokeWidth={1}/>} color="dark" radius={5} size="xl" style={{ fontSize: '14px', fontWeight: 400, fontFamily: "Space Mono" }}>More about this project</Button>
@@ -955,42 +980,244 @@ export default function HomePage() {
           </Stack>
 
           <Grid p={0} m={0} justify='left'>
-              <Grid.Col className={classes.stepsBoxes} md={6} sm={12} xs={12} h={200} p={20}>
-                   <Stack>
-                    <Text fz="xs" className={classes.alternateText}>Strategy 1</Text>
-                    <Text fz="md">Framing donation as a chance to win.</Text>
-                   </Stack>
+              <Grid.Col className={classes.strategyBoxes} md={12} sm={12} xs={12} p={20} mb={50}>
+
+                  <Stack>
+                    <Group className={classes.uiShell}>
+                      <AppWindow
+                          size={20}
+                          strokeWidth={1}
+                          color={'gray'}
+                          style={{ marginLeft: 10 }}
+                        />
+                        <Text fz="xs" c="dimmed" className={classes.alternateText}>Strategy 1</Text>
+                    </Group>
+                    <Stack maw={500} spacing={30}>
+                      <Text fz="sm" className={classes.alternateText}>Framing donation as a chance to win.</Text>
+                      <Text fz="sm">In these examples, the donation choice is changed into a chance to win or donate. The probability of donating is always higher than winning.</Text>
+                    </Stack>
+                    <Group ml={"auto"} style={{ marginTop: "-150px" }}>
+                      <Group>
+                      <Stack>
+                        <Text fz="xs" c="dimmed" className={ classes.alternateText } style={{ transform: "translate(0px,230px)"}}>Scenario 0</Text>
+                        <a href="./scenario/0">
+                        <Group className={classes.strategyScenarioBoxes}>
+                          <RiveAnimation scenarioNumber={0} hoverToPlay/>
+                        </Group>
+                        </a>
+                      </Stack>
+
+                      <Stack>
+                        <Text fz="xs" c="dimmed" className={ classes.alternateText } style={{ transform: "translate(0px,230px)"}}>Scenario 2</Text>
+                        <a href="./scenario/2">
+                        <Group className={classes.strategyScenarioBoxes}>
+                          <RiveAnimation scenarioNumber={2} hoverToPlay/>
+                        </Group>
+                        </a>
+                      </Stack>
+
+                      <Stack>
+                        <Text fz="xs" c="dimmed" className={ classes.alternateText } style={{ transform: "translate(0px,230px)"}}>Scenario 11</Text>
+                        <a href="./scenario/11">
+                        <Group className={classes.strategyScenarioBoxes}>
+                          <RiveAnimation scenarioNumber={11} hoverToPlay/>
+                        </Group>
+                        </a>
+                      </Stack>
+                      </Group>
+                    </Group>
+                  </Stack>
+
               </Grid.Col>
-              <Grid.Col className={classes.stepsBoxes} md={6} sm={12} xs={12} h={200} p={20}>
-                   <Stack>
-                   <Text fz="xs" className={classes.alternateText}>Strategy 2</Text>
-                   <Text fz="md">Attaching material value to donation.</Text>
-                   </Stack>
+
+              <Grid.Col className={classes.strategyBoxes} md={12} sm={12} xs={12} p={20} mb={50}>
+
+                <Stack>
+                  <Group className={classes.uiShell}>
+                    <AppWindow
+                        size={20}
+                        strokeWidth={1}
+                        color={'gray'}
+                        style={{ marginLeft: 10 }}
+                      />
+                      <Text fz="xs" c="dimmed" className={classes.alternateText}>Strategy 2</Text>
+                  </Group>
+                  <Stack maw={500} spacing={30}>
+                    <Text fz="sm" className={classes.alternateText}>Attaching material value to donation to show  effort.</Text>
+                    <Text fz="sm">In the study, participants felt that when gifts are attached to donations, it seemed like the organisation was putting in more effort. We can leverage onto this to create deceptive interfaces.</Text>
+                  </Stack>
+                  <Group ml={"auto"} style={{ marginTop: "-150px" }}>
+                    <Group>
+                    <Stack>
+                      <Text fz="xs" c="dimmed" className={ classes.alternateText } style={{ transform: "translate(0px,230px)"}}>Scenario 3</Text>
+                      <a href="./scenario/3">
+                      <Group className={classes.strategyScenarioBoxes}>
+                        <RiveAnimation scenarioNumber={3} hoverToPlay/>
+                      </Group>
+                      </a>
+                    </Stack>
+
+                    <Stack>
+                      
+                      <Text fz="xs" c="dimmed" className={ classes.alternateText } style={{ transform: "translate(0px,230px)"}}>Scenario 9</Text>
+                      <a href="./scenario/9">
+                      <Group className={classes.strategyScenarioBoxes}>
+                        <RiveAnimation scenarioNumber={9} hoverToPlay/>
+                      </Group>
+                      </a>
+                    </Stack>
+
+                    </Group>
+                  </Group>
+                </Stack>
+
               </Grid.Col>
-              <Grid.Col className={classes.stepsBoxes} md={6} sm={12} xs={12} h={200} p={20}>
-                   <Stack>
-                   <Text fz="xs" className={classes.alternateText}>Strategy 3</Text>
-                   <Text fz="md">Introducing social Influence to make people donate.</Text>
-                   </Stack>
+
+              <Grid.Col className={classes.strategyBoxes} md={12} sm={12} xs={12} p={20} mb={50}>
+
+                <Stack>
+                  <Group className={classes.uiShell}>
+                    <AppWindow
+                        size={20}
+                        strokeWidth={1}
+                        color={'gray'}
+                        style={{ marginLeft: 10 }}
+                      />
+                      <Text fz="xs" c="dimmed" className={classes.alternateText}>Strategy 3</Text>
+                  </Group>
+                  <Stack maw={500} spacing={30}>
+                    <Text fz="sm" className={classes.alternateText}>Introducing individual social Influence to make people donate.</Text>
+                    <Text fz="sm">It turns out that social influence is socially acceptable when it comes to donations, in fact, sometimes just one person is enough to influence someone to donate.</Text>
+                  </Stack>
+                  <Group ml={"auto"} style={{ marginTop: "-150px" }}>
+                    <Group>
+                    <Stack>
+                      <Text fz="xs" c="dimmed" className={ classes.alternateText } style={{ transform: "translate(0px,230px)"}}>Scenario 4</Text>
+                      <a href="./scenario/4">
+                      <Group className={classes.strategyScenarioBoxes}>
+                        <RiveAnimation scenarioNumber={4} hoverToPlay/>
+                      </Group>
+                      </a>
+                    </Stack>
+
+                    <Stack>
+                      
+                      <Text fz="xs" c="dimmed" className={ classes.alternateText } style={{ transform: "translate(0px,230px)"}}>Scenario 5</Text>
+                      <a href="./scenario/5">
+                      <Group className={classes.strategyScenarioBoxes}>
+                        <RiveAnimation scenarioNumber={5} hoverToPlay/>
+                      </Group>
+                      </a>
+                    </Stack>
+                    
+                    <Stack>
+                      
+                      <Text fz="xs" c="dimmed" className={ classes.alternateText } style={{ transform: "translate(0px,230px)"}}>Scenario 8</Text>
+                      <a href="./scenario/8">
+                      <Group className={classes.strategyScenarioBoxes}>
+                        <RiveAnimation scenarioNumber={8} hoverToPlay/>
+                      </Group>
+                      </a>
+                    </Stack>
+
+                    </Group>
+                  </Group>
+                </Stack>
+
               </Grid.Col>
-              <Grid.Col className={classes.stepsBoxes} md={6} sm={12} xs={12} h={200} p={20}>
-                   <Stack>
-                   <Text fz="xs" className={classes.alternateText}>Strategy 4</Text>
-                   <Text fz="md">Leveraging on consumer’s relationship with store to make people donate.</Text>
-                   </Stack>
+
+              <Grid.Col className={classes.strategyBoxes} md={12} sm={12} xs={12} p={20} mb={50}>
+
+                <Stack>
+                  <Group className={classes.uiShell}>
+                    <AppWindow
+                        size={20}
+                        strokeWidth={1}
+                        color={'gray'}
+                        style={{ marginLeft: 10 }}
+                      />
+                      <Text fz="xs" c="dimmed" className={classes.alternateText}>Strategy 4</Text>
+                  </Group>
+                  <Stack maw={500} spacing={30}>
+                    <Text fz="sm" className={classes.alternateText}>Leveraging on consumer’s relationship with store to make people donate.</Text>
+                    <Text fz="sm">If you finding donations from a strong community, you can also leverage onto those relationship to create deceptive interfaces.</Text>
+                  </Stack>
+                  <Group ml={"auto"} style={{ marginTop: "-150px" }}>
+                    <Group>
+                    <Stack>
+                      <Text fz="xs" c="dimmed" className={ classes.alternateText } style={{ transform: "translate(0px,230px)"}}>Scenario 6</Text>
+                      <a href="./scenario/6">
+                      <Group className={classes.strategyScenarioBoxes}>
+                        <RiveAnimation scenarioNumber={6} hoverToPlay/>
+                      </Group>
+                      </a>
+                    </Stack>
+
+                    <Stack>
+                      <Text fz="xs" c="dimmed" className={ classes.alternateText } style={{ transform: "translate(0px,230px)"}}>Scenario 7</Text>
+                      <a href="./scenario/7">
+                      <Group className={classes.strategyScenarioBoxes}>
+                        <RiveAnimation scenarioNumber={7} hoverToPlay/>
+                      </Group>
+                      </a>
+                    </Stack>
+
+
+                    </Group>
+                  </Group>
+                </Stack>
+
               </Grid.Col>
-              <Grid.Col className={classes.stepsBoxes} md={6} sm={12} xs={12} h={200} p={20}>
-                   <Stack>
-                   <Text fz="xs" className={classes.alternateText}>Strategy 5</Text>
-                   <Text fz="md">Adjusting defaults to fit various appetites.</Text>
-                   </Stack>
+
+
+              <Grid.Col className={classes.strategyBoxes} md={12} sm={12} xs={12} p={20}>
+
+                <Stack>
+                  <Group className={classes.uiShell}>
+                    <AppWindow
+                        size={20}
+                        strokeWidth={1}
+                        color={'gray'}
+                        style={{ marginLeft: 10 }}
+                      />
+                      <Text fz="xs" c="dimmed" className={classes.alternateText}>Strategy 5</Text>
+                  </Group>
+                  <Stack maw={500} spacing={30}>
+                    <Text fz="sm" className={classes.alternateText}>Adjusting defaults to fit various appetites by creating more choices.</Text>
+                    <Text fz="sm">Sometimes, people are willing to pay if the default donation amount can be adjusted to fit their criteria, so we can use this to nudge for higher donations.</Text>
+                  </Stack>
+                  <Group ml={"auto"} style={{ marginTop: "-150px" }}>
+                    <Group>
+                    <Stack>
+                      <Text fz="xs" c="dimmed" className={ classes.alternateText } style={{ transform: "translate(0px,230px)"}}>Scenario 7</Text>
+                      <a href="./scenario/7">
+                      <Group className={classes.strategyScenarioBoxes}>
+                        <RiveAnimation scenarioNumber={7} hoverToPlay/>
+                      </Group>
+                      </a>
+                    </Stack>
+
+                    <Stack>
+                      <Text fz="xs" c="dimmed" className={ classes.alternateText } style={{ transform: "translate(0px,230px)"}}>Scenario 10</Text>
+                      <a href="./scenario/10">
+                      <Group className={classes.strategyScenarioBoxes}>
+                        <RiveAnimation scenarioNumber={10} hoverToPlay/>
+                      </Group>
+                      </a>
+                    </Stack>
+
+
+                    </Group>
+                  </Group>
+                </Stack>
+
               </Grid.Col>
           </Grid>
 
 
 
-          <Stack align="center" w="100%" pb={100} pt={170} mt={100} className={classes.greyBackground} style={{ borderRadius: "20px" }}>
-                <Group maw={800} mb={50}>
+          <Stack align="center" w="100%" pb={100} pt={100} mt={100}>
+                <Group maw={800} mb={50} p={30}>
                   <Text fz="xs" className={classes.subTitle} grow>Inspirations</Text>
                   <Stack mt="auto" mb={20}>
                       <Text fz="md">We've compiled some strategies based on common target audiences! Visit the inspiration tab to search for some.</Text>
