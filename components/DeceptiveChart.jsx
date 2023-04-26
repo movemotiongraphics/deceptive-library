@@ -1,10 +1,12 @@
 import { createStyles, Card, Image, Text, Group, RingProgress, Badge, Container, Stack } from '@mantine/core';
 import { useState, useRef } from 'react';
 import Link from 'next/link';
-import { ChartBubble } from 'tabler-icons-react';
+import { ChartBubble, BrandHeadlessui } from 'tabler-icons-react';
 
-const circleWidth = 100;
+const circleWidth = 30;
 const labelMaxWidth = 150;
+
+const BREAKPOINT = '@media (max-width: 755px)';
 
 const useStyles = createStyles((theme) => ({
     chart: {
@@ -25,7 +27,7 @@ const useStyles = createStyles((theme) => ({
       marginLeft: "-30px",
       paddingLeft: 20,
       paddingBottom: 20,
-      width: "120%",
+      width: "140%",
     },
 
     list: {
@@ -35,21 +37,36 @@ const useStyles = createStyles((theme) => ({
       padding: 0,
       width: "100%",
       marginTop: "5em",
+
+      [BREAKPOINT]: {
+        display: "none",
+      },
+    },
+
+    bulletMobile: {
+      borderRadius: 8,
+      backgroundColor: theme.colors.grape[2],
+      border: "1px solid rgba(0,0,0,0.22)",
+      width: circleWidth * 2,
+      height: circleWidth * 2,
     },
 
     bullet: {
-      borderRadius: 5,
-      backgroundColor: "white",
+      borderRadius: 8,
+      backgroundColor: theme.colors.grape[2],
       border: "1px solid rgba(0,0,0,0.22)",
-      width: 150,
-      height: 100,
+      width: circleWidth,
+      height: circleWidth,
       display: "inline-block",
       position: "absolute",
+      transition: "0.3s ease all",
 
       '&:hover': {
-        backgroundColor: theme.colors.gray[1],
-
+        backgroundColor: theme.colors.grape[3],
+        boxShadow: "3px 3px 15px 0px rgba(201,156,221,0.42)",
+        transition: "0.3s ease all",
       },
+
     },
 
     insideBullet: {
@@ -86,21 +103,55 @@ const useStyles = createStyles((theme) => ({
       height: 10,
       borderRadius: 20,
       backgroundColor: theme.colors.gray[3],
-      transform: "translate(0, 25px)",
+      transform: "translate(0, 8px)",
     },
 
     selected: {
       backgroundColor: theme.colors.green[1],
-    }
+    },
+
+    hiddenWhenMobile: {
+      [BREAKPOINT]: {
+        display: "none",
+      },
+    },
+
+    showWhenMobile: {
+      display: "none",
+      [BREAKPOINT]: {
+        display: "block",
+      },
+    },
+
+    descriptionDiv: {
+      border: "1px solid rgba(0,0,0,0.22)",
+      backgroundColor: "white",
+      borderRadius: 5,
+      padding: 20,
+      overflow: "hidden",
+      textDecoration: "none",
+      transition: "0.3s ease all",
+
+      '&:hover': {
+        backgroundColor: theme.colors.grape[1],
+        boxShadow: "3px 3px 15px 0px rgba(201,156,221,0.22)",
+        transition: "0.3s ease all",
+      },
+    },
 }))
   
 const DeceptiveChart = ({ scenarios, strategies }) => {
 
     console.log( scenarios )
-    const [currentlySelected, setSelected] = useState([]);
+    const [currentlySelected, setSelected] = useState(0);
     const [classSelected, setClassSelect] = useState(false);
     const { classes } = useStyles();
 
+    let handleSelect = (scenarioNumber) => {
+      setSelected(scenarioNumber)
+    };
+
+    const sortedScenarios = [...scenarios].sort((a, b) => a.DeceptiveScore - b.DeceptiveScore );
 
     return(
       <div className={classes.chart}>
@@ -114,36 +165,67 @@ const DeceptiveChart = ({ scenarios, strategies }) => {
                 />
                 <Text fz="xs" c="dimmed" className={classes.alternateText}>Scenarios vs Deceptive Score</Text>
           </Group>
-          <Stack h={300}>
+          <Stack>
             <div>
                 <div className={classes.list}>
                   {scenarios.map((e, i) => 
                     <Link href={`/scenario/${e.Number}`}>
-                    <div id={`bullet`+e.Number} className={classes.bullet} style={{ marginLeft: `${((e.DeceptiveScore/3.5) * 100 - 45) * 1.7}%` }}>
+                    <div id={`bullet`+e.Number} onClick={handleSelect} className={classes.bullet} style={{ marginLeft: `${((e.DeceptiveScore/3.5) * 100 - 45) * 1.7}%` }}>
                       {/* <div className={classes.line} style={{ height: `60px` }}></div> */}
-                      <Stack className={classes.insideBullet}>
-                        <Text fz="xs" c="dimmed" className={classes.alternateText}>Scenario {e.Number}</Text>
-
-                      </Stack>
                     </div>
                     </Link>)
                   }
                 </div>
-                <div>
+
+                <Group className={classes.showWhenMobile}>
+                  <Text my={10} fz="xs" c="dimmed" className={classes.alternateText}>Low to High Score (Top Down, Left to Right)</Text>
+                  <Group>
+                    {sortedScenarios.map((e, i) => 
+                        <Link href={`/scenario/${e.Number}`} style={{ textDecoration: "none", color: "inherit" }}>
+                        <Stack align="center" justify="center" id={`bullet`+e.Number} onClick={handleSelect} className={classes.bulletMobile}>
+                          {e.DeceptiveScore}
+                        </Stack>
+                        </Link>)
+                      }
+                  </Group> 
+                </Group>
+                <div className={classes.hiddenWhenMobile}>
                   <Group spacing={0} justify="center">
                   <div justify="flex-end" className={classes.circleLine}></div>
                   <div justify="center" className={classes.axisLine} style={{ flexGrow: 2 }}></div> 
                   <div justify="flex-end" className={classes.circleLine}></div>
                   </Group>
                   <Group position="apart" mt={60}>
-                    <div><Text fz="xs" c="dimmed" className={classes.alternateText}>Less Deceptive</Text></div>
-                    <div><Text fz="xs" c="dimmed" className={classes.alternateText}>Socially Acceptable</Text></div>
-                    <div><Text fz="xs" c="dimmed" className={classes.alternateText}>More Deceptive</Text></div>
+                    <div><Text fz="xs" c="dimmed" className={classes.alternateText}>Socially Acceptable (Low Deceptive Score)</Text></div>
+                    <div><Text fz="xs" c="dimmed" className={classes.alternateText}>Less Socially Acceptable (High Deceptive Score)</Text></div>
                   </Group>
                 </div>
                 
             </div>
           </Stack>
+
+          <Group className={classes.hiddenWhenMobile} mt={50}>
+            <Group align="flex-start">
+              {sortedScenarios.map((e,i) => 
+                <a href={`/scenario/${e.Number}`} style={{ textDecoration: "none", color: "inherit" }}>
+                <Stack className={classes.descriptionDiv} maw={200}>
+                  <Group className={classes.uiShell}>
+                    <BrandHeadlessui
+                        size={20}
+                        strokeWidth={1}
+                        color={'gray'}
+                        style={{ marginLeft: 10 }}
+                      />
+                      <Text fz="xs" c="dimmed" className={classes.alternateText}>Scenario {e.Number}</Text>
+                  </Group>
+                  <Text fz="xs">{e.Instruction}</Text>
+                  <Text fz="xs" c="dimmed" className={classes.alternateText}>Score: {e.DeceptiveScore}</Text>
+                </Stack>
+                </a>
+              )}
+            </Group>
+          </Group>
+
         </Stack>
       
       </div>

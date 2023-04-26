@@ -360,7 +360,7 @@ const ChartsPage = () => {
                     </Stack>
 
                     <Stack>
-                      <Text fz="xs" className={classes.subTitle}>Insight 12</Text>
+                      <Text fz="xs" className={classes.subTitle}>Insight 11</Text>
                       <Stack mt="auto">
                           <Text fz="md">Defaults are known as "acceptable" donations.</Text>
                       </Stack>
@@ -377,7 +377,7 @@ const ChartsPage = () => {
                     </Stack>
 
                     <Stack>
-                      <Text fz="xs" className={classes.subTitle}>Insight 13</Text>
+                      <Text fz="xs" className={classes.subTitle}>Insight 12</Text>
                       <Stack>
                           <Text fz="md">People want to predict what will happen to their money.</Text>
                       </Stack>

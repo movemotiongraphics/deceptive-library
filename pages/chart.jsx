@@ -1,6 +1,7 @@
-import { Group, Flex, Stack, Container, createStyles, Image, Badge, Text, Grid } from '@mantine/core';
+import { Group, Flex, Stack, Container, Button, createStyles, Image, Badge, Text, Grid } from '@mantine/core';
 import DeceptiveChart from '../components/DeceptiveChart';
 import { useState, useEffect } from 'react' 
+import { ArrowNarrowRight } from 'tabler-icons-react';
 
 const BREAKPOINT = '@media (max-width: 755px)';
 
@@ -65,7 +66,7 @@ const useStyles = createStyles((theme) => ({
     width: 20,
     height: 20,
     borderRadius: 5,
-    backgroundColor: theme.colors.green[5],
+    backgroundColor: theme.colors.grape[3],
   },
 
   alternateText: {
@@ -122,13 +123,13 @@ const ChartsPage = () => {
       <Container size="xl" px={30}>
           <Group mt={130} mb={170} position="center" alignItems="center">
             <h1 className={classes.headerTitle} style={{ textAlign: "center"}}>
-              How socially acceptable is your interface?
+              Find some strategies to use!
             </h1>
           </Group>
 
-          <Stack my={200} align="center" w="100%">
+          <Stack my={150} align="center" w="100%">
                 <Group maw={800}>
-                  <Text fz="xs" className={classes.subTitle}>Deception Score</Text>
+                  <Text fz="xs" className={classes.subTitle}>Find based on Deception Score</Text>
                   <Stack mt="auto">
                       <Text fz="md">The deception score measures how socially acceptable a deceptive interface is. It is used to determine whether your deceptive interface is appropriate for your users. The chart below is a list of 12 scenarios charted against their deceptive score, take a look below to get some inspiration.</Text>
                   </Stack>
@@ -148,6 +149,19 @@ const ChartsPage = () => {
               <DeceptiveChart scenarios={scenarioRecords} strategies={strategyRecords}></DeceptiveChart>
             </div>
           </Stack>
+
+          <Stack align="center" w="100%" pt={100} mt={100}>
+                <Group maw={800} mb={50}>
+                  <Text fz="xs" className={classes.subTitle} grow>Make your own</Text>
+                  <Stack mt="auto" mb={20}>
+                      <Text fz="md">Start using the framework to make your own deceptive interface!</Text>
+                  </Stack>
+                  <a href={"./"}>
+                        <Button uppercase rightIcon={<ArrowNarrowRight strokeWidth={1}/>} color="dark" radius={5} size="xl" style={{ fontSize: '14px', fontWeight: 400, fontFamily: "Space Mono" }}>Make Your Own</Button>
+                      </a>
+                </Group>
+          </Stack>
+
       </Container>
     )
 }
