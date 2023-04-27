@@ -52,18 +52,27 @@ const useStyles = createStyles((theme) => ({
     },
   },
 
+  alternateText: {
+    fontFamily: "Space Mono",
+  },
+
   link: {
     display: 'block',
+    fontFamily: "Space Mono",
     lineHeight: 1,
-    paddingBottom: '10px',
+    padding: 20,
+    fontSize: theme.fontSizes.xs,
     textDecoration: 'none',
-    color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.gray[7],
+    color: "rgba(0,0,0,0.35)",
+    textTransform: "uppercase",
     fontWeight: 500,
     marginRight: "20px",
 
     '&:hover': {
       borderBottom: `1px solid ${theme.colors.dark[9]}`,
+      color: theme.colors.gray[9],
       marginTop: "1px",
+      transition: "0.3s ease all",
     },
 
     [theme.fn.smallerThan('sm')]: {
@@ -73,8 +82,8 @@ const useStyles = createStyles((theme) => ({
   },
 
   linkActive: {
-    borderBottom: `1px solid ${theme.colors.dark[9]}`,
-    marginTop: "1px",
+    color: theme.colors.gray[9],
+    transition: "0.3s ease all",
   }
 
 }));
