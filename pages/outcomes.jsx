@@ -97,6 +97,10 @@ const useStyles = createStyles((theme) => ({
       opacity: 1,
       transition: "0.3s ease all",
     },
+
+    [BREAKPOINT]: {
+      width: 425,
+    },
   },
 
 }));
