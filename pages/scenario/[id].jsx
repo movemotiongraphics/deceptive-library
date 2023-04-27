@@ -271,7 +271,7 @@ const scenarioPage = ({ currentScenario }) => {
                             <Group mb={15}>
                                 <div className={classes.InspirationProfile}></div>
                                 <div className={classes.InspirationDot}></div>
-                                <Text style={{ marginLeft: "-10px" }} fz="xs" className={classes.alternateText}>Person {i}</Text>
+                                <Text style={{ marginLeft: "-10px" }} fz="xs" className={classes.alternateText}>Person {i + 1}</Text>
                             </Group>
                             <Text fz="xs" className={classes.alternateText}>{e}</Text>
                             </Stack>
@@ -307,7 +307,7 @@ const scenarioPage = ({ currentScenario }) => {
                 <Stack maw={1000} align="center">
                     <Text fz="xs" className={classes.alternateText}>Measurements</Text>
                     <h1 className={classes.title} style={{textAlign: "center"}}>
-                    In the experiment, people felt that this interface was { Number(currentScenario.ParticipationRate.replace("%",'')) > 40 ? 'shady' : 'not shady' }.
+                    After measuring, people felt that this interface was { currentScenario.DeceptiveScore < 2.5 ? 'socially acceptable' : 'not socially acceptable' } based on a deception score of { currentScenario.DeceptiveScore }/3.5.
                     </h1>
                 </Stack>
             </Stack>
@@ -328,13 +328,15 @@ const scenarioPage = ({ currentScenario }) => {
                     <Text fz="sm">How much of a risk was it to donate in this scenario?</Text>
                     <Slider mb={30}
                     labelAlwaysOn
-                    defaultValue={ currentScores.riskScore * 10 }
-                      marks={[
-                        { value: 8, label: 'Not Risky' },
-                        { value: 25, label: '' },
-                        { value: 50, label: '' },
-                        { value: 75, label: '' },
-                        { value: 90, label: 'Very Risky' },
+                    defaultValue={ currentScores.riskScore }
+                    min={1}
+                    max={5}  
+                    marks={[
+                        { value: 1, label: 'Not Risky' },
+                        { value: 2, label: '' },
+                        { value: 3, label: '' },
+                        { value: 4, label: '' },
+                        { value: 5, label: 'Very Risky' },
                       ]}
                       styles={{
                         markLabel: {
@@ -365,13 +367,15 @@ const scenarioPage = ({ currentScenario }) => {
                     <Text fz="sm">When using this interface, how often do you feel unsure or uncertain about the outcome that will be given to you?</Text>
                     <Slider mb={30}
                     labelAlwaysOn
-                    defaultValue={ 100 - (currentScores.uncertaintyScore * 10) }
-                      marks={[
-                        { value: 9, label: 'Not Often' },
-                        { value: 25, label: '' },
-                        { value: 50, label: '' },
-                        { value: 75, label: '' },
-                        { value: 90, label: 'Very Often' },
+                    defaultValue={ 5 - (currentScores.uncertaintyScore) }
+                    min={1}
+                    max={5}  
+                    marks={[
+                        { value: 1, label: 'Not Often' },
+                        { value: 2, label: '' },
+                        { value: 3, label: '' },
+                        { value: 4, label: '' },
+                        { value: 5, label: 'Very Often' },
                       ]}
                       styles={{
                         markLabel: {
@@ -402,13 +406,15 @@ const scenarioPage = ({ currentScenario }) => {
                     <Text fz="sm">On a scale of 1-5, how pressuring was the experience in asking you to donate?</Text>
                     <Slider mb={30}
                     labelAlwaysOn
-                      defaultValue={ currentScores.pressureScore * 10 }
+                      defaultValue={ currentScores.pressureScore }
+                      min={1}
+                      max={5}
                       marks={[
-                        { value: 13, label: 'Not Pressuring' },
-                        { value: 25, label: '' },
-                        { value: 50, label: '' },
-                        { value: 75, label: '' },
-                        { value: 90, label: 'Pressuring' },
+                        { value: 1.0, label: 'Not Pressuring' },
+                        { value: 2.0, label: '' },
+                        { value: 3.0, label: '' },
+                        { value: 4.0, label: '' },
+                        { value: 5.0, label: 'Pressuring' },
                       ]}
                       styles={{
                         pointerEvents: "none",
@@ -440,13 +446,15 @@ const scenarioPage = ({ currentScenario }) => {
                     <Text fz="sm">On a scale of 1-5, how motivating was it to donate using this interface?</Text>
                     <Slider mb={30}
                     labelAlwaysOn
-                      defaultValue={ currentScores.motivationScore * 10 }
+                      defaultValue={ currentScores.motivationScore}
+                      min={1}
+                      max={5}
                       marks={[
-                        { value: 13, label: 'Not Pressuring' },
-                        { value: 25, label: '' },
-                        { value: 50, label: '' },
-                        { value: 75, label: '' },
-                        { value: 90, label: 'Pressuring' },
+                        { value: 1.0, label: 'Not Motivating' },
+                        { value: 2, label: '' },
+                        { value: 3, label: '' },
+                        { value: 4, label: '' },
+                        { value: 5, label: 'Motivating' },
                       ]}
                       styles={{
                         pointerEvents: "none",

@@ -1330,7 +1330,7 @@ export default function HomePage() {
           </Stack>
 
           <Grid>
-            <Grid.Col md={4} sm={12} xs={12}>
+            <Grid.Col md={6} sm={12} xs={12}>
               <Group className={classes.stepsBoxes} align="flex-start">
                 <CardComponent number={1}>
                   <Stack mt={50} mb={50} p={30} className={classes.uiBackground} maw={400}>
@@ -1344,12 +1344,14 @@ export default function HomePage() {
                   </Group>
                     <Text fz="sm">How much of a risk was it to donate in this scenario?</Text>
                     <Slider mb={30}
+                      min={1}
+                      max={5}
                       marks={[
-                        { value: 8, label: 'Not Risky' },
-                        { value: 25, label: '' },
-                        { value: 50, label: '' },
-                        { value: 75, label: '' },
-                        { value: 90, label: 'Very Risky' },
+                        { value: 1.3, label: 'Not Risky' },
+                        { value: 2, label: '' },
+                        { value: 3, label: '' },
+                        { value: 4, label: '' },
+                        { value: 4.7, label: 'Very Risky' },
                       ]}
                       styles={{
                         markLabel: {
@@ -1365,7 +1367,7 @@ export default function HomePage() {
               </Group>
             </Grid.Col>
 
-            <Grid.Col md={4} sm={12} xs={12}>
+            <Grid.Col md={6} sm={12} xs={12}>
               <Group className={classes.stepsBoxes} align="flex-start">
                 <CardComponent number={2}>
                   <Stack mt={50} mb={50} p={30} className={classes.uiBackground} maw={400}>
@@ -1379,12 +1381,14 @@ export default function HomePage() {
                   </Group>
                     <Text fz="sm">When using this interface, how often do you feel unsure or uncertain about the outcome that will be given to you?</Text>
                     <Slider mb={30}
+                      min={1}
+                      max={5}
                       marks={[
-                        { value: 9, label: 'Not Often' },
-                        { value: 25, label: '' },
-                        { value: 50, label: '' },
-                        { value: 75, label: '' },
-                        { value: 90, label: 'Very Often' },
+                        { value: 1.3, label: 'Not Often' },
+                        { value: 2, label: '' },
+                        { value: 3, label: '' },
+                        { value: 4, label: '' },
+                        { value: 4.7, label: 'Very Often' },
                       ]}
                       styles={{
                         markLabel: {
@@ -1400,7 +1404,7 @@ export default function HomePage() {
               </Group>
             </Grid.Col>
 
-            <Grid.Col md={4} sm={12} xs={12}>
+            <Grid.Col md={6} sm={12} xs={12}>
               <Group className={classes.stepsBoxes} align="flex-start">
                 <CardComponent number={3}>
                   <Stack mt={50} mb={50} p={30} className={classes.uiBackground} maw={400}>
@@ -1414,12 +1418,14 @@ export default function HomePage() {
                   </Group>
                     <Text fz="sm">On a scale of 1-5, how pressuring was the experience in asking you to donate?</Text>
                     <Slider mb={30}
+                      min={1}
+                      max={5}
                       marks={[
-                        { value: 13, label: 'Not Pressuring' },
-                        { value: 25, label: '' },
-                        { value: 50, label: '' },
-                        { value: 75, label: '' },
-                        { value: 90, label: 'Pressuring' },
+                        { value: 1.3, label: 'Not Pressuring' },
+                        { value: 2, label: '' },
+                        { value: 3, label: '' },
+                        { value: 4, label: '' },
+                        { value: 4.7, label: 'Very Pressuring' },
                       ]}
                       styles={{
                         markLabel: {
@@ -1434,7 +1440,58 @@ export default function HomePage() {
                 </CardComponent>   
               </Group>
             </Grid.Col>
+
+            <Grid.Col md={6} sm={12} xs={12}>
+              <Group className={classes.stepsBoxes} align="flex-start">
+                <CardComponent number={3}>
+                  <Stack mt={50} mb={50} p={30} className={classes.uiBackground} maw={400}>
+                  <Group className={classes.uiShell}>
+                    <QuestionMark
+                        size={20}
+                        strokeWidth={1}
+                        color={'gray'}
+                      />
+                      <Text fz="xs" c="dimmed" className={classes.alternateText}>Question</Text>
+                  </Group>
+                    <Text fz="sm">On a scale of 1-5, how motivating was it to donate using this interface?</Text>
+                    <Slider mb={30}
+                      min={1}
+                      max={5}
+                      marks={[
+                        { value: 1.3, label: 'Not Motivating' },
+                        { value: 2, label: '' },
+                        { value: 3, label: '' },
+                        { value: 4, label: '' },
+                        { value: 4.7, label: 'Motivating' },
+                      ]}
+                      styles={{
+                        markLabel: {
+                          textAlign: "left",
+                          fontFamily: "Space Mono",
+                          fontSize: 12,
+                          marginTop: 10
+                        }
+                      }}
+                    />
+                  </Stack>
+                </CardComponent>   
+              </Group>
+            </Grid.Col>
+
+
           </Grid>
+          
+          <Stack align="center" w="100%" mt={100}>
+                <Group maw={800}>
+                  <Text fz="xs" className={classes.subTitle}>Results</Text>
+                  <Stack mt="auto" mb={100}>
+                  <Group className={classes.postItsSpecial} mt={20}>
+                        <Text fz="md">Your deception score is currently 3.5 and your prototype might not be socially acceptable.</Text>
+                  </Group>
+                  </Stack>
+                </Group>
+          </Stack>
+
       </Stack>
 
     </Container>
