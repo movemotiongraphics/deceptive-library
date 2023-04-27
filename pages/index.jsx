@@ -401,13 +401,14 @@ export default function HomePage() {
     <Container size="xl" px={30}>
       <HeroTitle></HeroTitle>
 
-      <Stack mt={200} mb={200}>
+      <Stack mt={200} mb={200} id="preface">
         <Divider my="sm" />
         <Group spacing={0}>
             <div className={classes.badgeLight}><Text fz="xs" className={classes.alternateText}>0</Text></div>
             <div className={classes.badgeDark}><Text fz="xs" className={classes.alternateText}>Preface</Text></div>
         </Group>
       </Stack>
+
 
       <Stack my={200} align="center" w="100%">
                 <Group maw={800}>
@@ -767,8 +768,8 @@ export default function HomePage() {
             </Group>
           </Stack>
 
-            <Group>
-              <Grid p={0} m={0} >
+            <Group position="apart" w={"100%"}>
+              <Grid p={0} m={0} w={"100%"}>
                 <Grid.Col md={4} sm={12} xs={12} h={"100%"}>
                   <Stack className={classes.postIts}>
                     <Group className={classes.uiShell}>
@@ -801,7 +802,7 @@ export default function HomePage() {
                       </Group>
                       <Text fz="xs" className={classes.alternateText}>I participated because...</Text>
                       <Textarea
-                        placeholder="I felt cheated when..."
+                        placeholder="I participated because..."
                         variant="filled"
                         minRows="6"
                       />
@@ -820,7 +821,7 @@ export default function HomePage() {
                         </Group>
                         <Text fz="xs" className={classes.alternateText}>If I could receate it...</Text>
                         <Textarea
-                        placeholder="I felt cheated when..."
+                        placeholder="I will..."
                         minRows="6"
                       />
                   </Stack>

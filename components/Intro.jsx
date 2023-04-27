@@ -1,5 +1,6 @@
 import { createStyles, Container, Text, Button, Group, Select, Stack, Image, Badge, Grid } from '@mantine/core';
 import { useState } from 'react';
+import { ArrowNarrowRight } from 'tabler-icons-react';
 import { RiveAnimation, CurrentDonationAmount } from './riveDonate';
 
 const BREAKPOINT = '@media (max-width: 755px)';
@@ -30,6 +31,10 @@ const useStyles = createStyles((theme) => ({
       fontSize: 42,
       lineHeight: 1.2,
     },
+  },
+
+  alternateText: {
+    fontFamily: "Space Mono",
   },
 
   description: {
@@ -82,18 +87,29 @@ const HeroTitle = () => {
     <div className={classes.wrapper}>
       <Container className={classes.inner} fluid px={0}>
 
-        <Group mt={130} mb={170} position="center" alignItems="center">
+        <Group mt={130} mb={50} position="center" alignItems="center">
           <h1 className={classes.title}>
             Let's make your donation interface more effective with human biases.
           </h1>
+        </Group>
+        <Group position="center"  mb={170}>
+            <a href={"./#preface"}>
+                        <Button uppercase rightIcon={<ArrowNarrowRight strokeWidth={1}/>} color="dark" variant="subtle" radius={5} size="xl" style={{ fontSize: '14px', fontWeight: 400, fontFamily: "Space Mono" }}>framework</Button>
+            </a>
+            <a href={"./outcomes"}>
+                        <Button uppercase rightIcon={<ArrowNarrowRight strokeWidth={1}/>} color="gray" variant="subtle" radius={5} size="xl" style={{ fontSize: '14px', fontWeight: 400, fontFamily: "Space Mono" }}>insights</Button>
+            </a>
+            <a href={"./chart"}>
+                        <Button uppercase rightIcon={<ArrowNarrowRight strokeWidth={1}/>} color="gray" variant="subtle" radius={5} size="xl" style={{ fontSize: '14px', fontWeight: 400, fontFamily: "Space Mono" }}>strategies</Button>
+            </a>
         </Group>
 
         <Grid mt={30} position="left" align="flex-start">
           <Grid.Col md={6} sm={12} xs={12}>
             <Stack>
               <Group position="apart" align="end">
-              <Text fz="sm" >This might be your current design,</Text>
-              <Badge color="gray" size="lg" radius="sm">+0% clicked donate</Badge>
+              <Text fz="sm">This is your current design,</Text>
+              <Badge color="gray" size="md" radius="sm" className={classes.alternateText}>+0% clicked donate</Badge>
               </Group>
             <div className={classes.imageBorder}>
               {/* rive animation here */}
@@ -105,8 +121,8 @@ const HeroTitle = () => {
           <Grid.Col md={6} sm={12} xs={12}>
             <Stack>
             <Group position="apart" align="end">
-            <Text fz="sm">but these might be better.</Text>
-              <Badge color="green" size="lg" radius="sm">+50% clicked donate</Badge>
+            <Text fz="sm">but this might be better.</Text>
+              <Badge color="green" size="md" radius="sm" className={classes.alternateText} >+50% clicked donate</Badge>
             </Group>
             
             <div className={classes.imageBorder}>

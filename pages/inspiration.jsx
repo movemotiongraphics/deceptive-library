@@ -390,7 +390,7 @@ const StudyPage = () => {
       <Container size="xl" px={30}>
           <Group mt={130} mb={170} position="center" align="center">
             <h1 className={classes.headerTitle} style={{ textAlign: "center"}}>
-              Get inspired with summary card prompts.
+              Deceptive Schemes Library
             </h1>
           </Group>
 

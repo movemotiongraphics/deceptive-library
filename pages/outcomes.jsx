@@ -180,6 +180,7 @@ const ChartsPage = () => {
 
               <Grid gutter={20} mb={80}>
                 <Grid.Col md={4} sm={6} xs={12}>
+                  <a href="./scenario/0" style={{ textDecoration: "none", color: "inherit"}}>
                   <Stack>
                     <Stack className={classes.greyBackground}>
                       <div className={classes.imageBorder}>
@@ -194,9 +195,11 @@ const ChartsPage = () => {
                       </Stack>
                     </Stack>
                   </Stack>
+                  </a>
                 </Grid.Col>
 
                 <Grid.Col md={4} sm={6} xs={12}>
+                  <a href="./scenario/1" style={{ textDecoration: "none", color: "inherit"}}>
                   <Stack>
                     <Stack className={classes.greyBackground}>
                       <div className={classes.imageBorder}>
@@ -211,9 +214,11 @@ const ChartsPage = () => {
                       </Stack>
                     </Stack>
                   </Stack>
+                  </a>
                 </Grid.Col>
 
                 <Grid.Col md={4} sm={6} xs={12}>
+                  <a href="./scenario/2" style={{ textDecoration: "none", color: "inherit"}}>
                   <Stack>
                     <Stack className={classes.greyBackground}>
                       <div className={classes.imageBorder}>
@@ -228,11 +233,13 @@ const ChartsPage = () => {
                       </Stack>
                     </Stack>
                   </Stack>
+                  </a>
                 </Grid.Col>
               </Grid>
 
               <Grid gutter={20} mb={80}>
                 <Grid.Col md={4} sm={6}>
+                  <a href="./scenario/4" style={{ textDecoration: "none", color: "inherit"}}>
                   <Stack>
                     <Stack className={classes.greyBackground}>
                       <div className={classes.imageBorder}>
@@ -247,9 +254,11 @@ const ChartsPage = () => {
                       </Stack>
                     </Stack>
                   </Stack>
+                  </a>
                 </Grid.Col>
 
                 <Grid.Col md={4} sm={6} xs={12}>
+                  <a href="./scenario/5" style={{ textDecoration: "none", color: "inherit"}}>
                   <Stack>
                     <Stack className={classes.greyBackground}>
                       <div className={classes.imageBorder}>
@@ -264,9 +273,11 @@ const ChartsPage = () => {
                       </Stack>
                     </Stack>
                   </Stack>
+                  </a>
                 </Grid.Col>
 
                 <Grid.Col md={4} sm={6} xs={12}>
+                  <a href="./scenario/6" style={{ textDecoration: "none", color: "inherit"}}>
                   <Stack>
                     <Stack className={classes.greyBackground}>
                       <div className={classes.imageBorder}>
@@ -281,11 +292,13 @@ const ChartsPage = () => {
                       </Stack>
                     </Stack>
                   </Stack>
+                  </a>
                 </Grid.Col>
               </Grid>
 
               <Grid gutter={20} mb={80}>
                 <Grid.Col md={4} sm={6} xs={12}>
+                  <a href="./scenario/8" style={{ textDecoration: "none", color: "inherit"}}>
                   <Stack>
                     <Stack className={classes.greyBackground}>
                       <div className={classes.imageBorder}>
@@ -300,9 +313,11 @@ const ChartsPage = () => {
                       </Stack>
                     </Stack>
                   </Stack>
+                  </a>
                 </Grid.Col>
 
                 <Grid.Col md={4} sm={6} xs={12}>
+                  <a href="./scenario/8" style={{ textDecoration: "none", color: "inherit"}}>
                   <Stack>
                     <Stack className={classes.greyBackground}>
                       <div className={classes.imageBorder}>
@@ -317,9 +332,11 @@ const ChartsPage = () => {
                       </Stack>
                     </Stack>
                   </Stack>
+                  </a>
                 </Grid.Col>
 
                 <Grid.Col md={4} sm={6} xs={12}>
+                  <a href="./scenario/9" style={{ textDecoration: "none", color: "inherit"}}>
                   <Stack>
                     <Stack className={classes.greyBackground}>
                       <div className={classes.imageBorder}>
@@ -334,11 +351,13 @@ const ChartsPage = () => {
                       </Stack>
                     </Stack>
                   </Stack>
+                  </a>
                 </Grid.Col>
               </Grid>
 
               <Grid gutter={20} mb={80}>
                 <Grid.Col md={4} sm={6} xs={12}>
+                  <a href="./scenario/9" style={{ textDecoration: "none", color: "inherit"}}>
                   <Stack>
                     <Stack className={classes.greyBackground}>
                       <div className={classes.imageBorder}>
@@ -353,9 +372,11 @@ const ChartsPage = () => {
                       </Stack>
                     </Stack>
                   </Stack>
+                  </a>
                 </Grid.Col>
 
                 <Grid.Col md={4} sm={6} xs={12}>
+                  <a href="./scenario/10" style={{ textDecoration: "none", color: "inherit"}}>
                   <Stack>
                     <Stack className={classes.greyBackground}>
                       <div className={classes.imageBorder}>
@@ -370,9 +391,11 @@ const ChartsPage = () => {
                       </Stack>
                     </Stack>
                   </Stack>
+                  </a>
                 </Grid.Col>
 
                 <Grid.Col md={4} sm={6} xs={12}>
+                  <a href="./scenario/4" style={{ textDecoration: "none", color: "inherit"}}>
                   <Stack>
                     <Stack className={classes.greyBackground}>
                       <div className={classes.imageBorder}>
@@ -387,6 +410,7 @@ const ChartsPage = () => {
                       </Stack>
                     </Stack>
                   </Stack>
+                  </a>
                 </Grid.Col>
               </Grid>
 

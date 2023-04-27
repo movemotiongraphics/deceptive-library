@@ -225,7 +225,10 @@ const scenarioPage = ({ currentScenario }) => {
             <Grid mb={100}> 
                 <Grid.Col md={6} sm={12} xs={12}>
                     <Stack className={classes.scenarioBorder}>
-                            <Text fz="xs" c="dimmed" className={classes.alternateText}>Typical Interface</Text>
+                            <Group position="apart">
+                              <Text fz="xs" c="dimmed" className={classes.alternateText}>Typical Interface</Text>
+                              <Badge color="gray" size="md" radius="sm" className={classes.alternateText} >33% clicked donate</Badge>
+                            </Group>
                             <Group className={classes.imageBorder}>
                                 <RiveAnimation scenarioNumber={99} />
                             </Group>
@@ -234,7 +237,11 @@ const scenarioPage = ({ currentScenario }) => {
                 </Grid.Col>
                 <Grid.Col md={6} sm={12} xs={12}>
                 <Stack className={classes.scenarioBorder}>
-                        <Text fz="xs" c="dimmed" className={classes.alternateText}>Scenario { currentScenario.Number }</Text>
+                        <Group position="apart">
+                          <Text fz="xs" c="dimmed" className={classes.alternateText}>Scenario { currentScenario.Number }</Text>
+                          <Badge color={ (Number(currentScenario.ParticipationRate.replace("%",''))).toFixed(2) < 33 ? 'red' : 'green' } size="md" radius="sm" className={classes.alternateText} >{(Number(currentScenario.ParticipationRate.replace("%",''))).toFixed(2)}% clicked donate</Badge>
+                        </Group>
+                        
                             <Group className={classes.imageBorder}>
                                 <RiveAnimation scenarioNumber={currentScenario.Number} />
                             </Group>
