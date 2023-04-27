@@ -1,10 +1,10 @@
 [
  {
    "Observation": "They had to factor money they lost in relation to the donation.",
-   "Insight": "attractiveness of using a chance mechanism that wears out fast, and becomes really suspicious.",
+   "Insight": "Chance mechanisms lose their appeal over time.",
    "Scenarios": "Spinning Wheel",
    "Actionable": "Vary the donation amount",
-   "EffectiveIn": "Fun experiences that reward users",
+   "EffectiveIn": "building fun experiences",
    "Summary": "Participants tend to focus on minimising the loss rather than gaining a profit."
  },
  {
@@ -41,7 +41,7 @@
  },
  {
    "Observation": "Participants doubt information when interfaces seem to honest.",
-   "Insight": "lack of control which deters people from donating, even if its an amount they might usually donate.",
+   "Insight": "When people lack control over the donation amount, they won't donate, even if they would normally do so.",
    "Scenarios": "Split Button",
    "Actionable": "",
    "EffectiveIn": "",
@@ -81,10 +81,10 @@
  },
  {
    "Observation": "Everyone seems suspicious.",
-   "Insight": "suspicion when donation amounts become high because people didn't know where the money went to.",
+   "Insight": "It is difficult to commit to a reward that is unpredictable.",
    "Scenarios": "Highest Donation Wins",
    "Actionable": "Remove doubts",
-   "EffectiveIn": "Large donations that give people a sense of achievement.",
+   "EffectiveIn": "designing for large donations",
    "Summary": "People tried to outsmart the mechanism, leading to a sense of competitive spirit."
  },
  {
@@ -97,7 +97,7 @@
  },
  {
    "Observation": "Some of them tried to outsmart the mechanism.",
-   "Insight": "anxiety when users made a huge donation commitment.",
+   "Insight": "",
    "Scenarios": "Highest Donation Wins",
    "Actionable": "",
    "EffectiveIn": "",
@@ -124,7 +124,7 @@
    "Insight": "",
    "Scenarios": "Dog Shirt + Rice Bundle",
    "Actionable": "",
-   "EffectiveIn": "Donations that brings users closer to the organisation.",
+   "EffectiveIn": "designing for small donations",
    "Summary": "Gift bundle rewards people for making a donation, making it a good effort."
  },
  {
@@ -145,10 +145,10 @@
  },
  {
    "Observation": "Friends make donation more comfortable.",
-   "Insight": "influence when friends who are closer to users made them donate personally.",
+   "Insight": "In order to make people donate, closer friends are more influential.",
    "Scenarios": "Split cost of Rice with Participants",
    "Actionable": "Leverage on the community to build confidence",
-   "EffectiveIn": "Donations that brings users closer to the organisation.",
+   "EffectiveIn": "designing for small donations",
    "Summary": "Friends make donations less intimidating by sharing their support."
  },
  {
@@ -169,10 +169,10 @@
  },
  {
    "Observation": "Confusing mechanism that couldn’t ensure them of the amount they were donating",
-   "Insight": "community even though people found it unlikely that everyone will do \"good\". ",
+   "Insight": "People thought it was unlikely that everyone would do \"good\".",
    "Scenarios": "Shared Reachable Goal",
    "Actionable": "Leverage on the community to build confidence",
-   "EffectiveIn": "Large donations that give people a sense of achievement.",
+   "EffectiveIn": "designing for large donations",
    "Summary": "People wanted a clear understanding of the total amount of funds raised."
  },
  {
@@ -200,16 +200,16 @@
    "Summary": ""
  },
  {
-   "Observation": "Someone felt like he should be doing more, because the shop was already doing so much.",
-   "Insight": "pressure when someone else is putting more effort than you (in donating).",
+   "Observation": "They felt like they should be doing more because the shop was already doing so much.",
+   "Insight": "It is sometimes stressful when someone puts more effort into donating than you do.",
    "Scenarios": "Donation Slider",
    "Actionable": "Leverage on the community to build confidence",
-   "EffectiveIn": "Donations that brings users closer to the organisation.",
+   "EffectiveIn": "designing for small donations",
    "Summary": ""
  },
  {
    "Observation": "They felt happy that the shop is donating as well.",
-   "Insight": "positive impression when someone explains why users donated.",
+   "Insight": "",
    "Scenarios": "Donation Slider",
    "Actionable": "",
    "EffectiveIn": "",
@@ -225,7 +225,7 @@
  },
  {
    "Observation": "They felt bad if they went lower than the default point.",
-   "Insight": "comfort when the default are just around people's donation appetite.",
+   "Insight": "",
    "Scenarios": "Default Donation",
    "Actionable": "",
    "EffectiveIn": "",
@@ -241,15 +241,15 @@
  },
  {
    "Observation": "The feedback from friend makes it very engaging.",
-   "Insight": "influence when users knew someone donated before them.",
+   "Insight": "",
    "Scenarios": "Passing $2 to you",
    "Actionable": "Leverage on the community to build confidence",
-   "EffectiveIn": "Donations that brings users closer to the organisation.",
+   "EffectiveIn": "designing for small donations",
    "Summary": "People are afraid of ruining the donation \"streak\"."
  },
  {
    "Observation": "It felt like they were helping and earning at the same time.",
-   "Insight": "responsibility to continue a chain of \"donations\".",
+   "Insight": "People feel the responsibility to continue a chain of \"donations\".",
    "Scenarios": "Passing $2 to you",
    "Actionable": "",
    "EffectiveIn": "",
@@ -257,6 +257,14 @@
  },
  {
    "Observation": "Users reported a high cognitive load.",
+   "Insight": "Knowing that someone donated before you will make you feel more responsible to donate.",
+   "Scenarios": "Passing $2 to you",
+   "Actionable": "",
+   "EffectiveIn": "",
+   "Summary": ""
+ },
+ {
+   "Observation": "They think about the shop’s participation in it.",
    "Insight": "",
    "Scenarios": "Passing $2 to you",
    "Actionable": "",
@@ -264,7 +272,7 @@
    "Summary": ""
  },
  {
-   "Observation": "Users think about the shop’s participation in it.",
+   "Observation": "They are afraid of ruining the \"streak\" of donation.",
    "Insight": "",
    "Scenarios": "Passing $2 to you",
    "Actionable": "",
@@ -272,15 +280,7 @@
    "Summary": ""
  },
  {
-   "Observation": "Some people are afraid of ruining the \"streak\" of donation.",
-   "Insight": "",
-   "Scenarios": "Passing $2 to you",
-   "Actionable": "",
-   "EffectiveIn": "",
-   "Summary": ""
- },
- {
-   "Observation": "Some people didn't know that the $2 discount only applies when they donate more than $15.",
+   "Observation": "They didn't know that the $2 discount only applies when they donate more than $15.",
    "Insight": "",
    "Scenarios": "Passing $2 to you",
    "Actionable": "",
@@ -289,15 +289,15 @@
  },
  {
    "Observation": "People felt like there’s a minimum requirement to help.",
-   "Insight": "a sense of inferiority and a tendency to avoid options that too “easy”.",
+   "Insight": "Choices can create is a sense of inferiority and a tendency to avoid easy options.",
    "Scenarios": "Triple Split Option",
    "Actionable": "Build trust within users and organisation",
-   "EffectiveIn": "Donations that brings users closer to the organisation.",
+   "EffectiveIn": "designing for small donations",
    "Summary": "People compare tiers to decide which one is more suitable for them."
  },
  {
    "Observation": "People are afraid of other people viewing their decisions.",
-   "Insight": "a sense of additional effort and significance, when a gift is added to a donation.",
+   "Insight": "Adding a gift to a donation adds a sense of significance and effort.",
    "Scenarios": "Triple Split Option",
    "Actionable": "",
    "EffectiveIn": "",
@@ -305,7 +305,7 @@
  },
  {
    "Observation": "The gift makes it feel like there’s an effort to drive donations.",
-   "Insight": "relationship between the donor and the organization they are supporting.",
+   "Insight": "What people feel is an acceptable amount can be nudged.",
    "Scenarios": "Triple Split Option",
    "Actionable": "",
    "EffectiveIn": "",
@@ -321,7 +321,7 @@
  },
  {
    "Observation": "People started to look at how the average might be fake.",
-   "Insight": "influence to what users think are their “acceptable” donation by making the default just a little higher.",
+   "Insight": "What people feel is an acceptable amount can be nudged.",
    "Scenarios": "Default to Average Donation",
    "Actionable": "Vary the donation amount",
    "EffectiveIn": "",
@@ -336,7 +336,7 @@
    "Summary": ""
  },
  {
-   "Observation": "100% of people commented about the community aspect instead of the default.",
+   "Observation": "They commented about the community aspect instead of the default.",
    "Insight": "",
    "Scenarios": "Default to Average Donation",
    "Actionable": "",
@@ -352,8 +352,8 @@
    "Summary": ""
  },
  {
-   "Observation": "People reported a lack of control over the donation amount and interface.",
-   "Insight": "unfamiliarity, when this interface became too complex because people have no way to predict what might happen to their money.",
+   "Observation": "They reported a lack of control over the donation amount and interface.",
+   "Insight": "People feel more comfortable when they know what will happen to their donation.",
    "Scenarios": "Donation Boost by Chance",
    "Actionable": "",
    "EffectiveIn": "",
