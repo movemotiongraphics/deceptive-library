@@ -929,7 +929,7 @@ export default function HomePage() {
                       max={200}
                       marks={[
                         { value: 30, label: 'No-Boost' },
-                        { value: 500, label: 'Boosted' },
+                        { value: 170, label: 'Boosted' },
                       ]}
                       color="dark"
                       value={sliderAmount * 2.5}
