@@ -44,9 +44,32 @@ const useStyles = createStyles((theme) => ({
     lineHeight: 1.1,
 
     [BREAKPOINT]: {
+      width: "100%",
       fontSize: 42,
       lineHeight: 1.2,
     },
+  },
+
+  headerSpacing: {
+    marginTop: 100,
+    marginBottom: 100,
+
+    [BREAKPOINT]: {
+      marginTop: 50,
+      marginBottom: 50,
+    },
+  },
+
+  stepIcons: {
+    marginTop: 50,
+    maxWidth: 100,
+
+    [BREAKPOINT]: {
+      marginTop: 0,
+      maxWidth: 100,
+      height: 0,
+      visibility: "hidden",
+    }
   },
 
   accentBackground: {
@@ -230,11 +253,13 @@ const useStyles = createStyles((theme) => ({
     backgroundColor: theme.colors.gray[1],
     borderRadius: "20px 0 0 20px",
     padding: "10px 0 10px 20px",
+    margin: 0,
   },
 
   searchButton: {
     borderRadius: "0px 20px 20px 0px",
     height: "100%",
+    margin: 0,
   },
 
   searchExamples: {
@@ -514,7 +539,7 @@ export default function HomePage() {
                 </Group>
       </Stack>
 
-      <Stack mt={200} mb={200}>
+      <Stack className={classes.headerSpacing}>
         <Divider my="sm" />
         <Group spacing={0}>
             <div className={classes.badgeLight}><Text fz="xs" className={classes.alternateText}>0</Text></div>
@@ -522,19 +547,19 @@ export default function HomePage() {
         </Group>
       </Stack>
 
-      <Group mt={130} mb={150} className={classes.greyBackgroundAlternate} position="center" justifyContent="center" mih={600}>
+      <Group className={classes.headerSpacing} position="center" justifyContent="center">
           <Stack w="100%" align="center" >
-            <Group mb={100} position="center">
+            <Group position="center">
             <Text fz="xs" className={classes.subTitle}>Yes! Make people do what you want them to digitally!</Text>
             <h1 className={classes.title} style={{textAlign: "center"}}>
             Make socially acceptable deceptive interfaces in 4 simple steps.
             </h1>
             </Group>
-            <Image mt={50} maw={200} src="../img/dif.svg"></Image>
+            <Image className={classes.stepIcons} src="../img/dif.svg"></Image>
           </Stack>
       </Group>
 
-      <Stack my={200} align="center" w="100%">
+      <Stack my={100} align="center" w="100%">
                 <Group maw={800} id="Page0">
                   <Text fz="xs" className={classes.subTitle}>About the Deceptive Interfaes Framework</Text>
                   <Stack mt="auto">
@@ -674,7 +699,7 @@ export default function HomePage() {
             </Group>
           </Stack>
           
-          <Group mt={130} mb={150} className={classes.greyBackgroundAlternate} position="center" justifyContent="center" mih={600}>
+          <Group className={classes.headerSpacing} position="center" justifyContent="center">
             <Stack w="100%" align="center" >
               <Stack mb={100} align="center" position="center">
               <Text fz="xs" className={classes.subTitle}>A question to ask yourself</Text>
@@ -682,7 +707,7 @@ export default function HomePage() {
               When did you feel like you were influenced to participate in an activity?
               </h1>
               </Stack>
-              <Image mt={50} maw={200} src="../img/chapter1.svg"></Image>
+              <Image className={classes.stepIcons} mt={50} maw={200} src="../img/chapter1.svg"></Image>
             </Stack>
           </Group>
 
@@ -692,24 +717,20 @@ export default function HomePage() {
             <Text fz="xs" className={classes.subTitle} grow>A question to ask yourself</Text>
             <Stack align="center" w="100%">
               <Text fz="md">When did you feel like you were influenced to participate in an activity?</Text>
-                <Grid gutter={0} ml={-30}>
-                  <Grid.Col span={10}>
+                <Group mt={50} spacing={0} h={55} p={0} m={0}>
                   <div className={classes.inputArea}>
-                    <Input
-                        placeholder="I felt cheated at..."
-                        radius="xl"
-                        variant="unstyled"
-                        w={"100%"}
-                        value={currentSearchQuery}
-                        onChange={handleSearch}
-                        className={classes.subTitle}
-                      />
-                  </div>
-                  </Grid.Col>
-                  <Grid.Col span={2}>
-                  <Button className={classes.searchButton} color="dark" style={{ fontSize: '16px', fontWeight: 400 }}>Aw Man</Button>
-                  </Grid.Col>
-                </Grid>
+                      <Input
+                          placeholder="I felt cheated at..."
+                          radius="xl"
+                          variant="unstyled"
+                          w={200}
+                          value={currentSearchQuery}
+                          onChange={handleSearch}
+                          className={classes.subTitle}
+                        />
+                    </div>
+                    <Button className={classes.searchButton} color="dark" style={{ fontSize: '16px', fontWeight: 400 }}>Aw Man</Button>
+                </Group>
                 <Group py={10} px={20} className={classes.searchRecommendations}>
                   <Text fz="xs">Popular Terms</Text>
                   <Badge color="grape" size="md" radius="sm" onClick={() => setSearchQuery("Shopee")} className={classes.searchExamples}>Shopee</Badge>
@@ -980,7 +1001,7 @@ export default function HomePage() {
         </Group>
       </Stack>
 
-      <Group mt={130} mb={150} className={classes.greyBackgroundAlternate} position="center" justifyContent="center" mih={600}>
+      <Group className={classes.headerSpacing} position="center" justifyContent="center">
           <Stack w="100%" align="center" >
             <Stack mb={100} align="center" position="center">
             <Text fz="xs" className={classes.subTitle}>A question to ask yourself</Text>
@@ -988,7 +1009,7 @@ export default function HomePage() {
             How can we make users think a little more before they make a decision?
             </h1>
             </Stack>
-            <Image mt={50} maw={200} src="../img/chapter2.svg"></Image>
+            <Image className={classes.stepIcons} mt={50} maw={200} src="../img/chapter2.svg"></Image>
           </Stack>
       </Group>
 
@@ -1145,7 +1166,7 @@ export default function HomePage() {
         </Group>
       </Stack>
 
-      <Group mt={130} mb={150} className={classes.greyBackgroundAlternate} position="center" justifyContent="center" mih={600}>
+      <Group className={classes.headerSpacing}  position="center" justifyContent="center">
           <Stack w="100%" align="center" >
             <Stack mb={100} align="center" position="center">
             <Text fz="xs" className={classes.subTitle}>A question to ask yourself</Text>
@@ -1153,7 +1174,7 @@ export default function HomePage() {
             What do I know about my target audience?
             </h1>
             </Stack>
-            <Image mt={50} maw={200} src="../img/chapter3.svg"></Image>
+            <Image className={classes.stepIcons} mt={50} maw={200} src="../img/chapter3.svg"></Image>
           </Stack>
       </Group>
 
@@ -1428,7 +1449,7 @@ export default function HomePage() {
         </Group>
       </Stack>
 
-      <Group mt={130} mb={150} className={classes.greyBackgroundAlternate} position="center" justifyContent="center" mih={600}>
+      <Group className={classes.headerSpacing} position="center" justifyContent="center">
           <Stack w="100%" align="center" >
             <Stack mb={100} align="center" position="center">
             <Text fz="xs" className={classes.subTitle}>A question to ask yourself</Text>
@@ -1436,7 +1457,7 @@ export default function HomePage() {
             Is my interface socially acceptable?
             </h1>
             </Stack>
-            <Image mt={50} maw={200} src="../img/chapter4.svg"></Image>
+            <Image className={classes.stepIcons} mt={50} maw={200} src="../img/chapter4.svg"></Image>
           </Stack>
       </Group>
 
@@ -1663,7 +1684,7 @@ export default function HomePage() {
                         <Button uppercase leftIcon={<ArrowNarrowLeft strokeWidth={1}/>} color="grape" variant="light" radius={5} size="xl" style={{ fontSize: '14px', fontWeight: 400, fontFamily: "Space Mono" }}>Go Back</Button>
             </a>
             <a href="./outcomes">
-                        <Button uppercase rightIcon={<ArrowNarrowRight strokeWidth={1}/>} color="grape" variant="light" radius={5} size="xl" style={{ fontSize: '14px', fontWeight: 400, fontFamily: "Space Mono" }}> Explore Insights</Button>
+                        <Button uppercase rightIcon={<ArrowNarrowRight strokeWidth={1}/>} color="grape" variant="light" radius={5} size="xl" style={{ fontSize: '14px', fontWeight: 400, fontFamily: "Space Mono" }}>Insights</Button>
             </a>
         </Group>
 

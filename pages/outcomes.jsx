@@ -99,7 +99,7 @@ const useStyles = createStyles((theme) => ({
     },
 
     [BREAKPOINT]: {
-      width: 425,
+      width: 325,
     },
   },
 
@@ -176,7 +176,7 @@ const ChartsPage = () => {
               </Group>
             </Stack>
 
-            <Group w={"100%"}>
+            <Group w={"100%"} spacing={0}>
 
               <Grid gutter={20} mb={80}>
                 <Grid.Col md={4} sm={6} xs={12}>

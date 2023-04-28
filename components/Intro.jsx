@@ -132,7 +132,7 @@ const HeroTitle = () => {
           <Grid.Col md={6} sm={12} xs={12}>
             <Stack>
             <Group position="apart" align="end">
-            <Text fz="sm">but with a deceptive strategy, it might be better.</Text>
+            <Text fz="sm" style={{ textAlign: "left" }}>but with a deceptive strategy, it might be better.</Text>
               <Badge color="green" size="md" radius="sm" className={classes.alternateText} >+50% clicked donate</Badge>
             </Group>
             

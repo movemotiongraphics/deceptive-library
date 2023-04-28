@@ -11,6 +11,7 @@ const useStyles = createStyles((theme) => ({
     zIndex: 1,
     fontSize: theme.fontSizes.sm,
     textDecoration: 'none',
+    position: "sticky",
   },
 
   dropdown: {
@@ -118,7 +119,7 @@ const NavBarComponent = ({ links }) => {
           style={{width: "100%"}}>
           <div>
             <Link onClick={(event) => { setActive("/"); }} href={`/`} style={{textDecoration: 'none', color: 'inherit', display: "Flex", flexDirection: "row", alignItems: "center", justifyContent: "center"}}>
-              <Image maw="240px" mr="md" src="../img/logo-text.svg" alt="Logo" />
+              <Image maw="30px" mr="md" src="../img/logo-withouttext.svg" alt="Logo" />
             </Link>
           </div>
           <div style={{flexGrow: '3'}}></div>
