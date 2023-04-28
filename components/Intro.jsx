@@ -105,14 +105,14 @@ const HeroTitle = () => {
         </Group>
         <Group position="center"  mb={170}>
             <a onClick={() => handleScroll("#preface")}>
-                        <Button uppercase rightIcon={<ArrowNarrowRight strokeWidth={1}/>} color="dark" variant="subtle" radius={5} size="xl" style={{ fontSize: '14px', fontWeight: 400, fontFamily: "Space Mono" }}>framework</Button>
+                        <Button uppercase rightIcon={<ArrowNarrowRight strokeWidth={1}/>} color="dark" variant="subtle" radius={5} size="xl" style={{ fontSize: '14px', fontWeight: 400, fontFamily: "Space Mono" }}>go to framework</Button>
             </a>
-            <a href={"./outcomes"}>
+            {/* <a href={"./outcomes"}>
                         <Button uppercase rightIcon={<ArrowNarrowRight strokeWidth={1}/>} color="gray" variant="subtle" radius={5} size="xl" style={{ fontSize: '14px', fontWeight: 400, fontFamily: "Space Mono" }}>insights</Button>
             </a>
             <a href={"./chart"}>
                         <Button uppercase rightIcon={<ArrowNarrowRight strokeWidth={1}/>} color="gray" variant="subtle" radius={5} size="xl" style={{ fontSize: '14px', fontWeight: 400, fontFamily: "Space Mono" }}>strategies</Button>
-            </a>
+            </a> */}
         </Group>
 
         <Grid mt={30} position="left" align="flex-start">

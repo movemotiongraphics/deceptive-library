@@ -359,7 +359,7 @@ export default function HomePage() {
 
   //currentPage
 
-  const [currentPage, setPage] = useState(0);
+  const [currentPage, setPage] = useState(1);
   
   function retrieveRecords() {
     // const { data } = await axios.get('https://eoyeceylz6rbgls.m.pipedream.net');
@@ -959,7 +959,7 @@ export default function HomePage() {
           </Stack>
         </Stack>
 
-        <Group position="apart">
+        <Group noWrap position="apart">
           <a onClick={() => handlePageChange(0)}>
                         <Button uppercase leftIcon={<ArrowNarrowLeft strokeWidth={1}/>} color="grape" variant="light" radius={5} size="xl" style={{ fontSize: '14px', fontWeight: 400, fontFamily: "Space Mono" }}>Go Back</Button>
             </a>
@@ -1125,7 +1125,7 @@ export default function HomePage() {
         </Group>
       </Stack>
 
-      <Group position="apart">
+      <Group noWrap position="apart">
           <a onClick={() => handlePageChange(1)}>
                         <Button uppercase leftIcon={<ArrowNarrowLeft strokeWidth={1}/>} color="grape" variant="light" radius={5} size="xl" style={{ fontSize: '14px', fontWeight: 400, fontFamily: "Space Mono" }}>Go Back</Button>
             </a>
@@ -1407,7 +1407,7 @@ export default function HomePage() {
 
         </Stack>
 
-        <Group position="apart">
+        <Group noWrap position="apart">
           <a onClick={() => handlePageChange(2)}>
                         <Button uppercase leftIcon={<ArrowNarrowLeft strokeWidth={1}/>} color="grape" variant="light" radius={5} size="xl" style={{ fontSize: '14px', fontWeight: 400, fontFamily: "Space Mono" }}>Go Back</Button>
             </a>
@@ -1658,7 +1658,7 @@ export default function HomePage() {
                 </Group>
           </Stack>
 
-          <Group position="apart">
+          <Group noWrap position="apart">
           <a onClick={() => handlePageChange(3)}>
                         <Button uppercase leftIcon={<ArrowNarrowLeft strokeWidth={1}/>} color="grape" variant="light" radius={5} size="xl" style={{ fontSize: '14px', fontWeight: 400, fontFamily: "Space Mono" }}>Go Back</Button>
             </a>
