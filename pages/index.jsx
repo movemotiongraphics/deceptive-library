@@ -734,7 +734,7 @@ export default function HomePage() {
                 <Group py={20} px={20} className={classes.searchRecommendations}>
                   <Text fz="xs" c="dimmed">Popular Terms</Text>
                   <Badge color="grape" size="md" radius="sm" onClick={() => setSearchQuery("Shopee")} className={classes.searchExamples}>Shopee</Badge>
-                  <Badge color="grape" size="md" radius="sm" onClick={() => setSearchQuery("Scam")} className={classes.searchExamples}>Scam</Badge>
+                  <Badge color="grape" size="md" radius="sm" onClick={() => setSearchQuery("Game")} className={classes.searchExamples}>Game</Badge>
                   <Badge color="grape" size="md" radius="sm" onClick={() => setSearchQuery("Donation")} className={classes.searchExamples}>Donation</Badge>
                 </Group>
             </Stack>
