@@ -2,6 +2,7 @@ import { Button, Group, Flex, Stack, Container, createStyles, Image, Badge, Text
 import DeceptiveChart from '../components/DeceptiveChart';
 import { useState, useEffect } from 'react' 
 import { RiveAnimation } from '../components/riveDonate';
+import { ArrowNarrowRight } from 'tabler-icons-react';
 
 const BREAKPOINT = '@media (max-width: 755px)';
 
@@ -420,6 +421,17 @@ const ChartsPage = () => {
 
           </Stack>
 
+          <Stack align="center" w="100%" py={100}>
+                <Stack position="left" maw={800}>
+                  <Text fz="xs" className={classes.subTitle} grow>Put these insights to use</Text>
+                  <Stack mt="auto" mb={20}>
+                      <Text fz="md">Use one of the strategies to create your interface.</Text>
+                  </Stack>
+                  <a href={"./chart"}>
+                        <Button uppercase rightIcon={<ArrowNarrowRight strokeWidth={1}/>} color="dark" radius={5} size="xl" style={{ fontSize: '14px', fontWeight: 400, fontFamily: "Space Mono" }}>Strategies</Button>
+                      </a>
+                </Stack>
+          </Stack>
 
       </Container>
     )

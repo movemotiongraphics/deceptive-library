@@ -449,8 +449,8 @@ const ChartsPage = () => {
 
 
 
-          <Stack align="center" w="100%" pt={100} mt={100}>
-                <Group maw={800} mb={50}>
+          <Stack align="center" w="100%" py={100}>
+                <Stack position="left" maw={800}>
                   <Text fz="xs" className={classes.subTitle} grow>Make your own</Text>
                   <Stack mt="auto" mb={20}>
                       <Text fz="md">Start using the framework to make your own deceptive interface!</Text>
@@ -458,7 +458,7 @@ const ChartsPage = () => {
                   <a href={"./"}>
                         <Button uppercase rightIcon={<ArrowNarrowRight strokeWidth={1}/>} color="dark" radius={5} size="xl" style={{ fontSize: '14px', fontWeight: 400, fontFamily: "Space Mono" }}>Make Your Own</Button>
                       </a>
-                </Group>
+                </Stack>
           </Stack>
 
 
