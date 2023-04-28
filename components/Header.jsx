@@ -110,7 +110,7 @@ const NavBarComponent = ({ links }) => {
   ));
 
   return (
-    <Header height={HEADER_HEIGHT} mb={120} className={classes.root} sx={{ borderBottom: 0 }}>
+    <Header height={HEADER_HEIGHT} className={classes.root} sx={{ borderBottom: 0 }}>
       <Container className={classes.header} size="xl" px={30}>
         <Flex       
           justify="flex-start"

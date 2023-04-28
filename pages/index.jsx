@@ -717,7 +717,7 @@ export default function HomePage() {
             <Text fz="xs" className={classes.subTitle} grow>A question to ask yourself</Text>
             <Stack align="center" w="100%">
               <Text fz="md">When did you feel like you were influenced to participate in an activity?</Text>
-                <Group mt={50} spacing={0} h={55} p={0} m={0}>
+                <Group mt={50} spacing={0} h={55} p={0} m={0} noWrap>
                   <div className={classes.inputArea}>
                       <Input
                           placeholder="I felt cheated at..."
@@ -731,8 +731,8 @@ export default function HomePage() {
                     </div>
                     <Button className={classes.searchButton} color="dark" style={{ fontSize: '16px', fontWeight: 400 }}>Aw Man</Button>
                 </Group>
-                <Group py={10} px={20} className={classes.searchRecommendations}>
-                  <Text fz="xs">Popular Terms</Text>
+                <Group py={20} px={20} className={classes.searchRecommendations}>
+                  <Text fz="xs" c="dimmed">Popular Terms</Text>
                   <Badge color="grape" size="md" radius="sm" onClick={() => setSearchQuery("Shopee")} className={classes.searchExamples}>Shopee</Badge>
                   <Badge color="grape" size="md" radius="sm" onClick={() => setSearchQuery("Scam")} className={classes.searchExamples}>Scam</Badge>
                   <Badge color="grape" size="md" radius="sm" onClick={() => setSearchQuery("Donation")} className={classes.searchExamples}>Donation</Badge>

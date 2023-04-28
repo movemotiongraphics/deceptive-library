@@ -123,6 +123,11 @@ const useStyles = createStyles((theme) => ({
         height: 500,
         backgroundColor: theme.colors.gray[1],
         borderRadius: 20,
+
+        [BREAKPOINT]: {
+          height: 400,
+          width: 325,
+          },
         },
     
         description: {
@@ -297,17 +302,15 @@ const scenarioPage = ({ currentScenario }) => {
                 </Stack>
             </Stack>
 
-            <Group grow align="flex-start" justify="flex-start" mb={200}>
-            <Group align="flex-start" justify="flex-start">
+            <Group position="center">
                     { currentScenario.SeenBefore.split(",").map((e, i) => {
-                           return <Stack className={classes.seenBeforeIndividual} maw={200}>
+                           return <Stack justify="space-between" className={classes.seenBeforeIndividual} maw={200} p={20} mih={200}>
                            <Group mb={15}>
-                               <Text fz="xs" className={classes.alternateText}>Inspiration {i}</Text>
+                               <Text fz="xs" c="dimmed" className={classes.alternateText}>Inspiration {i}</Text>
                            </Group>
                            <Text fz="xs" className={classes.alternateText}>{e}</Text>
                            </Stack>                 
                         }) }
-            </Group>
             </Group>
 
             <Stack mt={130} mb={50} align="center">

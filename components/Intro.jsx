@@ -29,6 +29,7 @@ const useStyles = createStyles((theme) => ({
 
     [BREAKPOINT]: {
       fontSize: 42,
+      width: "100%",
       lineHeight: 1.2,
     },
   },
@@ -79,6 +80,15 @@ const useStyles = createStyles((theme) => ({
 
   },
 
+  introHeader: {
+    marginTop: 130,
+    marginBottom: 50,
+
+    [BREAKPOINT]: {
+      marginTop: 50,
+    },
+  },
+
   subheader: {
     fontWeight: 500,
   }
@@ -98,7 +108,7 @@ const HeroTitle = () => {
     <div className={classes.wrapper}>
       <Container className={classes.inner} fluid px={0}>
 
-        <Group mt={130} mb={50} position="center" alignItems="center">
+        <Group position="center" alignItems="center" className={classes.introHeader}>
           <h1 className={classes.title}>
             A set of tools for designers to create more effective donation interfaces, using deception.
           </h1>
