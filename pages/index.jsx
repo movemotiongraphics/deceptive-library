@@ -1225,7 +1225,7 @@ export default function HomePage() {
                         <Text fz="xs" c="dimmed" className={classes.alternateText}>Strategy 1</Text>
                     </Group>
                     <Stack maw={500} spacing={30}>
-                      <Text fz="sm" className={classes.alternateText}>Framing donation as a chance to win.</Text>
+                      <Text fw={500} fz="md" className={classes.alternateText}>Strategy - Framing donation as a chance to win.</Text>
                       <Text fz="sm">In these examples, the donation choice is changed into a chance to win or donate. The probability of donating is always higher than winning.</Text>
                     </Stack>
                     <Group ml={"auto"} style={{ marginTop: "-150px" }}>
@@ -1275,7 +1275,7 @@ export default function HomePage() {
                       <Text fz="xs" c="dimmed" className={classes.alternateText}>Strategy 2</Text>
                   </Group>
                   <Stack maw={500} spacing={30}>
-                    <Text fz="sm" className={classes.alternateText}>Attaching material value to donation to show  effort.</Text>
+                    <Text fw={500} fz="md" className={classes.alternateText}>Strategy - Attaching material value to donation to show  effort.</Text>
                     <Text fz="sm">In the study, participants felt that when gifts are attached to donations, it seemed like the organisation was putting in more effort. We can leverage onto this to create deceptive interfaces.</Text>
                   </Stack>
                   <Group ml={"auto"} style={{ marginTop: "-150px" }}>
@@ -1318,7 +1318,7 @@ export default function HomePage() {
                       <Text fz="xs" c="dimmed" className={classes.alternateText}>Strategy 3</Text>
                   </Group>
                   <Stack maw={500} spacing={30}>
-                    <Text fz="sm" className={classes.alternateText}>Introducing individual social Influence to make people donate.</Text>
+                    <Text fw={500} fz="md" className={classes.alternateText}>Strategy - Introducing individual social Influence to make people donate.</Text>
                     <Text fz="sm">It turns out that social influence is socially acceptable when it comes to donations, in fact, sometimes just one person is enough to influence someone to donate.</Text>
                   </Stack>
                   <Group ml={"auto"} style={{ marginTop: "-150px" }}>
@@ -1371,7 +1371,7 @@ export default function HomePage() {
                       <Text fz="xs" c="dimmed" className={classes.alternateText}>Strategy 4</Text>
                   </Group>
                   <Stack maw={500} spacing={30}>
-                    <Text fz="sm" className={classes.alternateText}>Leveraging on consumer’s relationship with store to make people donate.</Text>
+                    <Text fz="md" fw={500} className={classes.alternateText}>Strategy - Leveraging on consumer’s relationship with store to make people donate.</Text>
                     <Text fz="sm">If you finding donations from a strong community, you can also leverage onto those relationship to create deceptive interfaces.</Text>
                   </Stack>
                   <Group ml={"auto"} style={{ marginTop: "-150px" }}>
@@ -1415,7 +1415,7 @@ export default function HomePage() {
                       <Text fz="xs" c="dimmed" className={classes.alternateText}>Strategy 5</Text>
                   </Group>
                   <Stack maw={500} spacing={30}>
-                    <Text fz="sm" className={classes.alternateText}>Adjusting defaults to fit various appetites by creating more choices.</Text>
+                    <Text fz="md" fw={500}  className={classes.alternateText}>Strategy - Adjusting defaults to fit various appetites by creating more choices.</Text>
                     <Text fz="sm">Sometimes, people are willing to pay if the default donation amount can be adjusted to fit their criteria, so we can use this to nudge for higher donations.</Text>
                   </Stack>
                   <Group ml={"auto"} style={{ marginTop: "-150px" }}>

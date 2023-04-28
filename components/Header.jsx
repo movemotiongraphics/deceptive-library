@@ -8,7 +8,7 @@ const HEADER_HEIGHT = 100;
 const useStyles = createStyles((theme) => ({
   root: {
     position: 'relative',
-    zIndex: 1,
+    zIndex: 99,
     fontSize: theme.fontSizes.sm,
     textDecoration: 'none',
     position: "sticky",

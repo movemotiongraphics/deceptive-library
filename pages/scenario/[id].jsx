@@ -4,7 +4,7 @@ import axios, { all } from 'axios';
 import { RiveAnimation } from '../../components/riveDonate';
 import { useEffect, useState } from 'react';
 import CardComponent from '../../components/cardComponent';
-import { AppWindow, QuestionMark } from 'tabler-icons-react';
+import { AppWindow, H1, QuestionMark } from 'tabler-icons-react';
 
 const BREAKPOINT = '@media (max-width: 755px)';
 
@@ -102,7 +102,7 @@ const useStyles = createStyles((theme) => ({
     
         [BREAKPOINT]: {
           width: "100%",
-          fontSize: 42,
+          fontSize: 32,
           lineHeight: 1.1,
         },
       },
@@ -256,7 +256,7 @@ const scenarioPage = ({ currentScenario }) => {
                 </Grid.Col>
             </Grid>
 
-            <Stack mb={50} align="center">
+            <Stack mb={50} mt={100} align="center">
                 <Stack maw={1000} align="center">
                     <Text fz="xs" className={classes.alternateText}>Strategy</Text>
                     <h1 className={classes.title} style={{textAlign: "center"}}>
@@ -482,6 +482,22 @@ const scenarioPage = ({ currentScenario }) => {
               </Group>
             </Grid.Col>
           </Grid>
+
+          <Stack mt={130} mb={50}  align="center">
+                <Stack maw={1000} spacing={30} align="center">
+                    <Text fz="xs" className={classes.alternateText}>Conclusion</Text>
+                    <h1 className={classes.title} style={{textAlign: "center"}}>
+                    Since people felt that this interface was { currentScenario.DeceptiveScore < 2.5 ? 'socially acceptable, we can probably adopt this interface.' : 'not socially acceptable, we should probably not adopt this interface.' }
+                    </h1>
+                    <h1 className={classes.title} style={{textAlign: "center"}}>
+                    { currentScenario['Insight (from Observation)'] ? `In this experiment, ${currentScenario['Insight (from Observation)'].toLowerCase()}` : ''  }
+                    </h1>
+                    <h1 className={classes.title} style={{textAlign: "center"}}>
+                    { currentScenario['Actionable (from Observation)'] ? ` You can probably use this to ${currentScenario['Actionable (from Observation)'].toLowerCase()}.` : ' We can use this insight to create more interfaces!'  }
+                    </h1>
+                    
+                </Stack>
+            </Stack>
 
         </Stack>
     </Container>
