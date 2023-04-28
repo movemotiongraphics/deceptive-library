@@ -1,5 +1,5 @@
 import { Group, Flex, Stack, Container, createStyles, Image, Badge, Text, Grid, Button, Divider } from '@mantine/core';
-import { ExternalLink } from 'tabler-icons-react';
+import { ExternalLink, ArrowNarrowRight } from 'tabler-icons-react';
 import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
 
@@ -28,6 +28,20 @@ const useStyles = createStyles((theme) => ({
       fontFamily: "Space Mono",
     },
 
+    greyBackground: {
+      backgroundColor: theme.colors.gray[0],
+    },
+
+    imagesClass: {
+      backgroundColor: theme.colors.gray[0],
+      padding: 100,
+
+      [BREAKPOINT]: {
+        padding: 10,
+        minHeight: 400,
+      },
+    },
+
 }));
 
 const AboutPage = () => {
@@ -42,23 +56,29 @@ const AboutPage = () => {
             </h1>
           </Group>
 
-          <Stack mt={200} mb={100} align="center" w="100%">
+          <Group position="center" className={classes.imagesClass}>
+            <Image maw={800} src={"../img/summary.svg"} />
+          </Group>
+
+          <Stack mt={100} mb={100} align="center" w="100%">
             <Group maw={800}>
               <Text fz="xs" className={classes.subTitle}>About this study</Text>
               <Stack mt="auto" spacing={50}>
-                  <Text fz="md">The Deceptive Interfaces Framework is an outcome of Yuan Jie's Bachelor's Thesis Project.</Text>
-                  <Text fz="md">The thesis focuses on exploring whether deception can be used as a strategy to influence behavior for altruistic outcomes, with a particular focus on the context of donations. The project involves conducting 11 experiments with different donation interfaces to measure the levels of deception in each design, gathering feedback through qualitative and quantitative measurements, and distilling insights using a deception score formula.</Text>
-                  <Text fz="md">The ultimate goal is to develop a framework that can help designers create more effective interfaces using deception, yet maintain its social acceptability.</Text>
+                  <Text fz="md">The Deceptive Interfaces Framework is an outcome of my thesis that focuses on exploring whether deception can be used as a strategy to influence behavior for altruistic outcomes, with a particular focus on the context of donations.</Text>
+                  <Text fz="md">
+                  The thesis includes conducting 12 experiments with different donation interfaces inspired by deceptive schemes. This is done to measure the levels of deception in each design, gathering feedback through qualitative and quantitative measurements, and distilling insights using a deception score formula.
+                  </Text>
+                  <Text fz="md">Learning from the success, limitations and how I made those interfaces, I lay out a framework that can help other designers create interfaces using deception. These interfaces could be more effective and yet socially acceptable.</Text>
               </Stack>
             </Group>
           </Stack>
 
-          <Stack mb={200} align="center" w="100%">
+          <Stack mb={100} align="center" w="100%">
             <Group maw={800}>
               <Text fz="xs" className={classes.subTitle}>Why Socially-Acceptable Deceptive Interfaces?</Text>
               <Stack mt="auto" spacing={50}>
-                  <Text fz="md">Yuan Jie believes that socially-acceptable deceptive interfaces can be a powerful tool for improving user experiences in certain situations.</Text>
-                  <Text fz="md">By creating socially-acceptable deceptive interfaces, Yuan Jie aims to strike a balance between the benefits of deception and the need for transparency and ethical considerations. By doing so, he believes that interfaces that are both effective and trustworthy can be easily designed.</Text>
+                  <Text fz="md">I believe that socially-acceptable deceptive interfaces can be a powerful tool in helping designers know the influences of their interfaces.</Text>
+                  <Text fz="md">By creating socially-acceptable deceptive interfaces, we can explore the balance between the benefits of deception and the need for transparency and ethical considerations. By doing so, he believes that interfaces that are both effective and trustworthy can be easily designed.</Text>
               </Stack>
             </Group>
           </Stack>

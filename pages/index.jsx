@@ -1571,7 +1571,7 @@ export default function HomePage() {
                   <Text fz="xs" className={classes.subTitle}>Results</Text>
                   <Stack mt="auto" mb={100}>
                   <Group className={classes.postItsSpecial} mt={20}>
-                        <Text fz="md">Your deception score is currently { currentDeceptiveScore.toFixed(2) } and your prototype might not be socially acceptable.</Text>
+                        <Text fz="md">Your deception score is currently { currentDeceptiveScore.toFixed(2) } and your prototype might { currentDeceptiveScore < 2 ? 'be socially acceptable' : 'not be socially acceptable'}.</Text>
                   </Group>
                   </Stack>
                 </Group>

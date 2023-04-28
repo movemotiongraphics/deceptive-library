@@ -22,7 +22,13 @@ const useStyles = createStyles((theme) => ({
       footer: {
         height: 200,
         paddingTop: 20,
-      }
+      },
+
+      yjButton: {
+        backgroundColor: theme.colors.grape[0],
+        padding: 5,
+        borderRadius: 5,
+      },
 
 }));
   
@@ -37,7 +43,7 @@ const Footer = () => {
                         <div style={{flexGrow: 3}}>
                         <Text fz="xs" className={classes.alternateText} maw={500}>The Deceptive Interfaces Framework help designers create socially-acceptable interfaces using human biases, inspired from deception.</Text></div>
                         <Stack>
-                            <Text fz="xs" className={classes.alternateText}>Made by <a style={{ textDecoration: "none", color: "inherit" }}href="https://yuanjie.info/">Yuan Jie</a></Text>
+                            <Text fz="xs" className={classes.alternateText}>Made by <a className={classes.yjButton} style={{ textDecoration: "none", color: "inherit" }}href="https://yuanjie.info/">Yuan Jie</a></Text>
                             <Group>
                             <a href="https://yuanjie.info/"><Mail color={"black"} strokeWidth={1}/></a>
                             <a href="https://twitter.com/quietcomputers"><BrandTwitter color={'black'} strokeWidth={1}/></a>
