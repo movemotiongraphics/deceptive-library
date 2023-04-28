@@ -321,12 +321,14 @@ const useStyles = createStyles((theme) => ({
     },
   },
 
-  currenPage: {
-    visibility: "visible",
+  currentPage: {
+    opacity: 1,
+    transition: "1s ease opacity",
   },
 
   hiddenPage: {
-    visibility: "hidden",
+    opacity: 0,
+    transition: "1s ease opacity",
   }
 
 }));
@@ -442,16 +444,27 @@ export default function HomePage() {
   }
 
   const handlePageChange = (pageNumber) => {
-    setPage(pageNumber)
+    if (typeof document !== 'undefined') {
+      const page = document.querySelector("#pageContainer");
+      page.style.opacity = 0;
+
+      setTimeout(() => {
+        page.style.opacity = 1;
+      }, 1000)
+    }
     
     setTimeout(() => {
+      setPage(pageNumber);
+    }, 850)
+
+    setTimeout(() => {
       if (typeof document !== 'undefined') {
-        const part1 = document.querySelector(`#Page${pageNumber}`);
+        const part1 = document.querySelector(`#pageContainer`);
         if (part1) {
           part1.scrollIntoView({ behavior: 'smooth' });
         }
       }
-    }, 100);
+    }, 300);
   };
 
   useEffect(() => {
@@ -650,9 +663,9 @@ export default function HomePage() {
         </Grid>
       </Stack>
                   
-      
-      { currentPage == 1 ? (
-        <>
+      <Stack id="pageContainer" style={{ transition: "1s ease opacity" }}>
+      { currentPage == 1 && (
+        <Stack>
           <Stack mt={50} id="Page1">
             <Divider my="sm" />
             <Group spacing={0}>
@@ -671,7 +684,7 @@ export default function HomePage() {
               </Stack>
               <Image mt={50} maw={200} src="../img/chapter1.svg"></Image>
             </Stack>
-        </Group>
+          </Group>
 
         <Stack spacing={20} mt={20} mb={50}>
           <Stack>
@@ -954,10 +967,11 @@ export default function HomePage() {
                         <Button uppercase rightIcon={<ArrowNarrowRight strokeWidth={1}/>} color="grape" variant="light" radius={5} size="xl" style={{ fontSize: '14px', fontWeight: 400, fontFamily: "Space Mono" }}> Next Step</Button>
             </a>
         </Group>
-        </>
-      ) : ''}
+        </Stack>
+      )}
       
-      { currentPage == 2 ? (<>
+      { currentPage == 2 && (
+      <Stack>
       <Stack mt={50} id="Page2">
         <Divider my="sm" />
         <Group spacing={0}>
@@ -1119,9 +1133,10 @@ export default function HomePage() {
                         <Button uppercase rightIcon={<ArrowNarrowRight strokeWidth={1}/>} color="grape" variant="light" radius={5} size="xl" style={{ fontSize: '14px', fontWeight: 400, fontFamily: "Space Mono" }}> Next Step</Button>
             </a>
         </Group>
-      </>) : ''}
+      </Stack>)}
       
-      { currentPage == 3 ? (<>
+      { currentPage == 3 && (
+      <Stack>
         <Stack mt={50} id="Page3">
         <Divider my="sm" />
         <Group spacing={0}>
@@ -1401,9 +1416,10 @@ export default function HomePage() {
             </a>
         </Group>
       </Stack>      
-      </>) : ''}
+      </Stack>)}
       
-      { currentPage == 4 ? (<>
+      { currentPage == 4 && (
+      <Stack>
         <Stack mt={50} id="Page4">
         <Divider my="sm" />
         <Group spacing={0}>
@@ -1652,8 +1668,8 @@ export default function HomePage() {
         </Group>
 
       </Stack>      
-      </>) : ''}
-      
+      </Stack>)}
+      </Stack>
 
     </Container>
   );
