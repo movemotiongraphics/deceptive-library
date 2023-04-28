@@ -101,8 +101,9 @@ const useStyles = createStyles((theme) => ({
         lineHeight: 1.1,
     
         [BREAKPOINT]: {
+          width: "100%",
           fontSize: 42,
-          lineHeight: 1.2,
+          lineHeight: 1.1,
         },
       },
 
@@ -227,7 +228,7 @@ const scenarioPage = ({ currentScenario }) => {
             <Stack mb={100} maw={600}>
                 <Text fz="md" className={classes.alternateText}>In this scenario, I { currentScenario.Instruction.toLowerCase() } { currentScenario['Insight (from Observation)'] ? `I found out that ${currentScenario['Insight (from Observation)'].split(",")[0].toLowerCase()}` : 'The result was similar to the typical interface.' }</Text>
             </Stack>
-            <Grid mb={100}> 
+            <Grid mb={100} gutterSm={50} gutterXs={50} gutterMd={20}> 
                 <Grid.Col md={6} sm={12} xs={12}>
                     <Stack className={classes.scenarioBorder}>
                             <Group position="apart">
@@ -255,7 +256,7 @@ const scenarioPage = ({ currentScenario }) => {
                 </Grid.Col>
             </Grid>
 
-            <Stack mt={130} mb={50} align="center">
+            <Stack mb={50} align="center">
                 <Stack maw={1000} align="center">
                     <Text fz="xs" className={classes.alternateText}>Strategy</Text>
                     <h1 className={classes.title} style={{textAlign: "center"}}>

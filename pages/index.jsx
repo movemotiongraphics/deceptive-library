@@ -46,7 +46,7 @@ const useStyles = createStyles((theme) => ({
     [BREAKPOINT]: {
       width: "100%",
       fontSize: 42,
-      lineHeight: 1.2,
+      lineHeight: 1.1,
     },
   },
 
@@ -221,6 +221,10 @@ const useStyles = createStyles((theme) => ({
   subTitle: {
     fontFamily: "Space Mono",
     textAlign: "center",
+
+    [BREAKPOINT]: {
+      fontSize: 12,
+    },
   },
 
   spinnerClass: {
@@ -539,7 +543,7 @@ export default function HomePage() {
                 </Group>
       </Stack>
 
-      <Stack className={classes.headerSpacing}>
+      <Stack className={classes.headerSpacing} pt={20} id="start">
         <Divider my="sm" />
         <Group spacing={0}>
             <div className={classes.badgeLight}><Text fz="xs" className={classes.alternateText}>0</Text></div>
@@ -688,7 +692,7 @@ export default function HomePage() {
         </Grid>
       </Stack>
                   
-      <Stack id="pageContainer" style={{ transition: "1s ease opacity" }}>
+      <Stack pt={20} id="pageContainer" style={{ transition: "1s ease opacity" }}>
       { currentPage == 1 && (
         <Stack>
           <Stack mt={50} id="Page1">

@@ -52,6 +52,7 @@ const useStyles = createStyles((theme) => ({
 
   subTitle: {
     fontFamily: "Space Mono",
+
   },
 
   greyBackground: {

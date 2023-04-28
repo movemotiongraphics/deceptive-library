@@ -110,11 +110,11 @@ const HeroTitle = () => {
 
         <Group position="center" alignItems="center" className={classes.introHeader}>
           <h1 className={classes.title}>
-            A set of tools for designers to create more effective donation interfaces, using deception.
+          A toolkit to design more effective donation interfaces with deception.
           </h1>
         </Group>
         <Group position="center"  mb={170}>
-            <a onClick={() => handleScroll("#preface")}>
+            <a onClick={() => handleScroll("#start")}>
                         <Button uppercase rightIcon={<ArrowNarrowRight strokeWidth={1}/>} color="dark" variant="subtle" radius={5} size="xl" style={{ fontSize: '14px', fontWeight: 400, fontFamily: "Space Mono" }}>go to framework</Button>
             </a>
             {/* <a href={"./outcomes"}>

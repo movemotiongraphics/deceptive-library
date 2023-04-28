@@ -47,7 +47,7 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
           fontSizes: {
             xs: 14,
             sm: 18,
-            md: 23,
+            md: 20,
             lg: 70,
             xl: 80,
           },
