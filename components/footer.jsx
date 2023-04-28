@@ -6,7 +6,7 @@ const useStyles = createStyles((theme) => ({
         position: 'relative',
         boxSizing: 'border-box',
         backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.white,
-        marginTop: 300,
+        marginTop: 50,
       },
 
       root: {
