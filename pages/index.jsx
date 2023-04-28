@@ -384,6 +384,7 @@ export default function HomePage() {
   //interactiveComponents
   const [inputAmount, setInputAmount] = useState(0)
   const [sliderAmount, setSliderAmount] = useState(0)
+  const [ currentCheckboxAmount, setCheckboxAmount] = useState(0)
   const [spinnerOn, setSpinner] = useState(false);
 
   //currentPage
@@ -496,6 +497,14 @@ export default function HomePage() {
     }, 300);
   };
 
+  function handleCheckbox(value) {
+    if (value === true) {
+      setCheckboxAmount(currentCheckboxAmount + 5) 
+    } else {
+      setCheckboxAmount(currentCheckboxAmount - 5)
+    }
+  }
+
   useEffect(() => {
     let searchedData = SeenBeforeData.filter((inspiration) =>
     inspiration.InspirationName.toLowerCase().includes(currentSearchQuery.toLowerCase())
@@ -565,7 +574,7 @@ export default function HomePage() {
 
       <Stack my={100} align="center" w="100%">
                 <Group maw={800} id="Page0">
-                  <Text fz="xs" className={classes.subTitle}>About the Deceptive Interfaes Framework</Text>
+                  <Text fz="xs" className={classes.subTitle}>About the Deceptive Interfaces Framework</Text>
                   <Stack mt="auto">
                       <Text fz="md">The framework consists of four libraries that are designed to be considered in sequence. Each step consists of examples and guides that you can adopt in your own design. Follow the guide to make your own deceptive interface in sequence.</Text>
                   </Stack>
@@ -852,7 +861,7 @@ export default function HomePage() {
                                   />
                                   <Text fz="xs" c="dimmed" className={classes.alternateText}>Strategy</Text>
                           </Group>
-                          <Text fz="xs" className={classes.alternateText}>If I could receate it...</Text>
+                          <Text fz="xs" className={classes.alternateText}>If I could recreate it...</Text>
                           <Text fz="sm">I will want to make a huge audience believe in each other to donate together.</Text>
                     </Stack>
                   </Grid.Col>
@@ -903,7 +912,7 @@ export default function HomePage() {
                                   />
                                   <Text fz="xs" c="dimmed" className={classes.alternateText}>Strategy</Text>
                           </Group>
-                          <Text fz="xs" className={classes.alternateText}>If I could receate it...</Text>
+                          <Text fz="xs" className={classes.alternateText}>If I could recreate it...</Text>
                           <Text fz="sm">I will want to let one person convince the next person to donate.</Text>
                     </Stack>
                   </Grid.Col>
@@ -1010,7 +1019,7 @@ export default function HomePage() {
             <Stack mb={100} align="center" position="center">
             <Text fz="xs" className={classes.subTitle}>A question to ask yourself</Text>
             <h1 className={classes.title} style={{textAlign: "center"}}>
-            How can we make users think a little more before they make a decision?
+            How can UI components make users think a little more before they make a decision?
             </h1>
             </Stack>
             <Image className={classes.stepIcons} mt={50} maw={200} src="../img/chapter2.svg"></Image>
@@ -1025,7 +1034,6 @@ export default function HomePage() {
                 <Stack mt="auto" mb={100}>
                     <Text fz="md">A simple choice is a straightforward method of requesting something, but in certain circumstances, its effectiveness can be improved by prolonging and expanding the decision-making process.</Text>
                     <Text fz="md">Instead of relying on just a button, these UI components have various influences on decision making and make some information more important.</Text>
-                    <Text fz="md">Here are 4 different UI components and their influences.</Text>
                 </Stack>
               </Group>
             </Stack>
@@ -1034,7 +1042,7 @@ export default function HomePage() {
 
       <Stack p={0} m={0} spacing={30} mb={200}>
         <Group className={classes.stepsBoxes} align="flex-start">
-          <CardComponent number={1} type="Input Area" description="Used when you want confirmation and when you are sure users are confident to give a donation.">
+          <CardComponent number={1} type="Input Area">
             <Stack mt={50} mb={50} className={classes.uiBackground} maw={400}>
               <Group className={classes.uiShell}>
                         <AppWindow
@@ -1045,7 +1053,8 @@ export default function HomePage() {
                           />
                           <Text fz="xs" c="dimmed" className={classes.alternateText}>Component</Text>
                   </Group>
-              <Text fz="sm">How much would you want to contribute?</Text>
+              <Text fz="md" mb={30}>For example, an <span style={{ fontWeight: 600 }}>input</span> is used when we know users are confident enough to give an exact amount.</Text>
+              <Text fz="xs">How much would you want to contribute?</Text>
               <Input 
               placeholder="Your Donation Amount"
               variant="filled"
@@ -1053,11 +1062,12 @@ export default function HomePage() {
               type="number"
               />
               <Text fz="xs" c='dimmed'>You will be contributing ${inputAmount ? inputAmount : '0'} to Animal Lovers League.</Text>
+              <Text fz="xs" c='dimmed'>Halt! Don't forget about the terms, if you enter an amount, you are agreeing to those too.</Text>
             </Stack>
           </CardComponent>   
         </Group>
         <Group className={classes.stepsBoxes}>
-          <CardComponent  number={2} type="Slider" description="Used to show relevance/relationship between 2 numbers to highlight a value's importance.">
+          <CardComponent  number={2} type="Slider">
               <Stack mt={50} mb={50} maw={400} className={classes.uiBackground}>
                 <Group className={classes.uiShell}>
                       <AppWindow
@@ -1068,8 +1078,9 @@ export default function HomePage() {
                         />
                         <Text fz="xs" c="dimmed" className={classes.alternateText}>Component</Text>
                 </Group>
-                <Text fz="sm" mb={50}>The shop will boost your donation by 50%</Text>
-                <Text fz="xs">You will donate ${ sliderAmount ? sliderAmount : '0'}</Text>
+                <Text fz="md" mb={30}>A <span style={{ fontWeight: 600 }}>slider</span> can be used to show the relationship between 2 numbers, this makes it possible to highlight a value's importance.</Text>
+                <Text fz="md" mb={50}>The shop will boost your donation amount by 50%.</Text>
+                <Text fz="xs">Choose an amount. I will donate ${ sliderAmount ? sliderAmount : '0'}</Text>
                 <Slider
                       w={"100%"}
                       mb={50}
@@ -1083,7 +1094,7 @@ export default function HomePage() {
                       color="dark"
                       onChange={setSliderAmount}
                   />
-                <Text fz="xs">The shop will then donate an extra ${ (sliderAmount * 0.5).toFixed(2)} to make the total donation ${ (sliderAmount * 1.5).toFixed(2)}</Text>
+                <Text fz="xs">The shop will then donate an extra ${ (sliderAmount * 0.5).toFixed(2)}. You are getting an extra <span style={{ fontWeight: 600 }}>${ ((sliderAmount * 0.5)).toFixed(2)} for free!</span> </Text>
                 <Slider
                       style={{ pointerEvents: "none"}}
                       w={"100%"}
@@ -1102,8 +1113,8 @@ export default function HomePage() {
           </CardComponent>   
         </Group>
         <Group className={classes.stepsBoxes}>
-          <CardComponent  number={3} type="Checkboxes" description="Used to slow down decision making and make some choices more important than the other.">
-              <Stack mt={50} mb={50} className={classes.uiBackground}>
+          <CardComponent  number={3} type="Checkboxes">
+              <Stack maw={400} mt={50} mb={50} className={classes.uiBackground}>
               <Group className={classes.uiShell} style={{ width: "150%"}}>
                     <AppWindow
                         size={20}
@@ -1113,24 +1124,30 @@ export default function HomePage() {
                       />
                       <Text fz="xs" c="dimmed" className={classes.alternateText}>Component</Text>
               </Group>
+                <Text fz="md" mb={30}>A <span style={{ fontWeight: 600 }}>checkbox</span> can be used to slow down decision making because we can make some choices more important than others.</Text>
+                <Text fz="xs">How much do you want to donate?</Text>
                 <Checkbox 
-                  label="Add This Donation"
+                  label="$5"
                   color="dark"
+                  onChange={(event) => handleCheckbox(event.target.checked)}
                 />
                 <Checkbox 
-                  label="Add This Too"
+                  label="$5, and get a 2% off every purchase!"
                   color="dark"
+                  onChange={(event) => handleCheckbox(event.target.checked)}
                 />
                 <Checkbox
-                  label="How about this?"
+                  label="$5, and get a 20% off in your next $50 purchase!"
                   color="dark"
+                  onChange={(event) => handleCheckbox(event.target.checked)}
                 />
+                <Text fz="xs">You will donate a total of <span style={{ fontWeight: 600 }}>${currentCheckboxAmount}</span> </Text>
               </Stack>
           </CardComponent>   
         </Group>
         <Group className={classes.stepsBoxes}>
-          <CardComponent  number={4} type="Spinners" description="Used when adding an element of chance to a decision. Gives an element of surprise & fun!">
-            <Stack mt={50} mb={50} className={classes.uiBackground} w={"100%"} justify="center">
+          <CardComponent  number={4} type="Spinners">
+            <Stack maw={300} mt={50} mb={50} className={classes.uiBackground} w={"100%"} justify="center">
               <Group className={classes.uiShell}>
                     <AppWindow
                         size={20}
@@ -1140,7 +1157,7 @@ export default function HomePage() {
                       />
                       <Text fz="xs" c="dimmed" className={classes.alternateText}>Component</Text>
               </Group>
-              
+              <Text fz="md" mb={30}>A <span style={{ fontWeight: 600 }}>spinner</span> can be used to add an element of chance to a decision. Gives an element of surprise & fun!</Text>
               <div className={classes.spinnerClass}>
                 <Image maw={250} className={classes.spinnerBackground} style={{ transform: `rotate(${spinnerOn ? `1200deg` : `0deg`})`}} src="../img/components/Spinner.svg" ></Image>
                 <Image maw={80} style={{ marginLeft: "-17px" }} onClick={handleSpin} className={classes.spinnerHead} src="../img/components/SpinningHead.svg"></Image>
