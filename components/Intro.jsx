@@ -66,6 +66,10 @@ const useStyles = createStyles((theme) => ({
     backgroundColor: theme.colors.gray[1],
     objectFit: "cover",
     borderRadius: 20,
+
+    [BREAKPOINT]: {
+      height: 350,
+    },
   },
 
   highlightedText: {
@@ -83,17 +87,24 @@ const useStyles = createStyles((theme) => ({
 const HeroTitle = () => {
   const { classes } = useStyles();
 
+  const handleScroll = (id) => {
+    if (typeof document !== 'undefined') {
+    const part1 = document.querySelector(id);
+    part1.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <div className={classes.wrapper}>
       <Container className={classes.inner} fluid px={0}>
 
         <Group mt={130} mb={50} position="center" alignItems="center">
           <h1 className={classes.title}>
-            Let's make your donation interface more effective with human biases.
+            A set of tools for designers to create more effective donation interfaces, using deception.
           </h1>
         </Group>
         <Group position="center"  mb={170}>
-            <a href={"./#preface"}>
+            <a onClick={() => handleScroll("#preface")}>
                         <Button uppercase rightIcon={<ArrowNarrowRight strokeWidth={1}/>} color="dark" variant="subtle" radius={5} size="xl" style={{ fontSize: '14px', fontWeight: 400, fontFamily: "Space Mono" }}>framework</Button>
             </a>
             <a href={"./outcomes"}>
@@ -121,7 +132,7 @@ const HeroTitle = () => {
           <Grid.Col md={6} sm={12} xs={12}>
             <Stack>
             <Group position="apart" align="end">
-            <Text fz="sm">but this might be better.</Text>
+            <Text fz="sm">but with a deceptive strategy, it might be better.</Text>
               <Badge color="green" size="md" radius="sm" className={classes.alternateText} >+50% clicked donate</Badge>
             </Group>
             

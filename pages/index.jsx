@@ -10,7 +10,7 @@ import {
   useMantineTheme,
   createStyles,
 } from '@mantine/core';
-import { QuestionMark, AppWindow, Paperclip, Telescope, Artboard, OneTwoThree, LineDotted, ArrowNarrowRight } from 'tabler-icons-react';
+import { ArrowNarrowLeft, QuestionMark, AppWindow, Paperclip, Telescope, Artboard, OneTwoThree, LineDotted, ArrowNarrowRight } from 'tabler-icons-react';
 
 import DeceptiveCard from '../components/DeceptiveCard';
 import StrategyCard from '../components/StrategyCard';
@@ -64,6 +64,13 @@ const useStyles = createStyles((theme) => ({
     borderRadius: 5,
     overflow: "hidden",
     padding: 20,
+    transition: "0.3s ease all",
+
+    '&:hover': {
+      backgroundColor: theme.colors.grape[0],
+      cursor: "pointer",
+      transition: "0.3s ease all",
+    }
   },
 
   scenarioIcon: {
@@ -314,6 +321,14 @@ const useStyles = createStyles((theme) => ({
     },
   },
 
+  currenPage: {
+    visibility: "visible",
+  },
+
+  hiddenPage: {
+    visibility: "hidden",
+  }
+
 }));
 
 
@@ -339,6 +354,10 @@ export default function HomePage() {
   const [inputAmount, setInputAmount] = useState(0)
   const [sliderAmount, setSliderAmount] = useState(0)
   const [spinnerOn, setSpinner] = useState(false);
+
+  //currentPage
+
+  const [currentPage, setPage] = useState(0);
   
   function retrieveRecords() {
     // const { data } = await axios.get('https://eoyeceylz6rbgls.m.pipedream.net');
@@ -422,6 +441,19 @@ export default function HomePage() {
     setSearchQuery(event.target.value)
   }
 
+  const handlePageChange = (pageNumber) => {
+    setPage(pageNumber)
+    
+    setTimeout(() => {
+      if (typeof document !== 'undefined') {
+        const part1 = document.querySelector(`#Page${pageNumber}`);
+        if (part1) {
+          part1.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    }, 100);
+  };
+
   useEffect(() => {
     let searchedData = SeenBeforeData.filter((inspiration) =>
     inspiration.InspirationName.toLowerCase().includes(currentSearchQuery.toLowerCase())
@@ -464,9 +496,6 @@ export default function HomePage() {
                   <Stack mt="auto" spacing={50}>
                       <Text fz="md">This framework is part of a study where Yuan Jie explores socially acceptable ways of designing interfaces that utilise deception as a method to influence behavior. Deception is defined as altering information through less transparency, creating pressure, and encouraging risk-taking to make people favor a decision that benefits the deceiver. This framework presents the outcomes the study as a instructional guide to help you make your own deceptive interface.  </Text>
                       <div>
-                      {/* <a href={"./about"}>
-                        <Button uppercase rightIcon={<ArrowNarrowRight strokeWidth={1}/>} color="dark" radius={5} size="xl" style={{ fontSize: '14px', fontWeight: 400, fontFamily: "Space Mono" }}>More about this project</Button>
-                      </a> */}
                       </div>
                   </Stack>
                 </Group>
@@ -493,10 +522,10 @@ export default function HomePage() {
       </Group>
 
       <Stack my={200} align="center" w="100%">
-                <Group maw={800}>
+                <Group maw={800} id="Page0">
                   <Text fz="xs" className={classes.subTitle}>About the Deceptive Interfaes Framework</Text>
                   <Stack mt="auto">
-                      <Text fz="md">The framework consists of four libraries that are designed to be considered in sequence. Each step consists of examples and guides that you can adopt in your own design. Follow the guide to make your own deceptive interface.</Text>
+                      <Text fz="md">The framework consists of four libraries that are designed to be considered in sequence. Each step consists of examples and guides that you can adopt in your own design. Follow the guide to make your own deceptive interface in sequence.</Text>
                   </Stack>
                 </Group>
       </Stack>
@@ -504,6 +533,12 @@ export default function HomePage() {
       <Stack align="center">
         <Grid m={0} p={0} maw={1000}>
               <Grid.Col md={12} sm={12} xs={12}>
+                <Group>
+                  <Badge color="grape" size="md" radius="sm" className={classes.alternateText}>Click on each step to learn more</Badge>
+                </Group>
+              </Grid.Col>
+              <Grid.Col md={12} sm={12} xs={12}>
+                <a onClick={() => handlePageChange(1)}>
                 <Stack className={classes.instructionCard}>
                   <Group className={classes.uiShell}>
                     <OneTwoThree
@@ -519,6 +554,7 @@ export default function HomePage() {
                   <Text fz="sm" c="dimmed">The idea is to get inspiration from common deceptive schemes. A good question to ask ourselves is “When did you feel like you were influenced to participate in an activity?”. This helps to make human biases easy to replicate and understand.</Text>                  
                   </Group>
                 </Stack>
+                </a>
               </Grid.Col>
  
               <Grid.Col md={12} sm={12} xs={12}>
@@ -532,6 +568,7 @@ export default function HomePage() {
               </Grid.Col>
 
               <Grid.Col md={12} sm={12} xs={12}>
+              <a onClick={() => handlePageChange(2)}>
               <Stack className={classes.instructionCard}>
                   <Group className={classes.uiShell}>
                     <OneTwoThree
@@ -547,6 +584,7 @@ export default function HomePage() {
                   <Text fz="sm" c="dimmed">Different UI components can make people make decisions faster or slower. Craft the perfect interface using the right components after thinking about your target audience.</Text>                  
                   </Group>
                 </Stack>
+              </a>
               </Grid.Col>
 
               <Grid.Col md={12} sm={12} xs={12}>
@@ -560,6 +598,7 @@ export default function HomePage() {
               </Grid.Col>
 
               <Grid.Col md={12} sm={12} xs={12}>
+              <a onClick={() => handlePageChange(3)}>
               <Stack className={classes.instructionCard}>
                   <Group className={classes.uiShell}>
                     <OneTwoThree
@@ -575,6 +614,7 @@ export default function HomePage() {
                   <Text fz="sm" c="dimmed">Turning a deceptive scheme into a strategy can help you place different components into your interface. The study contains a collection of insights and strategies to help you bring different components together, to make a deceptive interface.</Text>                  
                   </Group>
                 </Stack>
+                </a>
               </Grid.Col>
 
               <Grid.Col md={12} sm={12} xs={12}>
@@ -588,6 +628,7 @@ export default function HomePage() {
               </Grid.Col>
 
               <Grid.Col md={12} sm={12} xs={12}>
+              <a onClick={() => handlePageChange(4)}>
               <Stack className={classes.instructionCard}>
                   <Group className={classes.uiShell}>
                     <OneTwoThree
@@ -596,269 +637,143 @@ export default function HomePage() {
                         color={'gray'}
                         style={{ marginLeft: 10 }}
                       />
-                      <Text fz="xs" c="dimmed" className={classes.alternateText}>Step 3</Text>
+                      <Text fz="xs" c="dimmed" className={classes.alternateText}>Step 4</Text>
                   </Group>
                   <Text fz="md" className={classes.alternateText}>Measuring Social Acceptability</Text>
                   <Group>
                   <Text fz="sm" c="dimmed">Deceptive interfaces have different social acceptability. Here we learn how to measure how effective those interfaces are.</Text>                  
                   </Group>
                 </Stack>
+              </a>
               </Grid.Col>
 
         </Grid>
       </Stack>
-
-      <Stack mt={50}>
-        <Divider my="sm" />
-        <Group spacing={0}>
+                  
+      
+      { currentPage == 1 ? (
+        <>
+          <Stack mt={50} id="Page1">
+            <Divider my="sm" />
+            <Group spacing={0}>
             <div className={classes.badgeLight}><Text fz="xs" className={classes.alternateText}>1</Text></div>
             <div className={classes.badgeDark}><Text fz="xs" className={classes.alternateText}>Getting Inspiration</Text></div>
-        </Group>
-      </Stack>
-
-      <Group mt={130} mb={150} className={classes.greyBackgroundAlternate} position="center" justifyContent="center" mih={600}>
-          <Stack w="100%" align="center" >
-            <Stack mb={100} align="center" position="center">
-            <Text fz="xs" className={classes.subTitle}>A question to ask yourself</Text>
-            <h1 className={classes.title} style={{textAlign: "center"}}>
-            When did you feel like you were influenced to participate in an activity?
-            </h1>
+            </Group>
+          </Stack>
+          
+          <Group mt={130} mb={150} className={classes.greyBackgroundAlternate} position="center" justifyContent="center" mih={600}>
+            <Stack w="100%" align="center" >
+              <Stack mb={100} align="center" position="center">
+              <Text fz="xs" className={classes.subTitle}>A question to ask yourself</Text>
+              <h1 className={classes.title} style={{textAlign: "center"}}>
+              When did you feel like you were influenced to participate in an activity?
+              </h1>
+              </Stack>
+              <Image mt={50} maw={200} src="../img/chapter1.svg"></Image>
             </Stack>
-            <Image mt={50} maw={200} src="../img/chapter1.svg"></Image>
-          </Stack>
-      </Group>
+        </Group>
 
-      <Stack spacing={20} mt={20} mb={50}>
-        <Stack>
-          <Stack position="left" align="center" mb={50}>
-          <Text fz="xs" className={classes.subTitle} grow>A question to ask yourself</Text>
-          <Stack align="center" w="100%">
-            <Text fz="md">When did you feel like you were influenced to participate in an activity?</Text>
-              <Grid gutter={0} ml={-30}>
-                <Grid.Col span={10}>
-                <div className={classes.inputArea}>
-                  <Input
-                      placeholder="I felt cheated at..."
-                      radius="xl"
-                      variant="unstyled"
-                      w={"100%"}
-                      value={currentSearchQuery}
-                      onChange={handleSearch}
-                      className={classes.subTitle}
-                    />
-                </div>
-                </Grid.Col>
-                <Grid.Col span={2}>
-                <Button className={classes.searchButton} color="dark" style={{ fontSize: '16px', fontWeight: 400 }}>Aw Man</Button>
-                </Grid.Col>
-              </Grid>
-              <Group py={10} px={20} className={classes.searchRecommendations}>
-                <Text fz="xs">Popular Terms</Text>
-                <Badge color="grape" size="md" radius="sm" onClick={() => setSearchQuery("Shopee")} className={classes.searchExamples}>Shopee</Badge>
-                <Badge color="grape" size="md" radius="sm" onClick={() => setSearchQuery("Scam")} className={classes.searchExamples}>Scam</Badge>
-                <Badge color="grape" size="md" radius="sm" onClick={() => setSearchQuery("Donation")} className={classes.searchExamples}>Donation</Badge>
-              </Group>
-          </Stack>
-          </Stack>
-        </Stack>
-      </Stack>
-
-      <Stack spacing={20} className={classes.communityResponse} p={30} mb={100}>
-        <Stack>
-          <Group className={classes.uiShell}>
-            <Telescope
-                size={20}
-                strokeWidth={1}
-                color={'gray'}
-                style={{ marginLeft: 10 }}
-              />
-              <Text fz="xs" c="dimmed" className={classes.alternateText}>{SeenBeforeData.length} Community Observations </Text>
-          </Group>
-          <ScrollArea h={600} type="always" offsetScrollbars>
-            <Group position="left" spacing={0} className={classes.helperText}>
-              <Group p={0} m={0} align="flex-start">
-                { searchedInspirations ? (searchedInspirations.map((item, index) => (
-                    <Stack className={classes.InspirationBoxes} spacing={20}>
-                      <Group mb={15}>
-                        <div className={classes.InspirationProfile}></div>
-                        <div className={classes.InspirationDot}></div>
-                        <Text style={{ marginLeft: "-10px" }} fz="xs" className={classes.alternateText}>Person {index + 1}</Text>
-                      </Group>
-                      <div className={classes.InspirationBoxesDiv}>
-                        <img className={classes.InspirationBoxesImage} src={item.ImageURL} ></img>
-                      </div>
-                      <Text mt={20} fz="xs" className={classes.alternateText}>Person {index + 1} felt cheated at {item.InspirationName}.</Text>
-
-                    </Stack>
-                  ))) : (SeenBeforeData.map((item, index) => (
-                    <Stack className={classes.InspirationBoxes} spacing={20}>
-                      <Group mb={15}>
-                        <div className={classes.InspirationProfile}></div>
-                        <div className={classes.InspirationDot}></div>
-                        <Text style={{ marginLeft: "-10px" }} fz="xs" className={classes.alternateText}>Person {index + 1}</Text>
-                      </Group>
-                      <div className={classes.InspirationBoxesDiv}>
-                        <img className={classes.InspirationBoxesImage} src={item.ImageURL} ></img>
-                      </div>
-                      <Text mt={20} fz="xs" className={classes.alternateText}>Person {index + 1} felt cheated at {item.InspirationName}.</Text>
-
-                    </Stack>
-                  )))}
-              </Group>
-            </Group>
-          </ScrollArea>
-        </Stack>
-      </Stack>
-
-      <Stack spacing={20}>
-        <Stack>
-          <Stack position="left" align="flex-start" mb={200}>
-          <Stack align="center" w="100%">
-            <Group maw={800}>
-              <Text fz="xs" className={classes.subTitle} grow>Inspiration from Activities</Text>
-              <Stack mt="auto" mb={100}>
-                  <Text fz="md">A scam is a deceptive scheme used to get an unfair advantage over a situation to get things from people.</Text>
-                  <Text fz="md">Think back to a situation that made you feel cheated or when someone took advantage of your trust, it is likely that you’ve been through a deceptive scheme.</Text>
-                  <Text fz="md">These activities commonly leverage on human biases, which are common patterns that leverage the irrational decision-making of people. These patterns can be used as ideas to form a deceptive strategy.</Text>
-                  <Text fz="md">Let's take a look at a few examples of how deceptive schemes can be turned into strategies.</Text>
-              </Stack>
-            </Group>
-          </Stack>
-
-            <Group mb={50}>
-              <Grid p={0} m={0}>
-                <Grid.Col md={4} sm={12} xs={12} h={"100%"}>
-                  <Stack className={classes.postIts}>
-                    <Group className={classes.uiShell}>
-                          <Paperclip
-                              size={20}
-                              strokeWidth={1}
-                              color={'gray'}
-                              style={{ marginLeft: 10 }}
-                            />
-                            <Text fz="xs" c="dimmed" className={classes.alternateText}>Post It Thoughts</Text>
-                    </Group>
-                    {/* <Image mx="auto" maw={"100%"} radius="md" src="../img/inspo/tissueAuntie.jpg"></Image> */}
-                    <Text fz="xs" className={classes.alternateText}>I felt cheated...</Text>
-                    <Text fz="sm">On Kickstarter when I was convinced to participate in their fundraiser.</Text>
-                  </Stack>
-                </Grid.Col>
-                <Grid.Col md={4} sm={12} xs={12} h={"100%"}>
-                  <Stack className={classes.postIts}>
-                      <Group className={classes.uiShell}>
-                            <Paperclip
-                                size={20}
-                                strokeWidth={1}
-                                color={'gray'}
-                                style={{ marginLeft: 10 }}
-                              />
-                              <Text fz="xs" c="dimmed" className={classes.alternateText}>Post It Thoughts</Text>
-                      </Group>
-                      <Text fz="xs" className={classes.alternateText}>I participated because...</Text>
-                      <Text fz="sm">I made the decisions believing that other people did the same.</Text>
-                    </Stack>
-                </Grid.Col>
-                <Grid.Col md={4} sm={12} xs={12} h={"100%"}>
-                  <Stack className={classes.postItsSpecial}>
-                        <Group className={classes.uiShell}>
-                              <Artboard
-                                  size={20}
-                                  strokeWidth={1}
-                                  color={'gray'}
-                                  style={{ marginLeft: 10 }}
-                                />
-                                <Text fz="xs" c="dimmed" className={classes.alternateText}>Strategy</Text>
-                        </Group>
-                        <Text fz="xs" className={classes.alternateText}>If I could receate it...</Text>
-                        <Text fz="sm">I will want to make a huge audience believe in each other to donate together.</Text>
-                  </Stack>
-                </Grid.Col>
-              </Grid>
-            </Group>
-
-            <Group mb={50}>
-              <Grid p={0} m={0}>
-                <Grid.Col md={4} sm={12} xs={12} h={"100%"}>
-                  <Stack className={classes.postIts}>
-                    <Group className={classes.uiShell}>
-                          <Paperclip
-                              size={20}
-                              strokeWidth={1}
-                              color={'gray'}
-                              style={{ marginLeft: 10 }}
-                            />
-                            <Text fz="xs" c="dimmed" className={classes.alternateText}>Post It Thoughts</Text>
-                    </Group>
-                    {/* <Image mx="auto" maw={"100%"} radius="md" src="../img/inspo/tissueAuntie.jpg"></Image> */}
-                    <Text fz="xs" className={classes.alternateText}>I felt cheated...</Text>
-                    <Text fz="sm">When I bought tissues from the auntie down the street.</Text>
-                  </Stack>
-                </Grid.Col>
-                <Grid.Col md={4} sm={12} xs={12} h={"100%"}>
-                  <Stack className={classes.postIts}>
-                      <Group className={classes.uiShell}>
-                            <Paperclip
-                                size={20}
-                                strokeWidth={1}
-                                color={'gray'}
-                                style={{ marginLeft: 10 }}
-                              />
-                              <Text fz="xs" c="dimmed" className={classes.alternateText}>Post It Thoughts</Text>
-                      </Group>
-                      <Text fz="xs" className={classes.alternateText}>I participated because...</Text>
-                      <Text fz="sm">I felt bad if I didn't get the tissue because the auntie is directly selling to me.</Text>
-                    </Stack>
-                </Grid.Col>
-                <Grid.Col md={4} sm={12} xs={12} h={"100%"}>
-                  <Stack className={classes.postItsSpecial}>
-                        <Group className={classes.uiShell}>
-                              <Artboard
-                                  size={20}
-                                  strokeWidth={1}
-                                  color={'gray'}
-                                  style={{ marginLeft: 10 }}
-                                />
-                                <Text fz="xs" c="dimmed" className={classes.alternateText}>Strategy</Text>
-                        </Group>
-                        <Text fz="xs" className={classes.alternateText}>If I could receate it...</Text>
-                        <Text fz="sm">I will want to let one person convince the next person to donate.</Text>
-                  </Stack>
-                </Grid.Col>
-              </Grid>
-            </Group>
-
+        <Stack spacing={20} mt={20} mb={50}>
+          <Stack>
+            <Stack position="left" align="center" mb={50}>
+            <Text fz="xs" className={classes.subTitle} grow>A question to ask yourself</Text>
             <Stack align="center" w="100%">
-            <Group maw={800}>
-              <Text fz="xs" className={classes.subTitle} grow>Try it yourself</Text>
-              <Stack mt="auto" mb={100}>
-                  <Text fz="md">Have you been through a deceptive scheme? Try this one yourself! Think back to a situation that made you feel cheated or when someone took advantage of your trust.</Text>
-              </Stack>
-            </Group>
-          </Stack>
-
-            <Group position="apart" w={"100%"}>
-              <Grid p={0} m={0} w={"100%"}>
-                <Grid.Col md={4} sm={12} xs={12} h={"100%"}>
-                  <Stack className={classes.postIts}>
-                    <Group className={classes.uiShell}>
-                          <Paperclip
-                              size={20}
-                              strokeWidth={1}
-                              color={'gray'}
-                              style={{ marginLeft: 10 }}
-                            />
-                            <Text fz="xs" c="dimmed" className={classes.alternateText}>Post It Thoughts</Text>
-                    </Group>
-                    <Text fz="xs" className={classes.alternateText}>I felt cheated...</Text>
-                      <Textarea
-                        placeholder="I felt cheated when..."
-                        variant="filled"
-                        minRows="6"
+              <Text fz="md">When did you feel like you were influenced to participate in an activity?</Text>
+                <Grid gutter={0} ml={-30}>
+                  <Grid.Col span={10}>
+                  <div className={classes.inputArea}>
+                    <Input
+                        placeholder="I felt cheated at..."
+                        radius="xl"
+                        variant="unstyled"
+                        w={"100%"}
+                        value={currentSearchQuery}
+                        onChange={handleSearch}
+                        className={classes.subTitle}
                       />
-                  </Stack>
-                </Grid.Col>
-                <Grid.Col md={4} sm={12} xs={12} h={"100%"}>
-                  <Stack className={classes.postIts}>
+                  </div>
+                  </Grid.Col>
+                  <Grid.Col span={2}>
+                  <Button className={classes.searchButton} color="dark" style={{ fontSize: '16px', fontWeight: 400 }}>Aw Man</Button>
+                  </Grid.Col>
+                </Grid>
+                <Group py={10} px={20} className={classes.searchRecommendations}>
+                  <Text fz="xs">Popular Terms</Text>
+                  <Badge color="grape" size="md" radius="sm" onClick={() => setSearchQuery("Shopee")} className={classes.searchExamples}>Shopee</Badge>
+                  <Badge color="grape" size="md" radius="sm" onClick={() => setSearchQuery("Scam")} className={classes.searchExamples}>Scam</Badge>
+                  <Badge color="grape" size="md" radius="sm" onClick={() => setSearchQuery("Donation")} className={classes.searchExamples}>Donation</Badge>
+                </Group>
+            </Stack>
+            </Stack>
+          </Stack>
+        </Stack>
+
+        <Stack spacing={20} className={classes.communityResponse} p={30} mb={100}>
+          <Stack>
+            <Group className={classes.uiShell}>
+              <Telescope
+                  size={20}
+                  strokeWidth={1}
+                  color={'gray'}
+                  style={{ marginLeft: 10 }}
+                />
+                <Text fz="xs" c="dimmed" className={classes.alternateText}>{SeenBeforeData.length} Community Observations </Text>
+            </Group>
+            <ScrollArea h={600} type="always" offsetScrollbars>
+              <Group position="left" spacing={0} className={classes.helperText}>
+                <Group p={0} m={0} align="flex-start">
+                  { searchedInspirations ? (searchedInspirations.map((item, index) => (
+                      <Stack className={classes.InspirationBoxes} spacing={20}>
+                        <Group mb={15}>
+                          <div className={classes.InspirationProfile}></div>
+                          <div className={classes.InspirationDot}></div>
+                          <Text style={{ marginLeft: "-10px" }} fz="xs" className={classes.alternateText}>Person {index + 1}</Text>
+                        </Group>
+                        <div className={classes.InspirationBoxesDiv}>
+                          <img className={classes.InspirationBoxesImage} src={item.ImageURL} ></img>
+                        </div>
+                        <Text mt={20} fz="xs" className={classes.alternateText}>Person {index + 1} felt cheated at {item.InspirationName}.</Text>
+
+                      </Stack>
+                    ))) : (SeenBeforeData.map((item, index) => (
+                      <Stack className={classes.InspirationBoxes} spacing={20}>
+                        <Group mb={15}>
+                          <div className={classes.InspirationProfile}></div>
+                          <div className={classes.InspirationDot}></div>
+                          <Text style={{ marginLeft: "-10px" }} fz="xs" className={classes.alternateText}>Person {index + 1}</Text>
+                        </Group>
+                        <div className={classes.InspirationBoxesDiv}>
+                          <img className={classes.InspirationBoxesImage} src={item.ImageURL} ></img>
+                        </div>
+                        <Text mt={20} fz="xs" className={classes.alternateText}>Person {index + 1} felt cheated at {item.InspirationName}.</Text>
+
+                      </Stack>
+                    )))}
+                </Group>
+              </Group>
+            </ScrollArea>
+          </Stack>
+        </Stack>
+
+        <Stack spacing={20}>
+          <Stack>
+            <Stack position="left" align="flex-start" mb={200}>
+            <Stack align="center" w="100%">
+              <Group maw={800}>
+                <Text fz="xs" className={classes.subTitle} grow>Inspiration from Activities</Text>
+                <Stack mt="auto" mb={100}>
+                    <Text fz="md">A scam is a deceptive scheme used to get an unfair advantage over a situation to get things from people.</Text>
+                    <Text fz="md">Think back to a situation that made you feel cheated or when someone took advantage of your trust, it is likely that you’ve been through a deceptive scheme.</Text>
+                    <Text fz="md">These activities commonly leverage on human biases, which are common patterns that leverage the irrational decision-making of people. These patterns can be used as ideas to form a deceptive strategy.</Text>
+                    <Text fz="md">Let's take a look at a few examples of how deceptive schemes can be turned into strategies.</Text>
+                </Stack>
+              </Group>
+            </Stack>
+
+              <Group mb={50}>
+                <Grid p={0} m={0}>
+                  <Grid.Col md={4} sm={12} xs={12} h={"100%"}>
+                    <Stack className={classes.postIts}>
                       <Group className={classes.uiShell}>
                             <Paperclip
                                 size={20}
@@ -868,16 +783,13 @@ export default function HomePage() {
                               />
                               <Text fz="xs" c="dimmed" className={classes.alternateText}>Post It Thoughts</Text>
                       </Group>
-                      <Text fz="xs" className={classes.alternateText}>I participated because...</Text>
-                      <Textarea
-                        placeholder="I participated because..."
-                        variant="filled"
-                        minRows="6"
-                      />
+                      {/* <Image mx="auto" maw={"100%"} radius="md" src="../img/inspo/tissueAuntie.jpg"></Image> */}
+                      <Text fz="xs" className={classes.alternateText}>I felt cheated...</Text>
+                      <Text fz="sm">On Kickstarter when I was convinced to participate in their fundraiser.</Text>
                     </Stack>
-                </Grid.Col>
-                <Grid.Col md={4} sm={12} xs={12} h={"100%"}>
-                  <Stack className={classes.postItsSpecial}>
+                  </Grid.Col>
+                  <Grid.Col md={4} sm={12} xs={12} h={"100%"}>
+                    <Stack className={classes.postIts}>
                         <Group className={classes.uiShell}>
                               <Paperclip
                                   size={20}
@@ -887,21 +799,166 @@ export default function HomePage() {
                                 />
                                 <Text fz="xs" c="dimmed" className={classes.alternateText}>Post It Thoughts</Text>
                         </Group>
-                        <Text fz="xs" className={classes.alternateText}>If I could receate it...</Text>
-                        <Textarea
-                        placeholder="I will..."
-                        minRows="6"
-                      />
-                  </Stack>
-                </Grid.Col>
-              </Grid>
-            </Group>
+                        <Text fz="xs" className={classes.alternateText}>I participated because...</Text>
+                        <Text fz="sm">I made the decisions believing that other people did the same.</Text>
+                      </Stack>
+                  </Grid.Col>
+                  <Grid.Col md={4} sm={12} xs={12} h={"100%"}>
+                    <Stack className={classes.postItsSpecial}>
+                          <Group className={classes.uiShell}>
+                                <Artboard
+                                    size={20}
+                                    strokeWidth={1}
+                                    color={'gray'}
+                                    style={{ marginLeft: 10 }}
+                                  />
+                                  <Text fz="xs" c="dimmed" className={classes.alternateText}>Strategy</Text>
+                          </Group>
+                          <Text fz="xs" className={classes.alternateText}>If I could receate it...</Text>
+                          <Text fz="sm">I will want to make a huge audience believe in each other to donate together.</Text>
+                    </Stack>
+                  </Grid.Col>
+                </Grid>
+              </Group>
 
+              <Group mb={50}>
+                <Grid p={0} m={0}>
+                  <Grid.Col md={4} sm={12} xs={12} h={"100%"}>
+                    <Stack className={classes.postIts}>
+                      <Group className={classes.uiShell}>
+                            <Paperclip
+                                size={20}
+                                strokeWidth={1}
+                                color={'gray'}
+                                style={{ marginLeft: 10 }}
+                              />
+                              <Text fz="xs" c="dimmed" className={classes.alternateText}>Post It Thoughts</Text>
+                      </Group>
+                      {/* <Image mx="auto" maw={"100%"} radius="md" src="../img/inspo/tissueAuntie.jpg"></Image> */}
+                      <Text fz="xs" className={classes.alternateText}>I felt cheated...</Text>
+                      <Text fz="sm">When I bought tissues from the auntie down the street.</Text>
+                    </Stack>
+                  </Grid.Col>
+                  <Grid.Col md={4} sm={12} xs={12} h={"100%"}>
+                    <Stack className={classes.postIts}>
+                        <Group className={classes.uiShell}>
+                              <Paperclip
+                                  size={20}
+                                  strokeWidth={1}
+                                  color={'gray'}
+                                  style={{ marginLeft: 10 }}
+                                />
+                                <Text fz="xs" c="dimmed" className={classes.alternateText}>Post It Thoughts</Text>
+                        </Group>
+                        <Text fz="xs" className={classes.alternateText}>I participated because...</Text>
+                        <Text fz="sm">I felt bad if I didn't get the tissue because the auntie is directly selling to me.</Text>
+                      </Stack>
+                  </Grid.Col>
+                  <Grid.Col md={4} sm={12} xs={12} h={"100%"}>
+                    <Stack className={classes.postItsSpecial}>
+                          <Group className={classes.uiShell}>
+                                <Artboard
+                                    size={20}
+                                    strokeWidth={1}
+                                    color={'gray'}
+                                    style={{ marginLeft: 10 }}
+                                  />
+                                  <Text fz="xs" c="dimmed" className={classes.alternateText}>Strategy</Text>
+                          </Group>
+                          <Text fz="xs" className={classes.alternateText}>If I could receate it...</Text>
+                          <Text fz="sm">I will want to let one person convince the next person to donate.</Text>
+                    </Stack>
+                  </Grid.Col>
+                </Grid>
+              </Group>
+
+              <Stack align="center" w="100%">
+              <Group maw={800}>
+                <Text fz="xs" className={classes.subTitle} grow>Try it yourself</Text>
+                <Stack mt="auto" mb={100}>
+                    <Text fz="md">Have you been through a deceptive scheme? Try this one yourself! Think back to a situation that made you feel cheated or when someone took advantage of your trust.</Text>
+                </Stack>
+              </Group>
+            </Stack>
+
+              <Group position="apart" w={"100%"}>
+                <Grid p={0} m={0} w={"100%"}>
+                  <Grid.Col md={4} sm={12} xs={12} h={"100%"}>
+                    <Stack className={classes.postIts}>
+                      <Group className={classes.uiShell}>
+                            <Paperclip
+                                size={20}
+                                strokeWidth={1}
+                                color={'gray'}
+                                style={{ marginLeft: 10 }}
+                              />
+                              <Text fz="xs" c="dimmed" className={classes.alternateText}>Post It Thoughts</Text>
+                      </Group>
+                      <Text fz="xs" className={classes.alternateText}>I felt cheated...</Text>
+                        <Textarea
+                          placeholder="I felt cheated when..."
+                          variant="filled"
+                          minRows="6"
+                        />
+                    </Stack>
+                  </Grid.Col>
+                  <Grid.Col md={4} sm={12} xs={12} h={"100%"}>
+                    <Stack className={classes.postIts}>
+                        <Group className={classes.uiShell}>
+                              <Paperclip
+                                  size={20}
+                                  strokeWidth={1}
+                                  color={'gray'}
+                                  style={{ marginLeft: 10 }}
+                                />
+                                <Text fz="xs" c="dimmed" className={classes.alternateText}>Post It Thoughts</Text>
+                        </Group>
+                        <Text fz="xs" className={classes.alternateText}>I participated because...</Text>
+                        <Textarea
+                          placeholder="I participated because..."
+                          variant="filled"
+                          minRows="6"
+                        />
+                      </Stack>
+                  </Grid.Col>
+                  <Grid.Col md={4} sm={12} xs={12} h={"100%"}>
+                    <Stack className={classes.postItsSpecial}>
+                          <Group className={classes.uiShell}>
+                                <Paperclip
+                                    size={20}
+                                    strokeWidth={1}
+                                    color={'gray'}
+                                    style={{ marginLeft: 10 }}
+                                  />
+                                  <Text fz="xs" c="dimmed" className={classes.alternateText}>Post It Thoughts</Text>
+                          </Group>
+                          <Text fz="xs" className={classes.alternateText}>If I could receate it...</Text>
+                          <Textarea
+                          placeholder="I will..."
+                          minRows="6"
+                        />
+                    </Stack>
+                  </Grid.Col>
+                </Grid>
+              </Group>
+
+            </Stack>
           </Stack>
         </Stack>
-      </Stack>
 
-      <Stack>
+        <Group position="apart">
+          <a onClick={() => handlePageChange(0)}>
+                        <Button uppercase leftIcon={<ArrowNarrowLeft strokeWidth={1}/>} color="grape" variant="light" radius={5} size="xl" style={{ fontSize: '14px', fontWeight: 400, fontFamily: "Space Mono" }}>Go Back</Button>
+            </a>
+            <a onClick={() => handlePageChange(2)}>
+                        <Button uppercase rightIcon={<ArrowNarrowRight strokeWidth={1}/>} color="grape" variant="light" radius={5} size="xl" style={{ fontSize: '14px', fontWeight: 400, fontFamily: "Space Mono" }}> Next Step</Button>
+            </a>
+        </Group>
+        </>
+      ) : ''}
+      
+      { currentPage == 2 ? (<>
+      <Stack mt={50} id="Page2">
         <Divider my="sm" />
         <Group spacing={0}>
             <div className={classes.badgeLight}><Text fz="xs" className={classes.alternateText}>2</Text></div>
@@ -1054,7 +1111,18 @@ export default function HomePage() {
         </Group>
       </Stack>
 
-      <Stack>
+      <Group position="apart">
+          <a onClick={() => handlePageChange(1)}>
+                        <Button uppercase leftIcon={<ArrowNarrowLeft strokeWidth={1}/>} color="grape" variant="light" radius={5} size="xl" style={{ fontSize: '14px', fontWeight: 400, fontFamily: "Space Mono" }}>Go Back</Button>
+            </a>
+            <a onClick={() => handlePageChange(3)}>
+                        <Button uppercase rightIcon={<ArrowNarrowRight strokeWidth={1}/>} color="grape" variant="light" radius={5} size="xl" style={{ fontSize: '14px', fontWeight: 400, fontFamily: "Space Mono" }}> Next Step</Button>
+            </a>
+        </Group>
+      </>) : ''}
+      
+      { currentPage == 3 ? (<>
+        <Stack mt={50} id="Page3">
         <Divider my="sm" />
         <Group spacing={0}>
             <div className={classes.badgeLight}><Text fz="xs" className={classes.alternateText}>3</Text></div>
@@ -1322,24 +1390,21 @@ export default function HomePage() {
           </Grid>
 
 
-
-          <Stack align="center" w="100%" pb={100} pt={100} mt={100}>
-                <Group maw={800} mb={50} p={30}>
-                  <Text fz="xs" className={classes.subTitle} grow>Inspirations</Text>
-                  <Stack mt="auto" mb={20}>
-                      <Text fz="md">We've compiled some strategies based on common target audiences! Visit the inspiration tab to search for some.</Text>
-                  </Stack>
-                  <a href={"./inspiration"}>
-                        <Button uppercase rightIcon={<ArrowNarrowRight strokeWidth={1}/>} color="dark" radius={5} size="xl" style={{ fontSize: '14px', fontWeight: 400, fontFamily: "Space Mono" }}>Get more inspiration</Button>
-                      </a>
-                </Group>
-          </Stack>
-
-
         </Stack>
-      </Stack>
 
-      <Stack>
+        <Group position="apart">
+          <a onClick={() => handlePageChange(2)}>
+                        <Button uppercase leftIcon={<ArrowNarrowLeft strokeWidth={1}/>} color="grape" variant="light" radius={5} size="xl" style={{ fontSize: '14px', fontWeight: 400, fontFamily: "Space Mono" }}>Go Back</Button>
+            </a>
+            <a onClick={() => handlePageChange(4)}>
+                        <Button uppercase rightIcon={<ArrowNarrowRight strokeWidth={1}/>} color="grape" variant="light" radius={5} size="xl" style={{ fontSize: '14px', fontWeight: 400, fontFamily: "Space Mono" }}> Next Step</Button>
+            </a>
+        </Group>
+      </Stack>      
+      </>) : ''}
+      
+      { currentPage == 4 ? (<>
+        <Stack mt={50} id="Page4">
         <Divider my="sm" />
         <Group spacing={0}>
             <div className={classes.badgeLight}><Text fz="xs" className={classes.alternateText}>4</Text></div>
@@ -1577,7 +1642,18 @@ export default function HomePage() {
                 </Group>
           </Stack>
 
-      </Stack>
+          <Group position="apart">
+          <a onClick={() => handlePageChange(3)}>
+                        <Button uppercase leftIcon={<ArrowNarrowLeft strokeWidth={1}/>} color="grape" variant="light" radius={5} size="xl" style={{ fontSize: '14px', fontWeight: 400, fontFamily: "Space Mono" }}>Go Back</Button>
+            </a>
+            <a href="./outcomes">
+                        <Button uppercase rightIcon={<ArrowNarrowRight strokeWidth={1}/>} color="grape" variant="light" radius={5} size="xl" style={{ fontSize: '14px', fontWeight: 400, fontFamily: "Space Mono" }}> Explore Insights</Button>
+            </a>
+        </Group>
+
+      </Stack>      
+      </>) : ''}
+      
 
     </Container>
   );
