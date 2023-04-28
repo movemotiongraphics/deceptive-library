@@ -64,7 +64,83 @@
    "ImageURL": "../img/inspo/onlineScams.png"
  },
  {
-   "InspirationName": "Twitter Posts",
-   "ImageURL": "../img/inspo/twitterPosts.png"
+   "InspirationName": "Misleading News on TikTok",
+   "ImageURL": "../img/inspo/misleadingtiktok.png"
+ },
+ {
+   "InspirationName": "Telegram Crypto Groups",
+   "ImageURL": "../img/inspo/telegramgroup.png"
+ },
+ {
+   "InspirationName": "Amazon Checkout",
+   "ImageURL": "../img/inspo/amazoncheckout.png"
+ },
+ {
+   "InspirationName": "Twitch Misleading Opt Out",
+   "ImageURL": "../img/inspo/twitchoptout.png"
+ },
+ {
+   "InspirationName": "Wish's Fake Products",
+   "ImageURL": "../img/inspo/wishproducts.png"
+ },
+ {
+   "InspirationName": "Twitter Scams",
+   "ImageURL": "../img/inspo/twitterposts.png"
+ },
+ {
+   "InspirationName": "App's Preferences Interface",
+   "ImageURL": "../img/inspo/appsettings.png"
+ },
+ {
+   "InspirationName": "Adobe Subscription's Interface",
+   "ImageURL": "../img/inspo/adobe.png"
+ },
+ {
+   "InspirationName": "Apps that change their terms and conditions",
+   "ImageURL": "../img/inspo/termsandconditions.png"
+ },
+ {
+   "InspirationName": "Shopee Games",
+   "ImageURL": "../img/inspo/ShopeeGames.png"
+ },
+ {
+   "InspirationName": "Spammy Advertisements on Websites",
+   "ImageURL": "../img/inspo/AdsSpam.png"
+ },
+ {
+   "InspirationName": "Shopee Checkout Defaults",
+   "ImageURL": "../img/inspo/shopeecheckout.png"
+ },
+ {
+   "InspirationName": "Game Currencies",
+   "ImageURL": "../img/inspo/genshinwish.jpg"
+ },
+ {
+   "InspirationName": "Game Bundles",
+   "ImageURL": "../img/inspo/gamebundle.jpg"
+ },
+ {
+   "InspirationName": "News App that don't let you copy paste",
+   "ImageURL": "../img/inspo/badNewsArticles.png"
+ },
+ {
+   "InspirationName": "Instagram Scammers",
+   "ImageURL": "../img/inspo/igscam.png"
+ },
+ {
+   "InspirationName": "Cancelling Subscriptions ",
+   "ImageURL": "../img/inspo/cancellingsubscriptions.png"
+ },
+ {
+   "InspirationName": "Disguised Emails",
+   "ImageURL": "../img/inspo/disguisedemail.jpg"
+ },
+ {
+   "InspirationName": "Ponzi Schemes that promises huge returns",
+   "ImageURL": "../img/inspo/ponzischeme.png"
+ },
+ {
+   "InspirationName": "Fake Download Buttons",
+   "ImageURL": "../img/inspo/fakedownloadbuttons.png"
  }
 ]

@@ -53,6 +53,11 @@ const useStyles = createStyles((theme) => ({
     backgroundColor: theme.colors.blue[5],
   },
 
+  searchRecommendations: {
+    borderRadius: 20,
+    backgroundColor: theme.colors.gray[0],
+  },
+
   instructionCard: {
     border: "1px solid rgba(0,0,0,0.22)",
     backgroundColor: theme.colors.gray[0],
@@ -109,9 +114,11 @@ const useStyles = createStyles((theme) => ({
   },
 
   InspirationBoxesImage: {
-    maxHeight: 200,
-    minWidth: "100%",
+    maxHeight: 250,
+    maxWidth: 250,
+    width: "100%",
     filter: "grayscale(1)",
+    objectFit: "contain",
 
     '&:hover': {
       filter: 'grayscale(0)',
@@ -122,7 +129,6 @@ const useStyles = createStyles((theme) => ({
   InspirationBoxesDiv: {
     borderRadius: 5,
     width: "100%",
-    height: "70%",
     marginBottom: "10px",
     overflow: "hidden",
   },
@@ -215,8 +221,18 @@ const useStyles = createStyles((theme) => ({
 
   inputArea: {
     backgroundColor: theme.colors.gray[1],
-    borderRadius: 5,
+    borderRadius: "20px 0 0 20px",
     padding: "10px 0 10px 20px",
+  },
+
+  searchButton: {
+    borderRadius: "0px 20px 20px 0px",
+    height: "100%",
+  },
+
+  searchExamples: {
+    fontFamily: "Space Mono",
+    cursor: "pointer",
   },
 
   postIts: {
@@ -309,6 +325,15 @@ export default function HomePage() {
   const [scenarioRecords, setScenarioRecords] = useState([]);
   const [contextRecords, setContextRecords] = useState([]);
   const [seenBeforeRecords, setSeenBeforeRecords] = useState([]);
+  const [searchedInspirations, setSearchInspirations] = useState([]);
+
+  const [currentSearchQuery, setSearchQuery] = useState('');
+
+  const [currentRisk, setRisk] = useState(0);
+  const [currentUncertainty, setUncertainty] = useState(0);
+  const [currentPressure, setPressure] = useState(0);
+  const [currentMotivation, setMotivation] = useState(0);
+  const [currentDeceptiveScore, setDeceptiveScore] = useState(0);
   
   //interactiveComponents
   const [inputAmount, setInputAmount] = useState(0)
@@ -387,6 +412,29 @@ export default function HomePage() {
     setStrategyRecords(strategyArray)
 
   }
+
+  function handleDeceptiveScore( risk, uncertainty, pressure, motivation ) {
+    let finalScore = (risk + uncertainty + pressure + motivation) / 4
+    setDeceptiveScore(finalScore);
+  }
+
+  function handleSearch( event ) {
+    setSearchQuery(event.target.value)
+  }
+
+  useEffect(() => {
+    let searchedData = SeenBeforeData.filter((inspiration) =>
+    inspiration.InspirationName.toLowerCase().includes(currentSearchQuery.toLowerCase())
+  );
+
+    setSearchInspirations(searchedData);
+
+  }, [currentSearchQuery, SeenBeforeData])
+
+  useEffect(() => {
+    let finalScore = (currentRisk + currentUncertainty + currentPressure + currentMotivation)/4
+    setDeceptiveScore(finalScore);
+  }, [currentRisk, currentUncertainty, currentPressure, currentMotivation])
 
   useEffect(() => {
     retrieveRecords();
@@ -472,7 +520,7 @@ export default function HomePage() {
                   </Group>
                 </Stack>
               </Grid.Col>
-
+ 
               <Grid.Col md={12} sm={12} xs={12}>
                 <Stack align="center">
                   <LineDotted
@@ -586,23 +634,30 @@ export default function HomePage() {
           <Text fz="xs" className={classes.subTitle} grow>A question to ask yourself</Text>
           <Stack align="center" w="100%">
             <Text fz="md">When did you feel like you were influenced to participate in an activity?</Text>
-              <Grid>
-                <Grid.Col md={10} sm={12}>
+              <Grid gutter={0} ml={-30}>
+                <Grid.Col span={10}>
                 <div className={classes.inputArea}>
                   <Input
-                      placeholder="Try finding one here"
+                      placeholder="I felt cheated at..."
                       radius="xl"
                       variant="unstyled"
-                      size="md"
                       w={"100%"}
+                      value={currentSearchQuery}
+                      onChange={handleSearch}
                       className={classes.subTitle}
                     />
                 </div>
                 </Grid.Col>
-                <Grid.Col md={2}>
-                <Button color="dark" radius="xl" size="xl" style={{ fontSize: '16px', fontWeight: 400 }}>Enter</Button>
+                <Grid.Col span={2}>
+                <Button className={classes.searchButton} color="dark" style={{ fontSize: '16px', fontWeight: 400 }}>Aw Man</Button>
                 </Grid.Col>
               </Grid>
+              <Group py={10} px={20} className={classes.searchRecommendations}>
+                <Text fz="xs">Popular Terms</Text>
+                <Badge color="grape" size="md" radius="sm" onClick={() => setSearchQuery("Shopee")} className={classes.searchExamples}>Shopee</Badge>
+                <Badge color="grape" size="md" radius="sm" onClick={() => setSearchQuery("Scam")} className={classes.searchExamples}>Scam</Badge>
+                <Badge color="grape" size="md" radius="sm" onClick={() => setSearchQuery("Donation")} className={classes.searchExamples}>Donation</Badge>
+              </Group>
           </Stack>
           </Stack>
         </Stack>
@@ -617,25 +672,38 @@ export default function HomePage() {
                 color={'gray'}
                 style={{ marginLeft: 10 }}
               />
-              <Text fz="xs" c="dimmed" className={classes.alternateText}>Community Observations</Text>
+              <Text fz="xs" c="dimmed" className={classes.alternateText}>{SeenBeforeData.length} Community Observations </Text>
           </Group>
           <ScrollArea h={600} type="always" offsetScrollbars>
             <Group position="left" spacing={0} className={classes.helperText}>
               <Group p={0} m={0} align="flex-start">
-                { SeenBeforeData ? SeenBeforeData.map((item, index) => (
+                { searchedInspirations ? (searchedInspirations.map((item, index) => (
                     <Stack className={classes.InspirationBoxes} spacing={20}>
                       <Group mb={15}>
                         <div className={classes.InspirationProfile}></div>
                         <div className={classes.InspirationDot}></div>
-                        <Text style={{ marginLeft: "-10px" }} fz="xs" className={classes.alternateText}>Person {index}</Text>
+                        <Text style={{ marginLeft: "-10px" }} fz="xs" className={classes.alternateText}>Person {index + 1}</Text>
                       </Group>
                       <div className={classes.InspirationBoxesDiv}>
                         <img className={classes.InspirationBoxesImage} src={item.ImageURL} ></img>
                       </div>
-                      <Text mt={20} fz="xs" className={classes.alternateText}>Person {index} felt cheated at {item.InspirationName}.</Text>
+                      <Text mt={20} fz="xs" className={classes.alternateText}>Person {index + 1} felt cheated at {item.InspirationName}.</Text>
 
                     </Stack>
-                  )) : ''}
+                  ))) : (SeenBeforeData.map((item, index) => (
+                    <Stack className={classes.InspirationBoxes} spacing={20}>
+                      <Group mb={15}>
+                        <div className={classes.InspirationProfile}></div>
+                        <div className={classes.InspirationDot}></div>
+                        <Text style={{ marginLeft: "-10px" }} fz="xs" className={classes.alternateText}>Person {index + 1}</Text>
+                      </Group>
+                      <div className={classes.InspirationBoxesDiv}>
+                        <img className={classes.InspirationBoxesImage} src={item.ImageURL} ></img>
+                      </div>
+                      <Text mt={20} fz="xs" className={classes.alternateText}>Person {index + 1} felt cheated at {item.InspirationName}.</Text>
+
+                    </Stack>
+                  )))}
               </Group>
             </Group>
           </ScrollArea>
@@ -1347,6 +1415,10 @@ export default function HomePage() {
                     <Slider mb={30}
                       min={1}
                       max={5}
+                      precision={2}
+                      step={0.1}
+                      value={currentRisk}
+                      onChange={setRisk}
                       marks={[
                         { value: 1.3, label: 'Not Risky' },
                         { value: 2, label: '' },
@@ -1384,6 +1456,10 @@ export default function HomePage() {
                     <Slider mb={30}
                       min={1}
                       max={5}
+                      precision={2}
+                      step={0.1}
+                      value={currentUncertainty}
+                      onChange={setUncertainty}
                       marks={[
                         { value: 1.3, label: 'Not Often' },
                         { value: 2, label: '' },
@@ -1421,6 +1497,10 @@ export default function HomePage() {
                     <Slider mb={30}
                       min={1}
                       max={5}
+                      precision={2}
+                      step={0.1}
+                      value={currentPressure}
+                      onChange={setPressure}
                       marks={[
                         { value: 1.3, label: 'Not Pressuring' },
                         { value: 2, label: '' },
@@ -1458,6 +1538,10 @@ export default function HomePage() {
                     <Slider mb={30}
                       min={1}
                       max={5}
+                      precision={2}
+                      step={0.1}
+                      value={currentMotivation}
+                      onChange={setMotivation}
                       marks={[
                         { value: 1.3, label: 'Not Motivating' },
                         { value: 2, label: '' },
@@ -1487,7 +1571,7 @@ export default function HomePage() {
                   <Text fz="xs" className={classes.subTitle}>Results</Text>
                   <Stack mt="auto" mb={100}>
                   <Group className={classes.postItsSpecial} mt={20}>
-                        <Text fz="md">Your deception score is currently 3.5 and your prototype might not be socially acceptable.</Text>
+                        <Text fz="md">Your deception score is currently { currentDeceptiveScore.toFixed(2) } and your prototype might not be socially acceptable.</Text>
                   </Group>
                   </Stack>
                 </Group>
