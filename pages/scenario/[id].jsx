@@ -226,7 +226,7 @@ const scenarioPage = ({ currentScenario }) => {
     <Container size="xl" px={30}>
         <Stack>
             <Stack mb={100} maw={600}>
-                <Text fz="md" className={classes.alternateText}>In this scenario, I { currentScenario.Instruction.toLowerCase() } { currentScenario['Insight (from Observation)'] ? `I found out that ${currentScenario['Insight (from Observation)'].split(",")[0].toLowerCase()}` : 'The result was similar to the typical interface.' }</Text>
+                <Text fz="md" className={classes.alternateText}>In this scenario, I { currentScenario.Instruction.toLowerCase() } { currentScenario['Insight (from Observation)'] ? `I found out that ${currentScenario['Insight (from Observation)'].split(".")[0].toLowerCase()}.` : 'The result was similar to the typical interface.' }</Text>
             </Stack>
             <Grid mb={100} gutterSm={50} gutterXs={50} gutterMd={20}> 
                 <Grid.Col md={6} sm={12} xs={12}>
