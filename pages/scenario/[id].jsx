@@ -487,13 +487,13 @@ const scenarioPage = ({ currentScenario }) => {
                 <Stack maw={1000} spacing={30} align="center">
                     <Text fz="xs" className={classes.alternateText}>Conclusion</Text>
                     <h1 className={classes.title} style={{textAlign: "center"}}>
-                    Since people felt that this interface was { currentScenario.DeceptiveScore < 2.5 ? 'socially acceptable, we can probably adopt this interface.' : 'not socially acceptable, we should probably not adopt this interface.' }
+                    Since people felt that this interface was { currentScenario.DeceptiveScore < 2.5 ? 'socially acceptable, we can probably adopt this in our donation interfaces.' : 'not socially acceptable, we should probably not adopt this interface.' }
                     </h1>
                     <h1 className={classes.title} style={{textAlign: "center"}}>
-                    { currentScenario['Insight (from Observation)'] ? `In this experiment, ${currentScenario['Insight (from Observation)'].toLowerCase()}` : ''  }
+                    { currentScenario['Insight (from Observation)'] ? `From this experiment, I found out that ${currentScenario['Insight (from Observation)'].split(".")[0].toLowerCase()}.` : ''  }
                     </h1>
                     <h1 className={classes.title} style={{textAlign: "center"}}>
-                    { currentScenario['Actionable (from Observation)'] ? ` You can probably use this to ${currentScenario['Actionable (from Observation)'].toLowerCase()}.` : ' We can use this insight to create more interfaces!'  }
+                    { currentScenario['Actionable (from Observation)'] ? ` This helps you ${currentScenario['Actionable (from Observation)'].toLowerCase()}.` : ''  }
                     </h1>
                     
                 </Stack>
